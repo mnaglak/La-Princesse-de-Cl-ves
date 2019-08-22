@@ -27,6 +27,7 @@
 			{style: myStyleCharacter2, onEachFeature:popUp}); 	
 
 
+
 //Create Timeline Slider 
  var slider = d3
     .sliderHorizontal()
@@ -73,6 +74,7 @@
 //Local basemaps created from a .geotiff  using gdal2tiles (workflow available) 
 	var map1675 = L.tileLayer('./tiledMaps/1675/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 10, maxZoom: 25}).addTo(map);
 	var map1652 = L.tileLayer('./tiledMaps/1652/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 10, maxZoom: 25}).addTo(map);
+	var europe1644 = L.tileLayer('./tiledMaps/1644/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 10, maxZoom: 25}).addTo(map);
 
      
 //Function to allow for popup box containing attributes of .geoJSON files
@@ -99,7 +101,8 @@
 		//List of Layers to be controlled by the Opacity Control Box
 		var opacityLayers = {
 			"1652 Gomboust" : map1652,
-			"1675 Rochefort" : map1675
+			"1675 Rochefort" : map1675,
+			"1644 Europe" : europe1644
 			};
 
 		//Lets you see lat/long in the console. Useful for placing non-georeferenced maps in the correct location
@@ -127,6 +130,7 @@
 		var overlayMaps = {
 			"1675 Rochefort" : map1675,
 			"1652 Gomboust" : map1652,
+			"1644 Europe" : europe1644,
 			"Interesting Sites" : interestingSites};
 		
 		//creation of on/off control box
