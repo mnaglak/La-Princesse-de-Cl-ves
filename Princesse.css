@@ -19,7 +19,7 @@
 	/* this edits the position of the box which holds the timeline */
     .source {
         position: absolute;
-        top: 300px;
+        top: 550px;
         left: 1150px;
     }
 

@@ -77,6 +77,8 @@
 	var map1675 = L.tileLayer('./tiledMaps/1675/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 9, maxZoom: 25}).addTo(map);
 	var map1652 = L.tileLayer('./tiledMaps/1652/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 9, maxZoom: 25}).addTo(map);
 	var europe1644 = L.tileLayer('./tiledMaps/1644/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 1, maxZoom: 8}).addTo(map);
+	var europe1570 = L.tileLayer('./tiledMaps/1570/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 6, maxZoom: 11}).addTo(map);
+	var france1598 = L.tileLayer('./tiledMaps/1598/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 9, maxZoom: 12}).addTo(map);
 
      
 //Function to allow for popup box containing attributes of .geoJSON files
@@ -104,7 +106,9 @@
 		var opacityLayers = {
 			"1652 Gomboust" : map1652,
 			"1675 Rochefort" : map1675,
-			"1644 Europe" : europe1644
+			"1644 Europe" : europe1644,
+			"1570 Europe" : europe1570,
+			"1598 France" : france1598
 			};
 
 //Lets you see lat/long in the console. Useful for placing non-georeferenced maps in the correct location
@@ -133,6 +137,8 @@
 			"1675 Rochefort" : map1675,
 			"1652 Gomboust" : map1652,
 			"1644 Europe" : europe1644,
+			"1570 Europe" : europe1570,
+			"1598 France" : france1598,
 			"Interesting Sites" : interestingSites};
 		
 		//creation of on/off control box
