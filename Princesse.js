@@ -32,9 +32,9 @@
  var slider = d3
     .sliderHorizontal()
     .min(1)
-    .max(5)
+    .max(4)
     .step(1)
-	.ticks(5)
+	.ticks(4)
 	.tickFormat(d3.format(',.0f')) //integer format. Others possible
     .width(150)
     .displayValue(true)
@@ -72,10 +72,9 @@
 		}).addTo(map);
 			
 //Local basemaps created from a .geotiff  using gdal2tiles (workflow available) 
-	var map1675 = L.tileLayer('./tiledMaps/1675/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 10, maxZoom: 25}).addTo(map);
-	var map1652 = L.tileLayer('./tiledMaps/1652/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 10, maxZoom: 25}).addTo(map);
-	var europe1644 = L.tileLayer('./tiledMaps/1644/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 1, maxZoom: 6}).addTo(map);
-	var europe1644_2 = L.tileLayer('./tiledMaps/1644_2/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 1, maxZoom: 9}).addTo(map);
+	var map1675 = L.tileLayer('./tiledMaps/1675/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 9, maxZoom: 25}).addTo(map);
+	var map1652 = L.tileLayer('./tiledMaps/1652/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 9, maxZoom: 25}).addTo(map);
+	var europe1644 = L.tileLayer('./tiledMaps/1644/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 1, maxZoom: 8}).addTo(map);
 
      
 //Function to allow for popup box containing attributes of .geoJSON files
@@ -95,19 +94,18 @@
 
 
 
-		//List of desired baseMap layers
+//List of desired baseMap layers
 		var baseLayers = {
 			"Modern Satellite Imagery" : Esri_WorldImagery};
 		
-		//List of Layers to be controlled by the Opacity Control Box
+//List of Layers to be controlled by the Opacity Control Box
 		var opacityLayers = {
 			"1652 Gomboust" : map1652,
 			"1675 Rochefort" : map1675,
-			"1644 Europe" : europe1644,
-			"1644 Europe 2" : europe1644_2
+			"1644 Europe" : europe1644
 			};
 
-		//Lets you see lat/long in the console. Useful for placing non-georeferenced maps in the correct location
+//Lets you see lat/long in the console. Useful for placing non-georeferenced maps in the correct location
 			map.on('click', function(e){
 			var coord = e.latlng;
 			var lat = coord.lat;
@@ -115,14 +113,14 @@
 			console.log("You clicked the map at latitude: " + lat + " and longitude: " + lng);
 			});
 		
-		//Louvre images placed manually by lat/long, followed by photo binding
+//Louvre images placed manually by lat/long, followed by photo binding
 			var Louvre1 = L.marker([48.860352821094246, 2.3385858535766606]);
-			var photoImg = "<img src='./siteImages/Fig. 1 Louvre Israel Silvestre.jpeg' width=500px/>";
-			Louvre1.bindPopup(photoImg);
+			var photoImg = "<img src='./Images/Fig. 1 Louvre Israel Silvestre.jpeg' width=500px/>";
+			Louvre1.bindPopup(photoImg + "<br>" + "I am the Louvre");
 			
 			var Louvre2= L.marker([48.86104454579249, 2.3360109329223637]);
-			var photoImg2 = "<img src='./siteImages/Fig. 2 Louvre Israel Silvestre.jpeg' width=500px/>" ;
-			Louvre2.bindPopup(photoImg2);
+			var photoImg2 = "<img src='./Images/Fig. 2 Louvre Israel Silvestre.jpeg' width=500px/>" ;
+			Louvre2.bindPopup(photoImg2 + "<br>" + "I am the Louvre too!");
 			
 		//Creation of interestingSites group so all places can be turned on/off together
 			var interestingSites = L.layerGroup([Louvre1, Louvre2]).addTo(map);
@@ -133,7 +131,6 @@
 			"1675 Rochefort" : map1675,
 			"1652 Gomboust" : map1652,
 			"1644 Europe" : europe1644,
-			"1644 Europe_2" : europe1644_2,
 			"Interesting Sites" : interestingSites};
 		
 		//creation of on/off control box
