@@ -12,7 +12,8 @@
 		var myStyleCharacter1 = {
 			"color": "#ff1500",
 			"weight": 6,
-			"opacity": 0.5};
+			"opacity": 0.5,
+			"dashArray": '15, 15, 5, 10'};
 
 		var myStyleCharacter2 = {
 			"color": "#04ff00",
@@ -25,6 +26,7 @@
 
 		var char2 = new L.GeoJSON.AJAX("Character2_v5.geojson", 
 			{style: myStyleCharacter2, onEachFeature:popUp}); 	
+
 
 
 
