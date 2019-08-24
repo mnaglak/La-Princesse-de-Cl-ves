@@ -7,6 +7,7 @@
 			}
 			
 		var map = new L.map('map', mapOptions); 
+		
 	
 	//Set Line Styles for each Character
 		var myStyleCharacter1 = {
@@ -26,8 +27,6 @@
 
 		var char2 = new L.GeoJSON.AJAX("Character2_v5.geojson", 
 			{style: myStyleCharacter2, onEachFeature:popUp}); 	
-
-
 
 
 //Create Timeline Slider 
@@ -68,20 +67,23 @@
 //Initial filter to open the map with
 	onSlider(1);
 
-//Externally called Google Earth tiled basemap
-	var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-		attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
-		}).addTo(map);
-			
-//Local basemaps created from a .geotiff  using gdal2tiles (workflow available) 
-	var paris1675 = L.tileLayer('./tiledMaps/1675/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 9, maxZoom: 25}).addTo(map);
-	var paris1652 = L.tileLayer('./tiledMaps/1652/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 9, maxZoom: 25}).addTo(map);
-	var europe1644 = L.tileLayer('./tiledMaps/1644/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 1, maxZoom: 8}).addTo(map);
-	var france1570 = L.tileLayer('./tiledMaps/1570/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 6, maxZoom: 11}).addTo(map);
-	var ileDeFrance1598 = L.tileLayer('./tiledMaps/1598/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 9, maxZoom: 12}).addTo(map);
-	//var paris1615 = L.tileLayer('./tiledMaps/1615/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 11, maxZoom: 17}).addTo(map);
-	var paris1578 = L.tileLayer('./tiledMaps/1578/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 12, maxZoom: 18}).addTo(map);
 
+	var esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+		attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+		}).addTo(map); 
+				
+		
+	var paris1675 = L.tileLayer('./tiledMaps/1675/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 9, maxZoom: 25}).addTo(map);
+	var paris1652 = L.tileLayer('./tiledMaps/1652/{z}/{x}/{y}.png', {tms: true, attribution: "", zIndex: 130, minZoom: 9, maxZoom: 25}).addTo(map);
+	var europe1644 = L.tileLayer('./tiledMaps/1644/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 1, maxZoom: 8}).addTo(map);
+	
+	var france1570 = L.tileLayer('./tiledMaps/1570/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 6, maxZoom: 11}).addTo(map);
+	
+	var ileDeFrance1598 = L.tileLayer('./tiledMaps/1598/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 9, maxZoom: 12}).addTo(map);
+	
+	var paris1615 = L.tileLayer('./tiledMaps/1615/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 11, maxZoom: 16}).addTo(map);
+		
+var paris1578 = L.tileLayer('./tiledMaps/1578/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 12, maxZoom: 18}).addTo(map);
      
 //Function to allow for popup box containing attributes of .geoJSON files
 	function popUp(f,l){
@@ -101,17 +103,19 @@
 
 
 //List of desired baseMap layers
-		var baseLayers = {
-			"Modern Satellite Imagery" : Esri_WorldImagery};
+	var baseLayers = {
+		"Modern Imagery" : esri_WorldImagery
+		};
 		
 //List of Layers to be controlled by the Opacity Control Box
 		var opacityLayers = {
 			"1578 Paris" : paris1578,
+			"1615 Paris" : paris1615,
 			"1652 Paris" : paris1652,
 			"1675 Paris" : paris1675,
-			"1644 Europe" : europe1644,
+			"1598 Ile de France" : ileDeFrance1598,
 			"1570 France" : france1570,
-			"1598 Ile de France" : ileDeFrance1598
+			"1644 Europe" : europe1644
 			};
 
 //Lets you see lat/long in the console. Useful for placing non-georeferenced maps in the correct location
@@ -123,27 +127,29 @@
 			});
 		
 //Louvre images placed manually by lat/long, followed by photo binding
-			var Louvre1 = L.marker([48.860352821094246, 2.3385858535766606]);
+			var louvre1 = L.marker([48.860352821094246, 2.3385858535766606]);
 			var photoImg = "<img src='./Images/Fig. 1 Louvre Israel Silvestre.jpeg' width=500px/>";
-			Louvre1.bindPopup(photoImg + "<br>" + "I am the Louvre");
+			louvre1.bindPopup(photoImg + "<br>" + "I am the Louvre");
 			
-			var Louvre2= L.marker([48.86104454579249, 2.3360109329223637]);
+			var louvre2= L.marker([48.86104454579249, 2.3360109329223637]);
 			var photoImg2 = "<img src='./Images/Fig. 2 Louvre Israel Silvestre.jpeg' width=500px/>" ;
-			Louvre2.bindPopup(photoImg2 + "<br>" + "I am the Louvre too!");
+			louvre2.bindPopup(photoImg2 + "<br>" + "I am the Louvre too!");
 			
-		//Creation of interestingSites group so all places can be turned on/off together
-			var interestingSites = L.layerGroup([Louvre1, Louvre2]).addTo(map);
+//Creation of interestingSites group so all places can be turned on/off together
+			var pointsOfFocus = L.layerGroup([louvre1, louvre2]).addTo(map);
 	
 
-		//Grouping of Layers that we want to be able to turn on and off		
+//Grouping of Layers that we want to be able to turn on and off		
 		var overlayMaps = {
 			"1578 Paris" : paris1578,
-			"1675 Paris" : paris1675,
+			"1615 Paris" : paris1615,
 			"1652 Paris" : paris1652,
-			"1644 Europe" : europe1644,
-			"1570 France" : france1570,
+			"1675 Paris" : paris1675,
 			"1598 Ile de France" : ileDeFrance1598,
-			"Interesting Sites" : interestingSites};
+			"1570 France" : france1570,
+			"1644 Europe" : europe1644,
+			"Points of Focus" : pointsOfFocus,
+			};
 		
 		//creation of on/off control box
 		L.control.layers(baseLayers, overlayMaps, {collapsed: false}).addTo(map);
@@ -157,37 +163,6 @@
 		//Creation of pan/scale function like Fulcrum images have. Uses PanControl plugin  
 		L.control.pan().addTo(map);
 		L.control.scale().addTo(map);
-		
-		
-	
-
-
-//Old control slider we are no longer using but I want to keep the code for now
-/*	var slider = L.control.range({
-    position: 'topright',
-    min: 1,
-    max: 5,
-    value: 1,
-    step: 1,
-    orient: 'horizontal',
-    iconClass: 'leaflet-range-icon',
-    icon: false,
-	label: "Test"
-});
-
-				
-slider.on('input change', function(e) {
-	            char1.refilter(function(feature){
-			return feature.properties.Timestamp <= e.value;
-		});
-		char1.addTo(map);
-		
-		char2.refilter(function(feature){
-			return feature.properties.Timestamp <= e.value;
-		});
-		char2.addTo(map);
-});
-map.addControl(slider);		 */
 
 
 
