@@ -16,11 +16,11 @@
     .title {
         font-weight: 600;
     }
-	/* this edits the position of the box which holds the timeline */
+	/*this edits the position of the box which holds the timeline*/
     .source {
         position: absolute;
-        top: 550px;
-        left: 1150px;
+        top: 520px;
+        left: 5px;
     }
 
 .leaflet-popup-content {
