@@ -2,13 +2,25 @@
 //Define map start up options, here defined to center on Paris, and Create Map
 		var mapOptions = {
 			center: [48.86, 2.33],
-			zoom: 13 ,
+			zoom: 10 ,
 			maxZoom : 20,
 			}
 			
 		var map = new L.map('map', mapOptions); 
-		
+			
+			map.createPane('modern');
+			map.getPane('modern').style.zIndex = 140;
+			
+			map.createPane('iledeFrance');
+			map.getPane('iledeFrance').style.zIndex = 150;
+
+			map.createPane('france');
+			map.getPane('france').style.zIndex = 145;
 	
+	
+			map.createPane('europe');
+			map.getPane('europe').style.zIndex = 143;
+
 	//Set Line Styles for each Character
 		var myStyleCharacter1 = {
 			"color": "#ff1500",
@@ -24,9 +36,41 @@
 //Create Characters from .geoJson's exported from ArcPro and create popUp box		
 		var char1 = new L.GeoJSON.AJAX("Character1_v5.geojson", 
 			{style: myStyleCharacter1, onEachFeature:popUp}); 
+			char1.addTo(map);
+
+	
 
 		var char2 = new L.GeoJSON.AJAX("Character2_v5.geojson", 
 			{style: myStyleCharacter2, onEachFeature:popUp}); 	
+			char2.addTo(map);
+
+
+		var ducDeNemours =  new L.GeoJSON.AJAX("movementTesting.geojson", {
+			onEachFeature: popUp,
+			style: swapColor
+			});
+			ducDeNemours.addTo(map);
+		
+		function swapColor(feature) {
+			if (feature.properties.Book_Part == 1) {
+				switch (feature.properties.Character) {
+					case 'Prince de Cleves': return {color: "#ff0000", "dashArray": '15, 15, 5, 10' };
+					case 'Duc de Nemours': return {color: "#0000ff", "dashArray": '15, 15, 5, 10'};
+				}
+			}
+			
+		}
+		
+
+//arrows on the movement geojson
+	ducDeNemours.on('mouseover', function () {
+        this.setText('  ►  ', {repeat: true, offset: 8, attributes: {fill: 'red', 'font-size': '20'}});
+		});
+    ducDeNemours.on('mouseout', function () {
+        this.setText(null);
+    }); 
+
+
 
 
 //Create Timeline Slider 
@@ -53,37 +97,37 @@
 	
 //Function to re-evaluate Characters based on Timestamp	
 	function onSlider(val) { //function receives the value on the slider
-		char1.refilter(function(feature){
-			return feature.properties.Timestamp <= val; //char1 filtered to only include Timestamps less than or equal to the value of the slider
+		ducDeNemours.refilter(function(feature){
+			return feature.properties.Book_Part == val; //char1 filtered to only include Timestamps  equal to the value of the slider
 		});
-		char1.addTo(map); //readd char1 to map
+		ducDeNemours.addTo(map); //readd char1 to map
 		
 		char2.refilter(function(feature){ //repeats for each character
-			return feature.properties.Timestamp <= val;
+			return feature.properties.Book_Part <= val;
 		});
 		char2.addTo(map);		
 	}
 
 //Initial filter to open the map with
-	onSlider(1);
+	onSlider(1); 
 
 
 	var esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-		attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+		pane :'modern', attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
 		}).addTo(map); 
 				
 		
 	var paris1675 = L.tileLayer('./tiledMaps/1675/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 9, maxZoom: 25}).addTo(map);
-	var paris1652 = L.tileLayer('./tiledMaps/1652/{z}/{x}/{y}.png', {tms: true, attribution: "", zIndex: 130, minZoom: 9, maxZoom: 25}).addTo(map);
-	var europe1644 = L.tileLayer('./tiledMaps/1644/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 1, maxZoom: 8}).addTo(map);
+	var paris1652 = L.tileLayer('./tiledMaps/1652/{z}/{x}/{y}.png', {tms: true, attribution: "", zIndex: 130, minZoom: 9, maxZoom: 25});
+	var europe1644 = L.tileLayer('./tiledMaps/1644/{z}/{x}/{y}.png', {tms: true, pane: 'europe', attribution: "", minZoom: 1, maxZoom: 8}).addTo(map);
 	
-	var france1570 = L.tileLayer('./tiledMaps/1570/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 6, maxZoom: 11}).addTo(map);
+	var france1570 = L.tileLayer('./tiledMaps/1570/{z}/{x}/{y}.png', {tms: true, pane: 'france', attribution: "", minZoom: 6, maxZoom: 10}).addTo(map);
 	
-	var ileDeFrance1598 = L.tileLayer('./tiledMaps/1598/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 9, maxZoom: 12}).addTo(map);
+	var ileDeFrance1598 = L.tileLayer('./tiledMaps/1598/{z}/{x}/{y}.png', {tms: true, pane: 'iledeFrance', attribution: "", minZoom: 9, maxZoom: 13}).addTo(map);
 	
-	var paris1615 = L.tileLayer('./tiledMaps/1615/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 11, maxZoom: 16}).addTo(map);
+	var paris1615 = L.tileLayer('./tiledMaps/1615/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 11, maxZoom: 16});
 		
-var paris1578 = L.tileLayer('./tiledMaps/1578/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 12, maxZoom: 18}).addTo(map);
+var paris1578 = L.tileLayer('./tiledMaps/1578/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 12, maxZoom: 18});
      
 //Function to allow for popup box containing attributes of .geoJSON files
 	function popUp(f,l){
@@ -96,11 +140,11 @@ var paris1578 = L.tileLayer('./tiledMaps/1578/{z}/{x}/{y}.png', {tms: true, attr
 						out.push(key+": "+f.properties[key]); //pushes out .geoJSON attributes exported from ArcGIS
 						}
 					}
-					l.bindPopup(out.join("<br />"));
-					}
+					l.bindPopup(out.join("<br />"))		
 				}
+			}
 
-
+						
 
 //List of desired baseMap layers
 	var baseLayers = {
@@ -135,8 +179,10 @@ var paris1578 = L.tileLayer('./tiledMaps/1578/{z}/{x}/{y}.png', {tms: true, attr
 			var photoImg2 = "<img src='./Images/Fig. 2 Louvre Israel Silvestre.jpeg' width=500px/>" ;
 			louvre2.bindPopup(photoImg2 + "<br>" + "I am the Louvre too!");
 			
+			var coulommiers= L.marker([48.72358515157852, 3.0514526367187504]);
+			coulommiers.bindPopup("I am Coulommiers");
 //Creation of interestingSites group so all places can be turned on/off together
-			var pointsOfFocus = L.layerGroup([louvre1, louvre2]).addTo(map);
+			var pointsOfFocus = L.layerGroup([louvre1, louvre2, coulommiers]).addTo(map);
 	
 
 //Grouping of Layers that we want to be able to turn on and off		
@@ -157,7 +203,8 @@ var paris1578 = L.tileLayer('./tiledMaps/1578/{z}/{x}/{y}.png', {tms: true, attr
 		//Creation of Opacity Control Box
 		L.control.opacity(
 			opacityLayers, //the variable containing all the maps
-			{label: "Opacity Controls"}
+			{label: "Opacity",
+			collapsed: true}
 			).addTo(map);
 			
 		//Creation of pan/scale function like Fulcrum images have. Uses PanControl plugin  
