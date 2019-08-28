@@ -24,12 +24,12 @@
 			louvre2.bindPopup(photoImg2 + "<br>" + "I am the Louvre too!");
 			
 			var coulommiers= L.marker([48.72358515157852, 3.0514526367187504]);
-			var photoImg3= "<img src='./Images/Coulommiers_vers_1600.jpg'/>" ;
+			var photoImg3= "<img src='./Images/Coulommiers_vers_1600.jpg' width=300px/>" ;
 			coulommiers.bindPopup(photoImg3);
 
 			var coulommiers2= L.marker([48.72258515157852, 3.0534526367187504]);
 			var photoImg4= "<img src='./Images/Prospect_du_Chasteau_de_Coulommiers_en_Brie.jpg' width=500px/>" ;
-			coulommiers2.bindPopup(photoImg4 + "<br>" + "I am Coulommiers as well");
+			coulommiers2.bindPopup(photoImg3 + "<br>" + "I am Coulommiers as well");
 
 
 			var brussels = L.marker([51.09662294502995, 5.158081054687501]);
