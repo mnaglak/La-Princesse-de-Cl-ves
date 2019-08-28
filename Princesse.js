@@ -16,7 +16,7 @@
 			
 			//Image and Text
 			var louvre1 = L.marker([48.860352821094246, 2.3385858535766606]);
-			var photoImg = "<img src='./Images/Coulommiers vers 1600.jpeg' width=500px/>";
+			var photoImg = "<img src='./Images/Fig. 1 Louvre Israel Silvestre.jpeg' width=500px/>";
 			louvre1.bindPopup(photoImg + "<br>" + "I am the Louvre");
 			
 			var louvre2= L.marker([48.86104454579249, 2.3360109329223637]);
@@ -24,21 +24,23 @@
 			louvre2.bindPopup(photoImg2 + "<br>" + "I am the Louvre too!");
 			
 			
-			var coulommiers2 = L.marker([48.71452483966839, 3.0747985839843754]);
-			var photoImg3 = "<img src='./Images/test.tif'/>";
-			coulommiers2.bindPopup(photoImg3 + "<br>" + "I am the Coulommier the location where blah blah blah");
-			
+			var photoImg3= "<img src='./Images/Coulommiers vers 1600.jpg' width=400px/>" ;
+
 			//Just Text
 			var coulommiers= L.marker([48.72358515157852, 3.0514526367187504]);
-			coulommiers.bindPopup("I am Coulommiers");
+			coulommiers.bindPopup(photoImg3 + "<br>" + "I am Coulommiers");
 
 			var brussels = L.marker([51.09662294502995, 5.158081054687501]);
 			brussels.bindPopup("I am Brussels!");
 
 
 
+
+
+
+
 //Lastly, add the point to your Points of Focus group so all places can be turned on/off together
-			var pointsOfFocus = L.layerGroup([louvre1, louvre2, coulommiers, brussels, coulommiers2]).addTo(map);
+			var pointsOfFocus = L.layerGroup([louvre1, louvre2, coulommiers, brussels]).addTo(map);
 
 
 
