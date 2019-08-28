@@ -25,7 +25,7 @@
 			
 			
 			var coulommiers2 = L.marker([48.71452483966839, 3.0747985839843754]);
-			var photoImg3 = "<img src='./Images/Coulommiers vers 1600.jpeg'/>";
+			var photoImg3 = "<img src='./Images/test.tif'/>";
 			coulommiers2.bindPopup(photoImg3 + "<br>" + "I am the Coulommier the location where blah blah blah");
 			
 			//Just Text
