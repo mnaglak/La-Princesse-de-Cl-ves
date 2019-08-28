@@ -24,7 +24,7 @@
 			louvre2.bindPopup(photoImg2 + "<br>" + "I am the Louvre too!");
 			
 			var coulommiers= L.marker([48.72358515157852, 3.0514526367187504]);
-			var photoImg3= "<img src='./Images/Coulommiers_vers_1600.jpg' width=300px/>" ;
+			var photoImg3= "<img src='./Images/Coulommiers_vers_1600.JPG' width=300px/>" ;
 			coulommiers.bindPopup(photoImg3);
 
 			var coulommiers2= L.marker([48.72258515157852, 3.0534526367187504]);
