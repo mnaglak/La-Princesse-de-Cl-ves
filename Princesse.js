@@ -16,7 +16,7 @@
 			
 			//Image and Text
 			var louvre1 = L.marker([48.860352821094246, 2.3385858535766606]);
-			var photoImg = "<img src='./Images/Fig. 1 Louvre Israel Silvestre.jpeg' width=500px/>";
+			var photoImg = "<img src='./Images/Coulommiers vers 1600.jpeg' width=500px/>";
 			louvre1.bindPopup(photoImg + "<br>" + "I am the Louvre");
 			
 			var louvre2= L.marker([48.86104454579249, 2.3360109329223637]);
