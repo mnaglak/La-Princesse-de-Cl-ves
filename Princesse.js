@@ -24,10 +24,10 @@
 			louvre2.bindPopup(photoImg2 + "<br>" + "I am the Louvre too!");
 			
 			
-			var photoImg3= "<img src='./Images/Coulommiers vers 1600.jpg' width=400px/>" ;
 
 			//Just Text
 			var coulommiers= L.marker([48.72358515157852, 3.0514526367187504]);
+			var photoImg3= "<img src='./Images/Coulommiers vers 1600.jpg' width=500px/>" ;
 			coulommiers.bindPopup(photoImg3 + "<br>" + "I am Coulommiers");
 
 			var brussels = L.marker([51.09662294502995, 5.158081054687501]);
