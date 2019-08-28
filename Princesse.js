@@ -29,7 +29,7 @@
 
 			var coulommiers2= L.marker([48.72258515157852, 3.0534526367187504]);
 			var photoImg4= "<img src='./Images/Prospect_du_Chasteau_de_Coulommiers_en_Brie.jpg' width=500px/>" ;
-			coulommiers2.bindPopup(photoImg3 + "<br>" + "I am Coulommiers as well");
+			coulommiers2.bindPopup(photoImg4 + "<br>" + "I am Coulommiers as well");
 
 
 			var brussels = L.marker([51.09662294502995, 5.158081054687501]);
