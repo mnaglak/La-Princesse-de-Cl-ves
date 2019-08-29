@@ -180,8 +180,20 @@
 	function swapStyle(feature) {
 		if (feature.properties.Book_Part == 1) {
 				switch (feature.properties.Character) {
-					case 'Prince de Cleves': return {color: "#ff0000", "dashArray": '15, 15, 5, 10' };
+					case 'Prince De Clèves': return {color: "#ff0000", "dashArray": '15, 15, 5, 10' };
 					case 'Duc de Nemours': return {color: "#0000ff", "dashArray": '15, 15, 5, 10'};
+					case 'Cardinal Lorraine': return {color: "#d9ff15", "dashArray": '15, 15, 5, 10'};
+					case 'Connétable De Montmorency': return {color: "#5e8d46", "dashArray": '15, 15, 5, 10'};
+					case 'Maréchal de Saint André' : return {color: "#c59be9", "dashArray": '15, 15, 5, 10'};
+					case 'Henry II': return {color: "#000000", "dashArray": '15, 15, 5, 10'};
+					case 'Duc de Savoie': return {color: "#bfb1b1", "dashArray": '15, 15, 5, 10'};
+					case 'Comte de Radan': return {color: "#c400ff", "dashArray": '15, 15, 5, 10'};
+					case 'Lignerolles': return {color: "#ffab00", "dashArray": '15, 15, 5, 10'};
+					case 'Connétable De Bourbon': return {color: "#ffff00", "dashArray": '15, 15, 5, 10'};
+					case 'Madame la Régente': return {color: "#00ff77", "dashArray": '15, 15, 5, 10'};
+					case 'Court Assembly': return {color: "#78f2ee", "dashArray": '15, 15, 5, 10'};
+					case 'Princesse De Clèves': return {color: "#e931be", "dashArray": '15, 15, 5, 10'};
+
 				}
 			}
 		}; 
