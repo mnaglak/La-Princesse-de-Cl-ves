@@ -44,12 +44,12 @@
 			
 			cateauCambresis.bindPopup('I am Cateau-Cambresis');
 
-			var chantilly = L.marker([49.1008472617129, 2.889404296875]);
+			var chantilly = L.marker([49.189781745417484, 2.5007629394531254]);
 			
 			chantilly.bindPopup('I am Chantilly');
 
 
-			var bayonne = L.marker([44.04811573082351,2.2796630859375004]);
+			var bayonne = L.marker([44.04811573082351,-2.2796630859375004]);
 			bayonne.bindPopup('I am Bayonne');
 			
 			
