@@ -49,7 +49,7 @@
 			chantilly.bindPopup('I am Chantilly');
 
 
-			var bayonne = L.maker([44.04811573082351,2.2796630859375004]);
+			var bayonne = L.marker([44.04811573082351,2.2796630859375004]);
 			bayonne.bindPopup('I am Bayonne');
 			
 			
