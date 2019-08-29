@@ -54,7 +54,7 @@
 			
 			
 //Lastly, add the point to your Points of Focus group so all places can be turned on/off together
-			var pointsOfFocus = L.layerGroup([louvre1, louvre2, coulommiers, coulommiers2, brussels]).addTo(map);
+			var pointsOfFocus = L.layerGroup([louvre1, louvre2, coulommiers, coulommiers2, brussels, chantilly, cateauCambresis, bayonne, leCercamp]).addTo(map);
 
 
 
