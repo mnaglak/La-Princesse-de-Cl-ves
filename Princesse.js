@@ -171,7 +171,7 @@
 //Each "part" of the book should have its own geojson, with information listed
 //This also tells the pop up boxes to come up on each feature (see fuction popup below)
 //As well as to swap the style for each line according to the book/character attributes of the geojson
-	var part1 =  new L.GeoJSON.AJAX("movementTesting.geojson", {
+	var part1 =  new L.GeoJSON.AJAX("movementPart1.geojson", {
 		onEachFeature: popUp,
 		style: swapStyle});
 	part1.addTo(map);
