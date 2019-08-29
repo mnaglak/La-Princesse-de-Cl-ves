@@ -31,16 +31,28 @@
 			var photoImg4= "<img src='./Images/Prospect_du_Chasteau_de_Coulommiers_en_Brie.jpg' width=500px/>" ;
 			coulommiers2.bindPopup(photoImg4 + "<br>" + "I am Coulommiers as well");
 
-
 			var brussels = L.marker([51.09662294502995, 5.158081054687501]);
+			
 			brussels.bindPopup("I am Brussels!");
 
 
+			var leCercamp = L.marker([50.24720490139267, 2.6312255859375004]);
+			
+			leCercamp.bindPopup("Le Cercamp");
+
+			var cateauCambresis = L.marker([50.0289165635219, 4.084167480468751]);
+			
+			cateauCambresis.bindPopup('I am Cateau-Cambresis');
+
+			var chantilly = L.marker([49.1008472617129, 2.889404296875]);
+			
+			chantilly.bindPopup('I am Chantilly');
 
 
-
-
-
+			var bayonne = L.maker([44.04811573082351,2.2796630859375004]);
+			bayonne.bindPopup('I am Bayonne');
+			
+			
 //Lastly, add the point to your Points of Focus group so all places can be turned on/off together
 			var pointsOfFocus = L.layerGroup([louvre1, louvre2, coulommiers, coulommiers2, brussels]).addTo(map);
 
@@ -90,7 +102,7 @@
 	var paris1578 = L.tileLayer('./tiledMaps/1578/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 12, maxZoom: 18});
 	var paris1615 = L.tileLayer('./tiledMaps/1615/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 11, maxZoom: 16});
 	var paris1652 = L.tileLayer('./tiledMaps/1652/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 9, maxZoom: 25});
-	var paris1675 = L.tileLayer('./tiledMaps/1675/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 13, maxZoom: 25}).addTo(map);
+	var paris1675 = L.tileLayer('./tiledMaps/1675/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 9, maxZoom: 16}).addTo(map);
 	
 //Note that these last 3 have a "pane" that is definined in their options. This is so that they will appear beneath the smaller maps instead of on top
 //See just above for the z values of the different panes
