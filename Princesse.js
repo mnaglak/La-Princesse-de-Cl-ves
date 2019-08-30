@@ -185,7 +185,7 @@
 					case 'Cardinal Lorraine': return {color: "#d9ff15", "dashArray": '15, 15, 5, 10'};
 					case 'Connétable De Montmorency': return {color: "#5e8d46", "dashArray": '15, 15, 5, 10'};
 					case 'Maréchal de Saint André' : return {color: "#c59be9", "dashArray": '15, 15, 5, 10'};
-					case 'Henry II': return {color: "#000000", "dashArray": '15, 15, 5, 10'};
+					case 'Henri II': return {color: "#000000", "dashArray": '15, 15, 5, 10'};
 					case 'Duc de Savoie': return {color: "#bfb1b1", "dashArray": '15, 15, 5, 10'};
 					case 'Comte de Radan': return {color: "#c400ff", "dashArray": '15, 15, 5, 10'};
 					case 'Lignerolles': return {color: "#ffab00", "dashArray": '15, 15, 5, 10'};
