@@ -2,7 +2,7 @@
 //This is where you define the map start up options, here defined to center on Paris and to have a particular zoom. 
 		var mapOptions = {
 			center: [48.86, 2.33],
-			zoom: 10 ,
+			zoom: 6 ,
 			maxZoom : 20,
 			}
 
