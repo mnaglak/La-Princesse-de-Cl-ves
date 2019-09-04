@@ -175,7 +175,7 @@
 		onEachFeature: popUp,
 		style: swapStyle});
 	part1.addTo(map);
-		
+//
 //This will need to be updated for future characters and book parts		
 	function swapStyle(feature) {
 		if (feature.properties.Book_Part == 1) {
