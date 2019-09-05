@@ -128,13 +128,13 @@
 //Right now it includes all the other maps we have imported, as well as our Points of Focus icon group
 //Note the order the maps are listed here is the order they will appear in the checkbox. The first part of each row is the label to accompany it
 	var overlayMaps = {
-			"1578 Paris" : paris1578,
-			"1615 Paris" : paris1615,
-			"1652 Paris" : paris1652,
-			"1675 Paris" : paris1675,
-			"1598 Ile de France" : ileDeFrance1598,
-			"1570 France" : france1570,
-			"1644 Europe" : europe1644,
+			"<a target='_blank' href=''>1578Paris</a>": paris1578,
+			"<a target='_blank' href=''>1615 Paris</a>" : paris1615,
+			"<a target='_blank' href=''>1652 Paris</a>" : paris1652,
+			"<a target='_blank' href=''>1675 Paris</a>" : paris1675,
+			"<a target='_blank' href=''>1598 Ile de France</a>" : ileDeFrance1598,
+			"<a target='_blank' href=''>1570 France</a>" : france1570,
+			"<a target='_blank' href=''>1644 Europe</a>" : europe1644,
 			"Points of Focus" : pointsOfFocus,
 			};
 
