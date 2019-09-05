@@ -19150,7 +19150,7 @@
       "properties" : {
         "FID" : 7,
         "Id" : 0,
-        "Character" : " Duc de Nemours",
+        "Character" : "Duc de Nemours",
         "Book_Part" : 1,
         "Start" : "Paris",
         "End" : "Bruxelles",
@@ -36346,7 +36346,7 @@
       "properties" : {
         "FID" : 17,
         "Id" : 0,
-        "Character" : "Duc De Nemours",
+        "Character" : "Duc de Nemours",
         "Book_Part" : 1,
         "Start" : "Paris",
         "End" : "Coulommiers",
@@ -37112,7 +37112,7 @@
       "properties" : {
         "FID" : 18,
         "Id" : 0,
-        "Character" : "Duc De Nemours",
+        "Character" : "Duc de Nemours",
         "Book_Part" : 1,
         "Start" : "Coulommiers",
         "End" : "Paris",

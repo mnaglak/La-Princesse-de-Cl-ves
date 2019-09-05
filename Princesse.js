@@ -2,7 +2,7 @@
 //This is where you define the map start up options, here defined to center on Paris and to have a particular zoom. 
 		var mapOptions = {
 			center: [48.86, 2.33],
-			zoom: 6 ,
+			zoom: 8,
 			maxZoom : 20,
 			}
 
@@ -160,7 +160,8 @@
 //Now we similar create the opacity control box
 		L.control.opacity(
 			opacityLayers, //the variable containing all the maps
-			{label: "Opacity", //the label for the box
+			{label: "Map Opacity", //the label for the box
+			position: 'topright',
 			collapsed: true} //if we want the opacity box to be collapsed or not. We can do the same thing for the control layers box if desired
 			).addTo(map);
 
@@ -261,7 +262,7 @@
 //This sets the style of the arrows on the geojson characters. It will need to be updated for future geoJSON files.
 //It uses the leaflet.text plug in
 	part1.on('mouseover', function () {
-        this.setText('  ►  ', {repeat: true, offset: 6, attributes: {fill: 'red', 'font-size': 20}});
+        this.setText('  ►  ', {repeat: true, offset: 6, attributes: {fill: 'black', 'font-size': 17}});
 		});
     part1.on('mouseout', function () {
         this.setText(null);
@@ -273,16 +274,28 @@
 //the .css info for the legend can be found in the .css file
 //getColor will need to be updated with future character colors, along with the categories array for character names
 	function getColor(d) {
-		return 	d === 'Prince de Cleves' ? '#ff0000' :
-				d === 'Duc de Nemours'? '#0000ff' :
-										'#0000ff';
+		return 	d === 'Prince de Clèves' ? '#ff0000' :
+				d === 'Duc de Nemours'? '#0000ff' :			
+				d === 'Cardinal Lorraine'? "#d9ff15":
+				d === 'Connétable De Montmorency'?  "#5e8d46":
+				d === 'Maréchal de Saint André' ? "#c59be9":				
+				d === 'Henri II'?  "#000000":
+				d === 'Duc de Savoie'?  "#bfb1b1":
+				d === 'Comte de Radan'?  "#c400ff":
+				d === 'Lignerolles'?  "#ffab00":
+				d === 'Connétable De Bourbon'?  "#ffff00":
+				d === 'Madame la Régente'?  "#00ff77":		
+				d === 'Court Assembly'?  "#78f2ee":
+				d === 'Princesse De Clèves'? "#e931be":
+											'#0000ff';
 }
 
-	var legend = L.control({position: 'bottomright'});
+	var legend = L.control({position: 'bottomleft'});
 	legend.onAdd = function (map) {
 		var div = L.DomUtil.create('div', 'info legend'),
 			labels= ['Characters'],
-			categories = ['Prince de Cleves', 'Duc de Nemours'];
+			categories = ['Prince de Clèves', 'Duc de Nemours', 'Cardinal Lorraine', 'Connétable De Montmorency', 'Maréchal de Saint André','Henri II', 'Duc de Savoie',
+							'Comte de Radan', 'Lignerolles', 'Connétable De Bourbon', 'Madame la Régente', 'Court Assembly', 'Princesse De Clèves' ];
 
 
 		// loop through our characters and generate a label with a colored square for each character
