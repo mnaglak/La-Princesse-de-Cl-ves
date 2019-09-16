@@ -17,7 +17,6 @@
 				louvre1.setIcon(blueIcon);
 				})
 		
-
 		var greenIcon = L.icon({
 			iconUrl: './Images/marker-icon-green.png',
 			iconSize: [25, 41],
@@ -158,6 +157,14 @@
 	var europe1644 = L.tileLayer('./tiledMaps/1644/{z}/{x}/{y}.png', {tms: true, pane: 'europe', attribution: "", minZoom: 1, maxZoom: 8}).addTo(map);
 
 
+//This is where we import the .geoJson file exported from ArcGIS Pro
+//Each "part" of the book should have its own geojson, with information listed
+//This also tells the pop up boxes to come up on each feature (see fuction popup below)
+//As well as to swap the style for each line according to the book/character attributes of the geojson
+	var part1 =  new L.GeoJSON.AJAX("movementPart1.geojson", {
+		onEachFeature: popUp,
+		style: swapStyle});
+	part1.addTo(map);
 
 
 //Now we want to create our layer box that lets us turn different maps on and off
@@ -183,6 +190,7 @@
 			"<a target='_blank' href=''>1570 France</a>" : france1570,
 			"<a target='_blank' href=''>1644 Europe</a>" : europe1644,
 			"Points of Focus" : pointsOfFocus,
+			"Movement" : part1
 			};
 
 
@@ -213,17 +221,6 @@
 			).addTo(map);
 
 
-
-
-//This is where we import the .geoJson file exported from ArcGIS Pro
-//Each "part" of the book should have its own geojson, with information listed
-//This also tells the pop up boxes to come up on each feature (see fuction popup below)
-//As well as to swap the style for each line according to the book/character attributes of the geojson
-	var part1 =  new L.GeoJSON.AJAX("movementPart1.geojson", {
-		onEachFeature: popUp,
-		style: swapStyle});
-	part1.addTo(map);
-//
 //This will need to be updated for future characters and book parts		
 	function swapStyle(feature) {
 		if (feature.properties.Book_Part == 1) {
@@ -342,9 +339,20 @@
 }
 
 	var legend = L.control({position: 'bottomleft'});
+	
+	function showLegend() {
+		legend.addTo(map);
+    }
+	
+	function hideLegend() {
+        var div = document.getElementById("info legend")
+        div.innerHTML = "<h2>Legend</h2>";
+    }
+	
+	
 	legend.onAdd = function (map) {
 		var div = L.DomUtil.create('div', 'info legend'),
-			labels= ['Characters'],
+			labels= ['<b>Characters</b>'],
 			categories = ['Prince de Clèves', 'Duc de Nemours', 'Cardinal Lorraine', 'Connétable De Montmorency', 'Maréchal de Saint André','Henri II', 'Duc de Savoie',
 							'Comte de Radan', 'Lignerolles', 'Connétable De Bourbon', 'Madame la Régente', 'Court Assembly', 'Princesse De Clèves' ];
 
@@ -358,6 +366,11 @@
 
         }
         div.innerHTML = labels.join('<br>');
+		div.setAttribute("onmouseenter", "showLegend()");
+		div.setAttribute("onmouseleave", "hideLegend()");
+		    div.id = "info legend"
 		return div;
 	};
 	legend.addTo(map);
+	hideLegend();
+	
