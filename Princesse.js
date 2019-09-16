@@ -2,26 +2,73 @@
 //This is where you define the map start up options, here defined to center on Paris and to have a particular zoom. 
 		var mapOptions = {
 			center: [48.86, 2.33],
-			zoom: 8,
+			zoom: 12,
 			maxZoom : 20,
 			}
 
 //This creates the map variable itself based on the options you have chosen. Note that its size is set in the html file	
 		var map = new L.map('map', mapOptions); 
 			
+		var sidebar = L.control.sidebar('sidebar', {position: 'left'});
+			map.addControl(sidebar);
 			
+			map.on('click', function() {
+				sidebar.hide();
+				louvre1.setIcon(blueIcon);
+				})
+		
+
+		var greenIcon = L.icon({
+			iconUrl: './Images/marker-icon-green.png',
+			iconSize: [25, 41],
+			iconAnchor: [12, 41],
+			popupAnchor: [1, -34],
+			shadowSize: [41, 41]
+		});
+		
+		var blueIcon = L.icon({
+			iconUrl: './Images/marker-icon-blue.png'
+		});
 //Here is where the marker creation takes place. Simply name your variable and use the specified code to insert the lat/long. 
 //The lat/long for a particular point can be found either online or by opening the console box of the map and clicking the desired spot
 //Then, use the following code if you have an image you want to add, or just insert text, or do both with the bindPopup command
 			
-			//Image and Text
-			var louvre1 = L.marker([48.860352821094246, 2.3385858535766606]);
-			var photoImg = "<img src='./Images/Fig. 1 Louvre Israel Silvestre.jpeg' width=500px/>";
-			louvre1.bindPopup(photoImg + "<br>" + "I am the Louvre");
+			//Image and Text in sidebar
+			var louvre1 = L.marker([48.860352821094246, 2.3385858535766606], {myCustomID: "abc123"});
+			var louvre1Description = 
+			"<b> I am a sketch of the Louvre from the past </b>"
+			+ "<br>" + "<img src='./Images/Fig. 1 Louvre Israel Silvestre.jpeg' width=400px/>" + "<br>" + "See my metadata " + "<a target='_blank' href=''>here</a>" + "<br>" +
+			"<i>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet </i>"
+			+ "<br>" + "<br>" + 
+			"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet"
+;		
+			louvre1.on("click", function (e) {
+				var visible = sidebar.isVisible();
+				sidebar.setContent(louvre1Description);
+				if (!visible){
+					sidebar.toggle();
+				}
+				louvre1.setIcon(greenIcon);
+			});
+
 			
 			var louvre2= L.marker([48.86104454579249, 2.3360109329223637]);
-			var photoImg2 = "<img src='./Images/Fig. 2 Louvre Israel Silvestre.jpeg' width=500px/>" ;
-			louvre2.bindPopup(photoImg2 + "<br>" + "I am the Louvre too!");
+			var louvre2Description = "<b> I am the Louvre too! </b>" + "<br>" + "<img src='./Images/Fig. 2 Louvre Israel Silvestre.jpeg' width=400px/>" ;
+
+				louvre2.on("click", function (e) {
+				var visible = sidebar.isVisible();
+				sidebar.setContent(louvre2Description);
+				
+				if (!visible){
+					sidebar.toggle();
+				}
+			});
+			
+			
+			
+			
+			
+			
 			
 			var coulommiers= L.marker([48.72358515157852, 3.0514526367187504]);
 			var photoImg3= "<img src='./Images/Coulommiers_vers_1600.JPG' width=300px/>" ;
@@ -194,20 +241,24 @@
 					case 'Madame la Régente': return {color: "#00ff77"};
 					case 'Court Assembly': return {color: "#78f2ee"};
 					case 'Princesse De Clèves': return {color: "#e931be"};
-
 				}
 			}
 		}; 
 		
-     
+
 //Function to allow for popup box containing attributes of .geoJSON files
 //This can be customized further when the final characteristics fo the .geoJSON are set up
 	function popUp(f,l){
 		var out = [];
 				if (f.properties){
-					for(key in f.properties){
+					out.push("<b>Character: </b>" +f.properties.Character);
+					out.push("<b>Travel From: </b>" +f.properties.Start);
+					out.push("<b>Travel To: </b>" +f.properties.End);
+					out.push("<b>Book Section: </b>" +f.properties.Book_Part);
+
+					/*for(key in f.properties){
 						out.push(key+": "+f.properties[key]); //pushes out .geoJSON attributes exported from ArcGIS
-					}
+					}*/
 				}
 		l.bindPopup(out.join("<br />"))		
 	}
