@@ -15,6 +15,7 @@
 			map.on('click', function() {
 				sidebar.hide();
 				louvre1.setIcon(blueIcon);
+				louvre2.setIcon(blueIcon);
 				})
 		
 		var greenIcon = L.icon({
@@ -61,6 +62,8 @@
 				if (!visible){
 					sidebar.toggle();
 				}
+				louvre2.setIcon(greenIcon);
+
 			});
 			
 			
