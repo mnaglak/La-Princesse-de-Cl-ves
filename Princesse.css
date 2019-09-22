@@ -2,7 +2,8 @@
     body { height: 100%; margin: 0; padding: 0 }
     #map { height: 100% }
     
-	/* this edits the style of your timeline */
+	/* Edited out when we decided to use the drop down box instead of the timeline
+	this edits the style of your timeline 
 	.box {
         border: 1px solid #EEE;
         margin: 2px;
@@ -12,16 +13,17 @@
         font-size: 12px;
         z-index: 1000;
     }
-	/* this edits the font of your title */
+	 this edits the font of your title 
     .title {
         font-weight: 600;
     }
-	/*this edits the position of the box which holds the timeline*/
+	this edits the position of the box which holds the timeline
     .source {
         position: absolute;
         top: 530px;
         left: 1145px;
     }
+	*/
 
 /*.leaflet-popup-content {
     max-width: 200px;
