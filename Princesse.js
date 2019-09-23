@@ -381,8 +381,8 @@
 	legend.addTo(map);
 	hideLegend();
 
-var currentPart = null;
-var currentCharacter = '';
+var currentPart = 0;
+var currentCharacter = 0;
 
 //Code for filtering by book part	
 var partDropdown = L.control({position: 'topright'});
@@ -400,27 +400,27 @@ var partDropdown = L.control({position: 'topright'});
 				if (value == 'Show All Parts') {
 					part1.refilter(function(feature){
 					
-						return feature.properties.Book_Part >0;})	}
+						return feature.properties.Book_Part >0 && feature.properties.showOnMap==currentCharacter ;})	}
 
 			if (value == 'Part 1') {
 				part1.refilter(function(feature){
 				currentPart=1;
-			return feature.properties.Book_Part == 1;})	} 
+			return feature.properties.Book_Part == 1 && feature.properties.showOnMap==currentCharacter;})	} 
 			
 			if (value == 'Part 2') {
 				part1.refilter(function(feature){
 				currentPart=2;
-			return feature.properties.Book_Part == 2;})	} 
+			return feature.properties.Book_Part == 2&& feature.properties.showOnMap==currentCharacter;;})	} 
 			
 			if (value == 'Part 3') {
 				part1.refilter(function(feature){
 				currentPart=3;
-			return feature.properties.Book_Part == 3;})	}
+			return feature.properties.Book_Part == 3&& feature.properties.showOnMap==currentCharacter;;})	}
 
 			if (value == 'Part 4') {
 				part1.refilter(function(feature){
 				currentPart=4;
-			return feature.properties.Book_Part == 4;})	} 			
+			return feature.properties.Book_Part == 4&& feature.properties.showOnMap==currentCharacter;;})	} 			
 });
 
 var characterDropdown = L.control({position: 'topright'});
@@ -436,72 +436,72 @@ var characterDropdown = L.control({position: 'topright'});
 			var value = $(this).val();
 			if (value == 'Show All Characters') {
 				part1.refilter(function(feature){
-					currentCharacter= '';
-			return feature.properties.Book_Part = currentPart;})	}
+					currentCharacter= 0;
+			return feature.properties.Book_Part = currentPart && feature.properties.showOnMap==currentCharacter;})	}
 			
 			if (value == 'Prince de Clèves') {
 				part1.refilter(function(feature){
-				currentCharacter = 'Prince de Clèves';
+				currentCharacter = 12;
 			return feature.properties.Character == 'Prince de Clèves' && feature.properties.Book_Part==currentPart;})	}
 			
 			if (value == 'Duc de Nemours') {
 				part1.refilter(function(feature){
-				currentCharacter = 'Duc de Nemours';
+				currentCharacter = 6;
 			return feature.properties.Character == 'Duc de Nemours'&& feature.properties.Book_Part==currentPart;})	}
 			
 			if (value == 'Cardinal Lorraine') {
 				part1.refilter(function(feature){
-				currentCharacter = 'Cardinal Lorraine';
+				currentCharacter = 1;
 			return feature.properties.Character == 'Cardinal Lorraine'&& feature.properties.Book_Part==currentPart;})	}
 			
 			if (value == 'Connétable de Montmorency') {
 				part1.refilter(function(feature){
-				currentCharacter = 'Connétable de Montmorency';
+				currentCharacter = 4;
 			return feature.properties.Character == 'Connétable de Montmorency'&& feature.properties.Book_Part==currentPart;})	}
 			
 			if (value == 'Maréchal de Saint André') {
 				part1.refilter(function(feature){
-				currentCharacter = 'Maréchal de Saint André';
+				currentCharacter = 11;
 			return feature.properties.Character == 'Maréchal de Saint André'&& feature.properties.Book_Part==currentPart;})	}
 			
 			if (value == 'Henri II') {
 				part1.refilter(function(feature){
-				currentCharacter = 'Henri II';
+				currentCharacter = 8;
 			return feature.properties.Character == 'Henri II'&& feature.properties.Book_Part==currentPart;})	}
 			
 			if (value == 'Duc de Savoie') {
 				part1.refilter(function(feature){
-				currentCharacter = 'Duc de Savoie';
+				currentCharacter = 7;
 			return feature.properties.Character == 'Duc de Savoie'&& feature.properties.Book_Part==currentPart;})	}
 			
 			if (value == 'Comte de Radan') {
 				part1.refilter(function(feature){
-				currentCharacter = 'Comte de Radan';
+				currentCharacter = 2;
 			return feature.properties.Character == 'Comte de Radan'&& feature.properties.Book_Part==currentPart;})	}
 			
 			if (value == 'Connétable de Bourbon') {
 				part1.refilter(function(feature){
-				currentCharacter = 'Connétable de Bourbon';
+				currentCharacter = 3;
 			return feature.properties.Character == 'Connétable de Bourbon'&& feature.properties.Book_Part==currentPart;})	}
 			
 			if (value == 'Lignerolles') {
 				part1.refilter(function(feature){
-				currentCharacter = 'Lignerolles';
+				currentCharacter = 9;
 			return feature.properties.Character == 'Lignerolles'&& feature.properties.Book_Part==currentPart;})	}
 			
 			if (value == 'Madame la Régente') {
 				part1.refilter(function(feature){
-				currentCharacter = 'Madame la Régente';
+				currentCharacter = 10;
 			return feature.properties.Character == 'Madame la Régente'&& feature.properties.Book_Part==currentPart;})	}
 			
 			if (value == 'Court Assembly') {
 				part1.refilter(function(feature){
-				currentCharacter = 'Court Assembly';
+				currentCharacter = 5;
 			return feature.properties.Character == 'Court Assembly'&& feature.properties.Book_Part==currentPart;})	}
 			
 			if (value == 'Princesse de Clèves') {
 				part1.refilter(function(feature){
-				currentCharacter = 'Princesse de Clèves';
+				currentCharacter = 13;
 			return feature.properties.Character == 'Princesse de Clèves'&& feature.properties.Book_Part==currentPart;})	}
 		
     }); 
