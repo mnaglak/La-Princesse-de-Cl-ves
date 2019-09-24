@@ -65,11 +65,7 @@
 				}
 				louvre2.setIcon(greenIcon);
 				louvre1.setIcon(blueIcon);
-			});
-			
-			
-			
-			
+			});	
 			
 			
 			
@@ -166,16 +162,36 @@
 //This also tells the pop up boxes to come up on each feature (see fuction popup below)
 //As well as to swap the style for each line according to the book/character attributes of the geojson
 	var part1 =  new L.GeoJSON.AJAX("movementPart1.geojson", {
-		onEachFeature: popUp,
-		style: swapStyle});
-
-//how to refilter	
-	/*part1.refilter(function(feature){
-		return feature.properties.Character == 'Duc de Savoie';
-	});*/
+		
+		onEachFeature: function (feature, layer) {
+			L.polylineDecorator(layer, {
+				patterns: [
+				{offset: 25, repeat: 150, symbol: L.Symbol.arrowHead({pixelSize: 15, pathOptions: {fillOpacity: 1, weight: 0, color: '#000000'}})}
+				]
+			}).addTo(map);  /// Adds each decorator to the map!!!!
+			var out = [];
+				if (feature.properties){
+					out.push("<b>Character: </b>" +feature.properties.Character);
+					out.push("<b>Travel From: </b>" +feature.properties.Start);
+					out.push("<b>Travel To: </b>" +feature.properties.End);
+					out.push("<b>Book Part: </b>" +feature.properties.Book_Part);
+					/*for(key in f.properties){
+						out.push(key+": "+f.properties[key]); //pushes out .geoJSON attributes exported from ArcGIS
+					}*/
+				}
+			layer.bindPopup(out.join("<br />"));		
+		},
+		style: swapStyle
+	});
 	part1.addTo(map);
 
-
+  
+  var decorator = L.polylineDecorator(part1, {
+    patterns: [
+        // defines a pattern of 10px-wide dashes, repeated every 20px on the line
+        {offset: 0, repeat: 20, symbol: L.Symbol.dash({pixelSize: 10})}
+    ]
+}).addTo(map);
 
 
 
@@ -256,21 +272,6 @@
 			
 
 
-//Function to allow for popup box containing attributes of .geoJSON files
-//This can be customized further when the final characteristics fo the .geoJSON are set up
-	function popUp(f,l){
-		var out = [];
-				if (f.properties){
-					out.push("<b>Character: </b>" +f.properties.Character);
-					out.push("<b>Travel From: </b>" +f.properties.Start);
-					out.push("<b>Travel To: </b>" +f.properties.End);
-					out.push("<b>Book Section: </b>" +f.properties.Book_Part);
-					/*for(key in f.properties){
-						out.push(key+": "+f.properties[key]); //pushes out .geoJSON attributes exported from ArcGIS
-					}*/
-				}
-		l.bindPopup(out.join("<br />"))		
-	}
 
 
 //This section of the code creates the legend. 
@@ -342,6 +343,7 @@ var partDropdown = L.control({position: 'topright'});
 				if (value == 'Show All Parts') {
 					part1.refilter(function(feature){
 							feature.properties.turnOn = 1;
+							
 						return feature.properties.turnOn === 1 && feature.properties.showOnMap===1;})	}
 
 			if (value == 'Part 1') {
@@ -402,6 +404,7 @@ var characterDropdown = L.control({position: 'topright'});
 					feature.properties.showOnMap = 1; }
 					else 
 						feature.properties.showOnMap=0;
+					
 			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 			
 			
@@ -559,4 +562,20 @@ var characterDropdown = L.control({position: 'topright'});
         this.setText(null);
     }); 
 */
-				
+
+/* Added to inside of onEachFeature function 
+//Function to allow for popup box containing attributes of .geoJSON files
+//This can be customized further when the final characteristics fo the .geoJSON are set up
+	function popUp(f,l){
+		var out = [];
+				if (f.properties){
+					out.push("<b>Character: </b>" +f.properties.Character);
+					out.push("<b>Travel From: </b>" +f.properties.Start);
+					out.push("<b>Travel To: </b>" +f.properties.End);
+					out.push("<b>Book Section: </b>" +f.properties.Book_Part);
+					/*for(key in f.properties){
+						out.push(key+": "+f.properties[key]); //pushes out .geoJSON attributes exported from ArcGIS
+					}
+				}
+		l.bindPopup(out.join("<br />"))		
+	}*/				
