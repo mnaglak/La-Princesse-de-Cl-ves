@@ -49,6 +49,7 @@
 					sidebar.toggle();
 				}
 				louvre1.setIcon(greenIcon);
+				louvre2.setIcon(blueIcon);
 			});
 
 			
@@ -63,7 +64,7 @@
 					sidebar.toggle();
 				}
 				louvre2.setIcon(greenIcon);
-
+				louvre1.setIcon(blueIcon);
 			});
 			
 			
@@ -272,63 +273,6 @@
 	}
 
 
-
-
-/*Removed timeline to use dropdown box instead
-//The following portion of the code is all about the timeline
-//This portion of the code sets up the style of the timeline. 
-//Here you can pick the max/min of the slider, the number of ticks, the width between ticks, etc
- var slider = d3
-    .sliderHorizontal()
-    .min(1)
-    .max(4)
-    .step(1)
-	.ticks(4)
-	.tickFormat(d3.format(',.0f')) //integer format. Others possible
-    .width(150)
-    .displayValue(true)
-    .on('end', val => { //tells it to run onSlider when engaged with
-	    onSlider(val);
-    });
-
-//This portion of the code sets up the size attributes of the of the timeline
-  d3.select('#slider') 
-    .append('svg')
-    .attr('width', 200)
-    .attr('height', 50)
-    .append('g')
-    .attr('transform', 'translate(20,10)')
-    .call(slider); 
-	
-//This portion of the code says what happens when different values (1, 2, 3, 4) of the timeline are chosen
-//Right now, since there is only one part of the book with data, it turns on part 1 when part 1 is chosen, and turns if off when any other part is chosen
-//It will need to be updated when more parts are available
-	function onSlider(val) { //function receives the value on the slider
-		if (val==1) {
-		part1.addTo(map);}
-		else {
-		part1.remove();}
-	}
-//This is the initial filter to open the map with
-	onSlider(1); 					
-*/
-
-//Creation of pan/scale function in the top left cornder of the map.
-		L.control.pan().addTo(map);
-		L.control.scale().addTo(map);
-
-/* Arrows currently broken on filtering
-//This sets the style of the arrows on the geojson characters. It will need to be updated for future geoJSON files.
-//It uses the leaflet.text plug in
-	part1.on('mouseover', function () {
-        this.setText('  ►  ', {repeat: true, offset: 6, attributes: {fill: 'black', 'font-size': 17}});
-		});
-    part1.on('mouseout', function () {
-        this.setText(null);
-    }); 
-*/
-
-
 //This section of the code creates the legend. 
 //the .css info for the legend can be found in the .css file
 //getColor will need to be updated with future character colors, along with the categories array for character names
@@ -381,10 +325,8 @@
 	legend.addTo(map);
 	hideLegend();
 
-var currentPart = 0;
-var currentCharacter = 0;
 
-//Code for filtering by book part	
+//code for filtering by book part	
 var partDropdown = L.control({position: 'topright'});
 	
 	partDropdown.onAdd = function (map) {
@@ -399,30 +341,44 @@ var partDropdown = L.control({position: 'topright'});
 				
 				if (value == 'Show All Parts') {
 					part1.refilter(function(feature){
-					
-						return feature.properties.Book_Part >0 && feature.properties.showOnMap==currentCharacter ;})	}
+							feature.properties.turnOn = 1;
+						return feature.properties.turnOn === 1 && feature.properties.showOnMap===1;})	}
 
 			if (value == 'Part 1') {
 				part1.refilter(function(feature){
-				currentPart=1;
-			return feature.properties.Book_Part == 1 && feature.properties.showOnMap==currentCharacter;})	} 
+					if (feature.properties.Book_Part==1) {
+						feature.properties.turnOn = 1; }
+					else 
+						feature.properties.turnOn=0;
+			 return feature.properties.turnOn === 1 && feature.properties.showOnMap===1;})	} 
 			
 			if (value == 'Part 2') {
 				part1.refilter(function(feature){
-				currentPart=2;
-			return feature.properties.Book_Part == 2&& feature.properties.showOnMap==currentCharacter;;})	} 
+				if (feature.properties.Book_Part==2) {
+					feature.properties.turnOn = 1; }
+					else 
+						feature.properties.turnOn=0;
+			 return feature.properties.turnOn === 1 && feature.properties.showOnMap===1;})	}
 			
 			if (value == 'Part 3') {
 				part1.refilter(function(feature){
-				currentPart=3;
-			return feature.properties.Book_Part == 3&& feature.properties.showOnMap==currentCharacter;;})	}
+				if (feature.properties.Book_Part==3) {
+					feature.properties.turnOn = 1; }
+					else 
+						feature.properties.turnOn=0;
+			 return feature.properties.turnOn === 1 && feature.properties.showOnMap===1;})	}
 
 			if (value == 'Part 4') {
 				part1.refilter(function(feature){
-				currentPart=4;
-			return feature.properties.Book_Part == 4&& feature.properties.showOnMap==currentCharacter;;})	} 			
+				if (feature.properties.Book_Part==4) {
+					feature.properties.turnOn = 1; }
+					else 
+						feature.properties.turnOn=0;
+			 return feature.properties.turnOn === 1 && feature.properties.showOnMap===1;})	}	
 });
 
+
+//creates and controls character filter
 var characterDropdown = L.control({position: 'topright'});
 	characterDropdown.onAdd = function (map) {
 		var div = L.DomUtil.create('div', 'info legend');
@@ -434,75 +390,173 @@ var characterDropdown = L.control({position: 'topright'});
 		
 		$('select').change(function(){
 			var value = $(this).val();
+			
 			if (value == 'Show All Characters') {
 				part1.refilter(function(feature){
-					currentCharacter= 0;
-			return feature.properties.Book_Part = currentPart && feature.properties.showOnMap==currentCharacter;})	}
+					feature.properties.showOnMap = 1;
+			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 			
 			if (value == 'Prince de Clèves') {
 				part1.refilter(function(feature){
-				currentCharacter = 12;
-			return feature.properties.Character == 'Prince de Clèves' && feature.properties.Book_Part==currentPart;})	}
+					if (feature.properties.Character=='Prince de Clèves') {
+					feature.properties.showOnMap = 1; }
+					else 
+						feature.properties.showOnMap=0;
+			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
+			
+			
 			
 			if (value == 'Duc de Nemours') {
 				part1.refilter(function(feature){
-				currentCharacter = 6;
-			return feature.properties.Character == 'Duc de Nemours'&& feature.properties.Book_Part==currentPart;})	}
+				if (feature.properties.Character=='Duc de Nemours') {
+					feature.properties.showOnMap = 1; }
+					else 
+						feature.properties.showOnMap=0;
+			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 			
 			if (value == 'Cardinal Lorraine') {
 				part1.refilter(function(feature){
-				currentCharacter = 1;
-			return feature.properties.Character == 'Cardinal Lorraine'&& feature.properties.Book_Part==currentPart;})	}
+				if (feature.properties.Character=='Cardinal Lorraine') {
+					feature.properties.showOnMap = 1; }
+					else 
+						feature.properties.showOnMap=0;
+			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 			
 			if (value == 'Connétable de Montmorency') {
 				part1.refilter(function(feature){
-				currentCharacter = 4;
-			return feature.properties.Character == 'Connétable de Montmorency'&& feature.properties.Book_Part==currentPart;})	}
+				if (feature.properties.Character=='Connétable de Montmorency') {
+					feature.properties.showOnMap = 1; }
+					else 
+						feature.properties.showOnMap=0;
+			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 			
 			if (value == 'Maréchal de Saint André') {
 				part1.refilter(function(feature){
-				currentCharacter = 11;
-			return feature.properties.Character == 'Maréchal de Saint André'&& feature.properties.Book_Part==currentPart;})	}
+				if (feature.properties.Character=='Maréchal de Saint André') {
+					feature.properties.showOnMap = 1; }
+					else 
+						feature.properties.showOnMap=0;
+			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 			
 			if (value == 'Henri II') {
 				part1.refilter(function(feature){
-				currentCharacter = 8;
-			return feature.properties.Character == 'Henri II'&& feature.properties.Book_Part==currentPart;})	}
+				if (feature.properties.Character=='Henri II') {
+					feature.properties.showOnMap = 1; }
+					else 
+						feature.properties.showOnMap=0;
+			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 			
 			if (value == 'Duc de Savoie') {
 				part1.refilter(function(feature){
-				currentCharacter = 7;
-			return feature.properties.Character == 'Duc de Savoie'&& feature.properties.Book_Part==currentPart;})	}
+				if (feature.properties.Character=='Duc de Savoie') {
+					feature.properties.showOnMap = 1; }
+					else 
+						feature.properties.showOnMap=0;
+			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 			
 			if (value == 'Comte de Radan') {
 				part1.refilter(function(feature){
-				currentCharacter = 2;
-			return feature.properties.Character == 'Comte de Radan'&& feature.properties.Book_Part==currentPart;})	}
+				if (feature.properties.Character=='Comte de Radan') {
+					feature.properties.showOnMap = 1; }
+					else 
+						feature.properties.showOnMap=0;
+			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 			
 			if (value == 'Connétable de Bourbon') {
 				part1.refilter(function(feature){
-				currentCharacter = 3;
-			return feature.properties.Character == 'Connétable de Bourbon'&& feature.properties.Book_Part==currentPart;})	}
+				if (feature.properties.Character=='Connétable de Bourbon') {
+					feature.properties.showOnMap = 1; }
+					else 
+						feature.properties.showOnMap=0;
+			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 			
 			if (value == 'Lignerolles') {
 				part1.refilter(function(feature){
-				currentCharacter = 9;
-			return feature.properties.Character == 'Lignerolles'&& feature.properties.Book_Part==currentPart;})	}
+			if (feature.properties.Character=='Lignerolles') {
+					feature.properties.showOnMap = 1; }
+					else 
+						feature.properties.showOnMap=0;
+			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 			
 			if (value == 'Madame la Régente') {
 				part1.refilter(function(feature){
-				currentCharacter = 10;
-			return feature.properties.Character == 'Madame la Régente'&& feature.properties.Book_Part==currentPart;})	}
+				if (feature.properties.Character=='Madame la Régente') {
+					feature.properties.showOnMap = 1; }
+					else 
+						feature.properties.showOnMap=0;
+			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 			
 			if (value == 'Court Assembly') {
 				part1.refilter(function(feature){
-				currentCharacter = 5;
-			return feature.properties.Character == 'Court Assembly'&& feature.properties.Book_Part==currentPart;})	}
+			if (feature.properties.Character=='Court Assembly') {
+					feature.properties.showOnMap = 1; }
+					else 
+						feature.properties.showOnMap=0;
+			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 			
 			if (value == 'Princesse de Clèves') {
 				part1.refilter(function(feature){
-				currentCharacter = 13;
-			return feature.properties.Character == 'Princesse de Clèves'&& feature.properties.Book_Part==currentPart;})	}
+				if (feature.properties.Character=='Princesse de Clèves') {
+					feature.properties.showOnMap = 1; }
+					else 
+						feature.properties.showOnMap=0;
+			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 		
     }); 
+	
+	
+	
+	/*Removed timeline to use dropdown box instead
+//The following portion of the code is all about the timeline
+//This portion of the code sets up the style of the timeline. 
+//Here you can pick the max/min of the slider, the number of ticks, the width between ticks, etc
+ var slider = d3
+    .sliderHorizontal()
+    .min(1)
+    .max(4)
+    .step(1)
+	.ticks(4)
+	.tickFormat(d3.format(',.0f')) //integer format. Others possible
+    .width(150)
+    .displayValue(true)
+    .on('end', val => { //tells it to run onSlider when engaged with
+	    onSlider(val);
+    });
+
+//This portion of the code sets up the size attributes of the of the timeline
+  d3.select('#slider') 
+    .append('svg')
+    .attr('width', 200)
+    .attr('height', 50)
+    .append('g')
+    .attr('transform', 'translate(20,10)')
+    .call(slider); 
+	
+//This portion of the code says what happens when different values (1, 2, 3, 4) of the timeline are chosen
+//Right now, since there is only one part of the book with data, it turns on part 1 when part 1 is chosen, and turns if off when any other part is chosen
+//It will need to be updated when more parts are available
+	function onSlider(val) { //function receives the value on the slider
+		if (val==1) {
+		part1.addTo(map);}
+		else {
+		part1.remove();}
+	}
+//This is the initial filter to open the map with
+	onSlider(1); 					
+*/
+
+//Creation of pan/scale function in the top left cornder of the map.
+		L.control.pan().addTo(map);
+		L.control.scale().addTo(map);
+
+/* Arrows currently broken on filtering
+//This sets the style of the arrows on the geojson characters. It will need to be updated for future geoJSON files.
+//It uses the leaflet.text plug in
+	part1.on('mouseover', function () {
+        this.setText('  ►  ', {repeat: true, offset: 6, attributes: {fill: 'black', 'font-size': 17}});
+		});
+    part1.on('mouseout', function () {
+        this.setText(null);
+    }); 
+*/
 				

@@ -5001,7 +5001,7 @@
         "Start" : "Louvre",
         "End" : "Le Cercamp",
         "Notes" : " ",
-        "showOnMap" : "4",
+        "showOnMap" : "1",
         "turnOn" : 1
       }
     },
@@ -6833,7 +6833,7 @@
         "Start" : "Louvre",
         "End" : "Le Cercamp",
         "Notes" : " ",
-        "showOnMap" : "11",
+        "showOnMap" : "1",
         "turnOn" : 1
       }
     },
@@ -8773,7 +8773,7 @@
         "Start" : "Bruxelles",
         "End" : "Paris",
         "Notes" : " ",
-        "showOnMap" : "7",
+        "showOnMap" : "1",
         "turnOn" : 1
       }
     },
@@ -11593,7 +11593,7 @@
         "Start" : "Paris",
         "End" : "England",
         "Notes" : "Begins from a place near the Louvre",
-        "showOnMap" : "2",
+        "showOnMap" : "1",
         "turnOn" : 1
       }
     },
@@ -14249,7 +14249,7 @@
         "Start" : "England",
         "End" : "Paris",
         "Notes" : " ",
-        "showOnMap" : "2",
+        "showOnMap" : "1",
         "turnOn" : 1
       }
     },
@@ -16517,7 +16517,7 @@
         "Start" : "Borders of the Empire",
         "End" : "Paris",
         "Notes" : "exact location is not specified in the text",
-        "showOnMap" : "8",
+        "showOnMap" : "1",
         "turnOn" : 1
       }
     },
@@ -19169,7 +19169,7 @@
         "Start" : "Paris",
         "End" : "Bruxelles",
         "Notes" : " ",
-        "showOnMap" : "6",
+        "showOnMap" : "1",
         "turnOn" : 1
       }
     },
@@ -19997,7 +19997,7 @@
         "Start" : "Bruxelles",
         "End" : "Paris",
         "Notes" : " ",
-        "showOnMap" : "6",
+        "showOnMap" : "1",
         "turnOn" : 1
       }
     },
@@ -21529,7 +21529,7 @@
         "Start" : "Paris",
         "End" : "Coulommiers",
         "Notes" : " ",
-        "showOnMap" : "12",
+        "showOnMap" : "1",
         "turnOn" : 1
       }
     },
@@ -22993,7 +22993,7 @@
         "Start" : "Coulommiers",
         "End" : "Paris",
         "Notes" : " ",
-        "showOnMap" : "12",
+        "showOnMap" : "1",
         "turnOn" : 1
       }
     },
@@ -25145,7 +25145,7 @@
         "Start" : "Paris",
         "End" : "England",
         "Notes" : " ",
-        "showOnMap" : "9",
+        "showOnMap" : "1",
         "turnOn" : 1
       }
     },
@@ -28997,7 +28997,7 @@
         "Start" : "Spain",
         "End" : "Paris",
         "Notes" : " ",
-        "showOnMap" : "3",
+        "showOnMap" : "1",
         "turnOn" : 1
       }
     },
@@ -32465,7 +32465,7 @@
         "Start" : "Louvre",
         "End" : "Bayonne",
         "Notes" : " ",
-        "showOnMap" : "10",
+        "showOnMap" : "1",
         "turnOn" : 1
       }
     },
@@ -33221,7 +33221,7 @@
         "Start" : "Louvre",
         "End" : "Cateau-Cambresis",
         "Notes" : " ",
-        "showOnMap" : "5",
+        "showOnMap" : "1",
         "turnOn" : 1
       }
     },
@@ -34525,7 +34525,7 @@
         "Start" : "Paris",
         "End" : "Coulommiers",
         "Notes" : " ",
-        "showOnMap" : "12",
+        "showOnMap" : "1",
         "turnOn" : 1
       }
     },
@@ -35601,7 +35601,7 @@
         "Start" : "Paris",
         "End" : "Coulommiers",
         "Notes" : " ",
-        "showOnMap" : "13",
+        "showOnMap" : "1",
         "turnOn" : 1
       }
     },
@@ -36385,7 +36385,7 @@
         "Start" : "Paris",
         "End" : "Coulommiers",
         "Notes" : " ",
-        "showOnMap" : "6",
+        "showOnMap" : "1",
         "turnOn" : 1
       }
     },
@@ -37153,7 +37153,7 @@
         "Start" : "Coulommiers",
         "End" : "Paris",
         "Notes" : " ",
-        "showOnMap" : "6",
+        "showOnMap" : "1",
         "turnOn" : 1
       }
     }
