@@ -1,4 +1,3 @@
-
 //This is where you define the map start up options, here defined to center on Paris and to have a particular zoom. 
 		var mapOptions = {
 			center: [48.86, 2.33],
@@ -29,6 +28,8 @@
 		var blueIcon = L.icon({
 			iconUrl: './Images/marker-icon-blue.png'
 		});
+		
+		
 //Here is where the marker creation takes place. Simply name your variable and use the specified code to insert the lat/long. 
 //The lat/long for a particular point can be found either online or by opening the console box of the map and clicking the desired spot
 //Then, use the following code if you have an image you want to add, or just insert text, or do both with the bindPopup command
@@ -161,7 +162,7 @@
 //Each "part" of the book should have its own geojson, with information listed
 //This also tells the pop up boxes to come up on each feature (see fuction popup below)
 //As well as to swap the style for each line according to the book/character attributes of the geojson
-	var movement =  new L.GeoJSON.AJAX("PdCMovement.geojson", {
+	var movement =  new L.GeoJSON.AJAX("PdCMovement_all.geojson", {
 		
 		onEachFeature: function (feature, layer) {
 			/*L.polylineDecorator(layer, {
@@ -218,7 +219,7 @@
 			"<a target='_blank' href=''>1570 France</a>" : france1570,
 			"<a target='_blank' href=''>1644 Europe</a>" : europe1644,
 			"Points of Focus" : pointsOfFocus,
-			"movement" : movement
+			"Character Movement" : movement
 			};
 
 
@@ -269,6 +270,13 @@
 					case 'Vidame de Chartres': return {color: "#CACFD2" };
 					case "Duc d'Albe": return {color: "#B7950B" };
 					case "Médecin du roi d'Espagne": return {color: "#D7BDE2" };
+					case 'Le Roi': return {color: "#2ECC71"};
+					case 'La Cour': return {color: "#A04000"};
+					case 'Roi de Navarre': return {color: "#FDFEFE"};
+					case 'Prince de Condé': return {color: "#A93226"};
+					case 'Élisabeth de France': return {color: "#85C1E9"};
+					case 'Gentilhomme': return {color: "#1D8348"};
+					case 'Madame Martigues': return {color: "#FAD7A0"};
 				}
 			}
 		
@@ -290,6 +298,13 @@
 					case 'Vidame de Chartres': return {color: "#CACFD2" };
 					case "Duc d'Albe": return {color: "#B7950B" };
 					case "Médecin du roi d'Espagne": return {color: "#D7BDE2" };
+					case 'Le Roi': return {color: "#2ECC71"};
+					case 'La Cour': return {color: "#A04000"};
+					case 'Roi de Navarre': return {color: "#FDFEFE"};
+					case 'Prince de Condé': return {color: "#A93226"};
+					case 'Élisabeth de France': return {color: "#85C1E9"};
+					case 'Gentilhomme': return {color: "#1D8348"};
+					case 'Madame Martigues': return {color: "#FAD7A0"};
 				}
 			}
 		if (feature.properties.Book_Part === 3) {
@@ -310,6 +325,41 @@
 					case 'Vidame de Chartres': return {color: "#CACFD2" };
 					case "Duc d'Albe": return {color: "#B7950B" };
 					case "Médecin du roi d'Espagne": return {color: "#D7BDE2" };
+					case 'Le Roi': return {color: "#2ECC71"};
+					case 'La Cour': return {color: "#A04000"};
+					case 'Roi de Navarre': return {color: "#FDFEFE"};
+					case 'Prince de Condé': return {color: "#A93226"};
+					case 'Élisabeth de France': return {color: "#85C1E9"};
+					case 'Gentilhomme': return {color: "#1D8348"};
+					case 'Madame Martigues': return {color: "#FAD7A0"};
+				}
+			}
+			
+		if (feature.properties.Book_Part === 4) {
+				switch (feature.properties.Character) {
+					case 'Prince de Clèves': return {color: "#ff0000" };
+					case 'Duc de Nemours': return {color: "#0000ff"};
+					case 'Cardinal Lorraine': return {color: "#d9ff15"};
+					case 'Connétable de Montmorency': return {color: "#5e8d46"};
+					case 'Maréchal de Saint André' : return {color: "#c59be9"};
+					case 'Henri II': return {color: "#000000"};
+					case 'Duc de Savoie': return {color: "#a66c32"};
+					case 'Comte de Radan': return {color: "#c400ff"};
+					case 'Lignerolles': return {color: "#ffab00"};
+					case 'Connétable de Bourbon': return {color: "#ffff00"};
+					case 'Madame la Régente': return {color: "#00ff77"};
+					case 'Court Assembly': return {color: "#78f2ee"};
+					case 'Princesse de Clèves': return {color: "#e931be"};
+					case 'Vidame de Chartres': return {color: "#CACFD2" };
+					case "Duc d'Albe": return {color: "#B7950B" };
+					case "Médecin du roi d'Espagne": return {color: "#D7BDE2" };
+					case 'Le Roi': return {color: "#2ECC71"};
+					case 'La Cour': return {color: "#A04000"};
+					case 'Roi de Navarre': return {color: "#FDFEFE"};
+					case 'Prince de Condé': return {color: "#A93226"};
+					case 'Élisabeth de France': return {color: "#85C1E9"};
+					case 'Gentilhomme': return {color: "#1D8348"};
+					case 'Madame Martigues': return {color: "#FAD7A0"};
 				}
 			}
 		
@@ -337,7 +387,14 @@
 				d === 'Vidame de Chartres'? "#CACFD2":
 				d === "Duc d'Albe"? "#B7950B":
 				d === "Médecin du roi d'Espagne"? "#D7BDE2" :
-											'#0000ff';
+				d === 'Le Roi'? "#2ECC71" :
+				d === 'La Cour'? "#A04000" :
+				d === 'Roi de Navarre'? "#FDFEFE" :
+				d === 'Prince de Condé'? "#A93226" :
+				d === 'Élisabeth de France'? "#85C1E9" :
+				d === 'Gentilhomme'? "#1D8348" :
+				d === 'Madame Martigues'? "#FAD7A0":
+										'#0000ff';
 }
 
 	var legend = L.control({position: 'bottomleft'});
@@ -353,7 +410,7 @@
 			labels= ['<b>Characters</b>'],
 			categories = ['Prince de Clèves', 'Duc de Nemours', 'Cardinal Lorraine', 'Connétable de Montmorency', 'Maréchal de Saint André','Henri II', 'Duc de Savoie',
 							'Comte de Radan', 'Lignerolles', 'Connétable de Bourbon', 'Madame la Régente', 'Court Assembly', 'Princesse de Clèves',
-							'Vidame de Chartres', "Duc d'Albe", "Médecin du roi d'Espagne"];
+							'Vidame de Chartres', "Duc d'Albe", "Médecin du roi d'Espagne", 'Le Roi', 'La Cour', 'Roi de Navarre', 'Prince de Condé', 'Élisabeth de France', 'Gentilhomme','Madame Martigues' ];
 
 
 		// loop through our characters and generate a label with a colored square for each character
@@ -432,7 +489,7 @@ var partDropdown = L.control({position: 'topright'});
 var characterDropdown = L.control({position: 'topright'});
 	characterDropdown.onAdd = function (map) {
 		var div = L.DomUtil.create('div', 'info legend');
-		div.innerHTML = "<select><option>Show All Characters</option><option>Prince de Clèves</option><option>Duc de Nemours</option><option>Cardinal Lorraine</option><option>Connétable de Montmorency</option><option>Maréchal de Saint André</option><option>Henri II</option><option>Duc de Savoie</option><option>Comte de Radan</option><option>Lignerolles</option><option>Connétable de Bourbon</option><option>Madame la Régente</option><option>Court Assembly</option><option>Princesse de Clèves</option><option>Duc d'Albe</option><option>Médecin du roi d'Espagne</option><option>Vidame de Chartres</option></select>";
+		div.innerHTML = "<select><option>Show All Characters</option><option>Prince de Clèves</option><option>Duc de Nemours</option><option>Cardinal Lorraine</option><option>Connétable de Montmorency</option><option>Maréchal de Saint André</option><option>Henri II</option><option>Duc de Savoie</option><option>Comte de Radan</option><option>Lignerolles</option><option>Connétable de Bourbon</option><option>Madame la Régente</option><option>Court Assembly</option><option>Princesse de Clèves</option><option>Duc d'Albe</option><option>Médecin du roi d'Espagne</option><option>Vidame de Chartres</option><option>'Madame Martigues'</option><option>'Gentilhomme'</option><option>'Élisabeth de France'</option><option>'Prince de Condé'</option><option>'Roi de Navarre'</option><option>'La Cour'</option><option>'Le Roi'</option></select>";
 		div.firstChild.onmousedown = div.firstChild.ondblclick = L.DomEvent.stopPropagation;
 		return div;
 		};
@@ -576,7 +633,65 @@ var characterDropdown = L.control({position: 'topright'});
 						feature.properties.showOnMap=0;
 			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 		
-    }); 
+    if (value == 'Le Roi') {
+				movement.refilter(function(feature){
+				if (feature.properties.Character=='Le Roi') {
+					feature.properties.showOnMap = 1; }
+					else 
+						feature.properties.showOnMap=0;
+			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
+	
+	if (value == 'La Cour') {
+				movement.refilter(function(feature){
+				if (feature.properties.Character=='La Cour') {
+					feature.properties.showOnMap = 1; }
+					else 
+						feature.properties.showOnMap=0;
+			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
+	
+	if (value == 'Roi de Navarre') {
+				movement.refilter(function(feature){
+				if (feature.properties.Character=='Roi de Navarre') {
+					feature.properties.showOnMap = 1; }
+					else 
+						feature.properties.showOnMap=0;
+			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
+	
+	if (value == 'Prince de Condé') {
+				movement.refilter(function(feature){
+				if (feature.properties.Character=='Prince de Condé') {
+					feature.properties.showOnMap = 1; }
+					else 
+						feature.properties.showOnMap=0;
+			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
+	
+	if (value == 'Élisabeth de France') {
+				movement.refilter(function(feature){
+				if (feature.properties.Character=='Élisabeth de France') {
+					feature.properties.showOnMap = 1; }
+					else 
+						feature.properties.showOnMap=0;
+			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
+			
+			
+			if (value == 'Gentilhomme') {
+				movement.refilter(function(feature){
+				if (feature.properties.Character=='Gentilhomme') {
+					feature.properties.showOnMap = 1; }
+					else 
+						feature.properties.showOnMap=0;
+			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
+			
+			
+			
+			if (value == 'Madame Martigues') {
+				movement.refilter(function(feature){
+				if (feature.properties.Character=='Madame Martigues') {
+					feature.properties.showOnMap = 1; }
+					else 
+						feature.properties.showOnMap=0;
+			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
+	}); 
 
 //Creation of pan/scale function in the top left cornder of the map.
 		L.control.pan().addTo(map);
@@ -598,7 +713,6 @@ var characterDropdown = L.control({position: 'topright'});
     .on('end', val => { //tells it to run onSlider when engaged with
 	    onSlider(val);
     });
-
 //This portion of the code sets up the size attributes of the of the timeline
   d3.select('#slider') 
     .append('svg')
@@ -649,4 +763,9 @@ var characterDropdown = L.control({position: 'topright'});
 					}
 				}
 		l.bindPopup(out.join("<br />"))		
-	}*/				
+	}*/	
+	
+	
+	
+	
+	
