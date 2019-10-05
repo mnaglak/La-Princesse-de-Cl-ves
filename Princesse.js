@@ -282,84 +282,37 @@
 		
 		if (feature.properties.Book_Part === 2) {
 				switch (feature.properties.Character) {
-					case 'Prince de Clèves': return {color: "#ff0000" };
-					case 'Duc de Nemours': return {color: "#0000ff"};
-					case 'Cardinal Lorraine': return {color: "#d9ff15"};
-					case 'Connétable de Montmorency': return {color: "#5e8d46"};
-					case 'Maréchal de Saint André' : return {color: "#c59be9"};
-					case 'Henri II': return {color: "#000000"};
-					case 'Duc de Savoie': return {color: "#a66c32"};
-					case 'Comte de Radan': return {color: "#c400ff"};
-					case 'Lignerolles': return {color: "#ffab00"};
-					case 'Connétable de Bourbon': return {color: "#ffff00"};
-					case 'Madame la Régente': return {color: "#00ff77"};
-					case 'Court Assembly': return {color: "#78f2ee"};
-					case 'Princesse de Clèves': return {color: "#e931be"};
-					case 'Vidame de Chartres': return {color: "#CACFD2" };
-					case "Duc d'Albe": return {color: "#B7950B" };
-					case "Médecin du roi d'Espagne": return {color: "#D7BDE2" };
-					case 'Le Roi': return {color: "#2ECC71"};
-					case 'La Cour': return {color: "#A04000"};
-					case 'Roi de Navarre': return {color: "#FDFEFE"};
-					case 'Prince de Condé': return {color: "#A93226"};
-					case 'Élisabeth de France': return {color: "#85C1E9"};
-					case 'Gentilhomme': return {color: "#1D8348"};
-					case 'Madame Martigues': return {color: "#FAD7A0"};
+					case 'Princesse de Clèves': return {color: "#e931be", dashArray: '25,20'};
 				}
 			}
 		if (feature.properties.Book_Part === 3) {
 				switch (feature.properties.Character) {
-					case 'Prince de Clèves': return {color: "#ff0000" };
-					case 'Duc de Nemours': return {color: "#0000ff"};
-					case 'Cardinal Lorraine': return {color: "#d9ff15"};
-					case 'Connétable de Montmorency': return {color: "#5e8d46"};
-					case 'Maréchal de Saint André' : return {color: "#c59be9"};
-					case 'Henri II': return {color: "#000000"};
-					case 'Duc de Savoie': return {color: "#a66c32"};
-					case 'Comte de Radan': return {color: "#c400ff"};
-					case 'Lignerolles': return {color: "#ffab00"};
-					case 'Connétable de Bourbon': return {color: "#ffff00"};
-					case 'Madame la Régente': return {color: "#00ff77"};
-					case 'Court Assembly': return {color: "#78f2ee"};
-					case 'Princesse de Clèves': return {color: "#e931be"};
-					case 'Vidame de Chartres': return {color: "#CACFD2" };
-					case "Duc d'Albe": return {color: "#B7950B" };
-					case "Médecin du roi d'Espagne": return {color: "#D7BDE2" };
-					case 'Le Roi': return {color: "#2ECC71"};
-					case 'La Cour': return {color: "#A04000"};
-					case 'Roi de Navarre': return {color: "#FDFEFE"};
-					case 'Prince de Condé': return {color: "#A93226"};
-					case 'Élisabeth de France': return {color: "#85C1E9"};
-					case 'Gentilhomme': return {color: "#1D8348"};
-					case 'Madame Martigues': return {color: "#FAD7A0"};
+					case 'Prince de Clèves': return {color: "#ff0000", dashArray: '15, 10, 5' };
+					case 'Duc de Nemours': return {color: "#0000ff", dashArray: '15, 10, 5'};
+					case 'Henri II': return {color: "#000000", dashArray: '15, 10, 5'};
+					case 'Duc de Savoie': return {color: "#a66c32", dashArray: '15, 15, 5'};
+					case 'Princesse de Clèves': return {color: "#e931be", dashArray: '15, 10, 5'};
+					case 'Vidame de Chartres': return {color: "#CACFD2", dashArray: '15, 10, 5' };
+					case "Duc d'Albe": return {color: "#B7950B", dashArray: '15, 10, 5' };
+					case "Médecin du roi d'Espagne": return {color: "#D7BDE2", dashArray: '15, 10, 5' };
+					case 'Le Roi': return {color: "#2ECC71", dashArray: '15, 10, 5'};
+					case 'La Cour': return {color: "#A04000", dashArray: '15, 10, 5'};
 				}
 			}
 			
 		if (feature.properties.Book_Part === 4) {
 				switch (feature.properties.Character) {
-					case 'Prince de Clèves': return {color: "#ff0000" };
-					case 'Duc de Nemours': return {color: "#0000ff"};
-					case 'Cardinal Lorraine': return {color: "#d9ff15"};
-					case 'Connétable de Montmorency': return {color: "#5e8d46"};
-					case 'Maréchal de Saint André' : return {color: "#c59be9"};
-					case 'Henri II': return {color: "#000000"};
-					case 'Duc de Savoie': return {color: "#a66c32"};
-					case 'Comte de Radan': return {color: "#c400ff"};
-					case 'Lignerolles': return {color: "#ffab00"};
-					case 'Connétable de Bourbon': return {color: "#ffff00"};
-					case 'Madame la Régente': return {color: "#00ff77"};
-					case 'Court Assembly': return {color: "#78f2ee"};
-					case 'Princesse de Clèves': return {color: "#e931be"};
-					case 'Vidame de Chartres': return {color: "#CACFD2" };
-					case "Duc d'Albe": return {color: "#B7950B" };
-					case "Médecin du roi d'Espagne": return {color: "#D7BDE2" };
-					case 'Le Roi': return {color: "#2ECC71"};
-					case 'La Cour': return {color: "#A04000"};
-					case 'Roi de Navarre': return {color: "#FDFEFE"};
-					case 'Prince de Condé': return {color: "#A93226"};
-					case 'Élisabeth de France': return {color: "#85C1E9"};
-					case 'Gentilhomme': return {color: "#1D8348"};
-					case 'Madame Martigues': return {color: "#FAD7A0"};
+					case 'Prince de Clèves': return {color: "#ff0000", dashArray: '5, 10' };
+					case 'Duc de Nemours': return {color: "#0000ff", dashArray: '5, 10' };
+					case 'Connétable de Montmorency': return {color: "#5e8d46", dashArray: '5, 10' };
+					case 'Princesse de Clèves': return {color: "#e931be", dashArray: '5, 10' };
+					case 'Vidame de Chartres': return {color: "#CACFD2" , dashArray: '5, 10' };
+					case 'La Cour': return {color: "#A04000", dashArray: '5, 10' };
+					case 'Roi de Navarre': return {color: "#FDFEFE", dashArray: '5, 10' };
+					case 'Prince de Condé': return {color: "#A93226", dashArray: '5, 10' };
+					case 'Élisabeth de France': return {color: "#85C1E9", dashArray: '5, 10' };
+					case 'Gentilhomme': return {color: "#1D8348", dashArray: '5, 10' };
+					case 'Madame Martigues': return {color: "#FAD7A0", dashArray: '5, 10' };
 				}
 			}
 		
