@@ -161,14 +161,14 @@
 //Each "part" of the book should have its own geojson, with information listed
 //This also tells the pop up boxes to come up on each feature (see fuction popup below)
 //As well as to swap the style for each line according to the book/character attributes of the geojson
-	var part1 =  new L.GeoJSON.AJAX("movementPart1.geojson", {
+	var movement =  new L.GeoJSON.AJAX("PdCMovement.geojson", {
 		
 		onEachFeature: function (feature, layer) {
-			L.polylineDecorator(layer, {
+			/*L.polylineDecorator(layer, {
 				patterns: [
 				{offset: 25, repeat: 150, symbol: L.Symbol.arrowHead({pixelSize: 15, pathOptions: {fillOpacity: 1, weight: 0, color: '#000000'}})}
 				]
-			}).addTo(map);  /// Adds each decorator to the map!!!!
+			}).addTo(map);*/  /// Adds each decorator to the map!!!!
 			var out = [];
 				if (feature.properties){
 					out.push("<b>Character: </b>" +feature.properties.Character);
@@ -183,15 +183,15 @@
 		},
 		style: swapStyle
 	});
-	part1.addTo(map);
+	movement.addTo(map);
 
   
-  var decorator = L.polylineDecorator(part1, {
+  /*var decorator = L.polylineDecorator(movement, {
     patterns: [
         // defines a pattern of 10px-wide dashes, repeated every 20px on the line
         {offset: 0, repeat: 20, symbol: L.Symbol.dash({pixelSize: 10})}
     ]
-}).addTo(map);
+}).addTo(map); */
 
 
 
@@ -218,7 +218,7 @@
 			"<a target='_blank' href=''>1570 France</a>" : france1570,
 			"<a target='_blank' href=''>1644 Europe</a>" : europe1644,
 			"Points of Focus" : pointsOfFocus,
-			"Movement" : part1
+			"movement" : movement
 			};
 
 
@@ -256,7 +256,7 @@
 					case 'Prince de Clèves': return {color: "#ff0000" };
 					case 'Duc de Nemours': return {color: "#0000ff"};
 					case 'Cardinal Lorraine': return {color: "#d9ff15"};
-					case 'Connétable De Montmorency': return {color: "#5e8d46"};
+					case 'Connétable de Montmorency': return {color: "#5e8d46"};
 					case 'Maréchal de Saint André' : return {color: "#c59be9"};
 					case 'Henri II': return {color: "#000000"};
 					case 'Duc de Savoie': return {color: "#a66c32"};
@@ -265,13 +265,56 @@
 					case 'Connétable de Bourbon': return {color: "#ffff00"};
 					case 'Madame la Régente': return {color: "#00ff77"};
 					case 'Court Assembly': return {color: "#78f2ee"};
-					case 'Princesse De Clèves': return {color: "#e931be"};
+					case 'Princesse de Clèves': return {color: "#e931be"};
+					case 'Vidame de Chartres': return {color: "#CACFD2" };
+					case "Duc d'Albe": return {color: "#B7950B" };
+					case "Médecin du roi d'Espagne": return {color: "#D7BDE2" };
 				}
 			}
+		
+		if (feature.properties.Book_Part === 2) {
+				switch (feature.properties.Character) {
+					case 'Prince de Clèves': return {color: "#ff0000" };
+					case 'Duc de Nemours': return {color: "#0000ff"};
+					case 'Cardinal Lorraine': return {color: "#d9ff15"};
+					case 'Connétable de Montmorency': return {color: "#5e8d46"};
+					case 'Maréchal de Saint André' : return {color: "#c59be9"};
+					case 'Henri II': return {color: "#000000"};
+					case 'Duc de Savoie': return {color: "#a66c32"};
+					case 'Comte de Radan': return {color: "#c400ff"};
+					case 'Lignerolles': return {color: "#ffab00"};
+					case 'Connétable de Bourbon': return {color: "#ffff00"};
+					case 'Madame la Régente': return {color: "#00ff77"};
+					case 'Court Assembly': return {color: "#78f2ee"};
+					case 'Princesse de Clèves': return {color: "#e931be"};
+					case 'Vidame de Chartres': return {color: "#CACFD2" };
+					case "Duc d'Albe": return {color: "#B7950B" };
+					case "Médecin du roi d'Espagne": return {color: "#D7BDE2" };
+				}
+			}
+		if (feature.properties.Book_Part === 3) {
+				switch (feature.properties.Character) {
+					case 'Prince de Clèves': return {color: "#ff0000" };
+					case 'Duc de Nemours': return {color: "#0000ff"};
+					case 'Cardinal Lorraine': return {color: "#d9ff15"};
+					case 'Connétable de Montmorency': return {color: "#5e8d46"};
+					case 'Maréchal de Saint André' : return {color: "#c59be9"};
+					case 'Henri II': return {color: "#000000"};
+					case 'Duc de Savoie': return {color: "#a66c32"};
+					case 'Comte de Radan': return {color: "#c400ff"};
+					case 'Lignerolles': return {color: "#ffab00"};
+					case 'Connétable de Bourbon': return {color: "#ffff00"};
+					case 'Madame la Régente': return {color: "#00ff77"};
+					case 'Court Assembly': return {color: "#78f2ee"};
+					case 'Princesse de Clèves': return {color: "#e931be"};
+					case 'Vidame de Chartres': return {color: "#CACFD2" };
+					case "Duc d'Albe": return {color: "#B7950B" };
+					case "Médecin du roi d'Espagne": return {color: "#D7BDE2" };
+				}
+			}
+		
 		}; 
 			
-
-
 
 
 //This section of the code creates the legend. 
@@ -291,6 +334,9 @@
 				d === 'Madame la Régente'?  "#00ff77":		
 				d === 'Court Assembly'?  "#78f2ee":
 				d === 'Princesse de Clèves'? "#e931be":
+				d === 'Vidame de Chartres'? "#CACFD2":
+				d === "Duc d'Albe"? "#B7950B":
+				d === "Médecin du roi d'Espagne"? "#D7BDE2" :
 											'#0000ff';
 }
 
@@ -306,7 +352,8 @@
 		var div = L.DomUtil.create('div', 'info legend'),
 			labels= ['<b>Characters</b>'],
 			categories = ['Prince de Clèves', 'Duc de Nemours', 'Cardinal Lorraine', 'Connétable de Montmorency', 'Maréchal de Saint André','Henri II', 'Duc de Savoie',
-							'Comte de Radan', 'Lignerolles', 'Connétable de Bourbon', 'Madame la Régente', 'Court Assembly', 'Princesse de Clèves' ];
+							'Comte de Radan', 'Lignerolles', 'Connétable de Bourbon', 'Madame la Régente', 'Court Assembly', 'Princesse de Clèves',
+							'Vidame de Chartres', "Duc d'Albe", "Médecin du roi d'Espagne"];
 
 
 		// loop through our characters and generate a label with a colored square for each character
@@ -326,7 +373,6 @@
 	legend.addTo(map);
 	hideLegend();
 
-
 //code for filtering by book part	
 var partDropdown = L.control({position: 'topright'});
 	
@@ -340,51 +386,53 @@ var partDropdown = L.control({position: 'topright'});
 		$('select').change(function(){
 			var value = $(this).val();
 				
-				if (value == 'Show All Parts') {
-					part1.refilter(function(feature){
+				if (value === 'Show All Parts') {
+					movement.refilter(function(feature){
 							feature.properties.turnOn = 1;
 							
-						return feature.properties.turnOn === 1 && feature.properties.showOnMap===1;})	}
+						return feature.properties.turnOn == 1 && feature.properties.showOnMap==1;})	}
 
 			if (value == 'Part 1') {
-				part1.refilter(function(feature){
+				movement.refilter(function(feature){
 					if (feature.properties.Book_Part==1) {
 						feature.properties.turnOn = 1; }
 					else 
 						feature.properties.turnOn=0;
-			 return feature.properties.turnOn === 1 && feature.properties.showOnMap===1;})	} 
+			 return feature.properties.turnOn == 1 && feature.properties.showOnMap==1;})	} 
 			
 			if (value == 'Part 2') {
-				part1.refilter(function(feature){
+				movement.refilter(function(feature){
 				if (feature.properties.Book_Part==2) {
 					feature.properties.turnOn = 1; }
-					else 
+				else 
 						feature.properties.turnOn=0;
-			 return feature.properties.turnOn === 1 && feature.properties.showOnMap===1;})	}
+			 return feature.properties.turnOn == 1 && feature.properties.showOnMap==1;})	}
 			
 			if (value == 'Part 3') {
-				part1.refilter(function(feature){
+				movement.refilter(function(feature){
 				if (feature.properties.Book_Part==3) {
 					feature.properties.turnOn = 1; }
 					else 
 						feature.properties.turnOn=0;
-			 return feature.properties.turnOn === 1 && feature.properties.showOnMap===1;})	}
+			 return feature.properties.turnOn == 1 && feature.properties.showOnMap==1;})	}
 
 			if (value == 'Part 4') {
-				part1.refilter(function(feature){
+				movement.refilter(function(feature){
 				if (feature.properties.Book_Part==4) {
 					feature.properties.turnOn = 1; }
 					else 
 						feature.properties.turnOn=0;
-			 return feature.properties.turnOn === 1 && feature.properties.showOnMap===1;})	}	
+			 return feature.properties.turnOn == 1 && feature.properties.showOnMap==1;})	} 
+
+			 
 });
 
 
-//creates and controls character filter
+//creates and controls character filter. showOnMap is the character associated attribute and turnOn is the part associated attribute
 var characterDropdown = L.control({position: 'topright'});
 	characterDropdown.onAdd = function (map) {
 		var div = L.DomUtil.create('div', 'info legend');
-		div.innerHTML = '<select><option>Show All Characters</option><option>Prince de Clèves</option><option>Duc de Nemours</option><option>Cardinal Lorraine</option><option>Connétable de Montmorency</option><option>Maréchal de Saint André</option><option>Henri II</option><option>Duc de Savoie</option><option>Comte de Radan</option><option>Lignerolles</option><option>Connétable de Bourbon</option><option>Madame la Régente</option><option>Court Assembly</option><option>Princesse de Clèves</option></select>';
+		div.innerHTML = "<select><option>Show All Characters</option><option>Prince de Clèves</option><option>Duc de Nemours</option><option>Cardinal Lorraine</option><option>Connétable de Montmorency</option><option>Maréchal de Saint André</option><option>Henri II</option><option>Duc de Savoie</option><option>Comte de Radan</option><option>Lignerolles</option><option>Connétable de Bourbon</option><option>Madame la Régente</option><option>Court Assembly</option><option>Princesse de Clèves</option><option>Duc d'Albe</option><option>Médecin du roi d'Espagne</option><option>Vidame de Chartres</option></select>";
 		div.firstChild.onmousedown = div.firstChild.ondblclick = L.DomEvent.stopPropagation;
 		return div;
 		};
@@ -394,12 +442,12 @@ var characterDropdown = L.control({position: 'topright'});
 			var value = $(this).val();
 			
 			if (value == 'Show All Characters') {
-				part1.refilter(function(feature){
+				movement.refilter(function(feature){
 					feature.properties.showOnMap = 1;
 			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 			
 			if (value == 'Prince de Clèves') {
-				part1.refilter(function(feature){
+				movement.refilter(function(feature){
 					if (feature.properties.Character=='Prince de Clèves') {
 					feature.properties.showOnMap = 1; }
 					else 
@@ -407,10 +455,8 @@ var characterDropdown = L.control({position: 'topright'});
 					
 			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 			
-			
-			
 			if (value == 'Duc de Nemours') {
-				part1.refilter(function(feature){
+				movement.refilter(function(feature){
 				if (feature.properties.Character=='Duc de Nemours') {
 					feature.properties.showOnMap = 1; }
 					else 
@@ -418,7 +464,7 @@ var characterDropdown = L.control({position: 'topright'});
 			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 			
 			if (value == 'Cardinal Lorraine') {
-				part1.refilter(function(feature){
+				movement.refilter(function(feature){
 				if (feature.properties.Character=='Cardinal Lorraine') {
 					feature.properties.showOnMap = 1; }
 					else 
@@ -426,7 +472,7 @@ var characterDropdown = L.control({position: 'topright'});
 			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 			
 			if (value == 'Connétable de Montmorency') {
-				part1.refilter(function(feature){
+				movement.refilter(function(feature){
 				if (feature.properties.Character=='Connétable de Montmorency') {
 					feature.properties.showOnMap = 1; }
 					else 
@@ -434,7 +480,7 @@ var characterDropdown = L.control({position: 'topright'});
 			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 			
 			if (value == 'Maréchal de Saint André') {
-				part1.refilter(function(feature){
+				movement.refilter(function(feature){
 				if (feature.properties.Character=='Maréchal de Saint André') {
 					feature.properties.showOnMap = 1; }
 					else 
@@ -442,7 +488,7 @@ var characterDropdown = L.control({position: 'topright'});
 			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 			
 			if (value == 'Henri II') {
-				part1.refilter(function(feature){
+				movement.refilter(function(feature){
 				if (feature.properties.Character=='Henri II') {
 					feature.properties.showOnMap = 1; }
 					else 
@@ -450,7 +496,7 @@ var characterDropdown = L.control({position: 'topright'});
 			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 			
 			if (value == 'Duc de Savoie') {
-				part1.refilter(function(feature){
+				movement.refilter(function(feature){
 				if (feature.properties.Character=='Duc de Savoie') {
 					feature.properties.showOnMap = 1; }
 					else 
@@ -458,7 +504,7 @@ var characterDropdown = L.control({position: 'topright'});
 			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 			
 			if (value == 'Comte de Radan') {
-				part1.refilter(function(feature){
+				movement.refilter(function(feature){
 				if (feature.properties.Character=='Comte de Radan') {
 					feature.properties.showOnMap = 1; }
 					else 
@@ -466,7 +512,7 @@ var characterDropdown = L.control({position: 'topright'});
 			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 			
 			if (value == 'Connétable de Bourbon') {
-				part1.refilter(function(feature){
+				movement.refilter(function(feature){
 				if (feature.properties.Character=='Connétable de Bourbon') {
 					feature.properties.showOnMap = 1; }
 					else 
@@ -474,7 +520,7 @@ var characterDropdown = L.control({position: 'topright'});
 			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 			
 			if (value == 'Lignerolles') {
-				part1.refilter(function(feature){
+				movement.refilter(function(feature){
 			if (feature.properties.Character=='Lignerolles') {
 					feature.properties.showOnMap = 1; }
 					else 
@@ -482,7 +528,7 @@ var characterDropdown = L.control({position: 'topright'});
 			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 			
 			if (value == 'Madame la Régente') {
-				part1.refilter(function(feature){
+				movement.refilter(function(feature){
 				if (feature.properties.Character=='Madame la Régente') {
 					feature.properties.showOnMap = 1; }
 					else 
@@ -490,7 +536,7 @@ var characterDropdown = L.control({position: 'topright'});
 			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 			
 			if (value == 'Court Assembly') {
-				part1.refilter(function(feature){
+				movement.refilter(function(feature){
 			if (feature.properties.Character=='Court Assembly') {
 					feature.properties.showOnMap = 1; }
 					else 
@@ -498,16 +544,43 @@ var characterDropdown = L.control({position: 'topright'});
 			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 			
 			if (value == 'Princesse de Clèves') {
-				part1.refilter(function(feature){
+				movement.refilter(function(feature){
 				if (feature.properties.Character=='Princesse de Clèves') {
+					feature.properties.showOnMap = 1; }
+					else 
+						feature.properties.showOnMap=0;
+			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
+			
+			
+			if (value == 'Vidame de Chartres') {
+				movement.refilter(function(feature){
+				if (feature.properties.Character=='Vidame de Chartres') {
+					feature.properties.showOnMap = 1; }
+					else 
+						feature.properties.showOnMap=0;
+			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
+			
+			if (value == "Duc d'Albe") {
+				movement.refilter(function(feature){
+				if (feature.properties.Character=="Duc d'Albe") {
+					feature.properties.showOnMap = 1; }
+					else 
+						feature.properties.showOnMap=0;
+			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
+			
+			if (value == "Médecin du roi d'Espagne") {
+				movement.refilter(function(feature){
+				if (feature.properties.Character=="Médecin du roi d'Espagne") {
 					feature.properties.showOnMap = 1; }
 					else 
 						feature.properties.showOnMap=0;
 			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 		
     }); 
-	
-	
+
+//Creation of pan/scale function in the top left cornder of the map.
+		L.control.pan().addTo(map);
+		L.control.scale().addTo(map);
 	
 	/*Removed timeline to use dropdown box instead
 //The following portion of the code is all about the timeline
@@ -540,25 +613,23 @@ var characterDropdown = L.control({position: 'topright'});
 //It will need to be updated when more parts are available
 	function onSlider(val) { //function receives the value on the slider
 		if (val==1) {
-		part1.addTo(map);}
+		movement.addTo(map);}
 		else {
-		part1.remove();}
+		movement.remove();}
 	}
 //This is the initial filter to open the map with
 	onSlider(1); 					
 */
 
-//Creation of pan/scale function in the top left cornder of the map.
-		L.control.pan().addTo(map);
-		L.control.scale().addTo(map);
+
 
 /* Arrows currently broken on filtering
 //This sets the style of the arrows on the geojson characters. It will need to be updated for future geoJSON files.
 //It uses the leaflet.text plug in
-	part1.on('mouseover', function () {
+	movement.on('mouseover', function () {
         this.setText('  ►  ', {repeat: true, offset: 6, attributes: {fill: 'black', 'font-size': 17}});
 		});
-    part1.on('mouseout', function () {
+    movement.on('mouseout', function () {
         this.setText(null);
     }); 
 */
