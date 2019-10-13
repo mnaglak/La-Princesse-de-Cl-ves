@@ -10,24 +10,44 @@
 	
 
 
-var sidebar = L.control.sidebar({position:'right'})
-            .addTo(map);	
-		
 
-			var questionMark = L.icon({
-			iconUrl: './Images/help-circle.png',
-			iconSize: [5, 5],
-			iconAnchor: [12, 41],
-			popupAnchor: [1, -34],
-			shadowSize: [41, 41]});
-			
-	var panelContent = {
-    id: 'legend',                     // UID, used to access the panel
-    tab: questionMark,  // content can be passed as HTML string,        // DOM elements can be passed, too
+var legendContent = "Add stuff about characters";	
+var sidebar = L.control.sidebar({position:"right"}).addTo(map);
+var panelContent = {
+    id: 'legendTab',                     // UID, used to access the panel
+    tab: '<i class="fa fa-user"></i>',  // content can be passed as HTML string,
+    pane: legendContent,        // DOM elements can be passed, too
     title: 'Legend',              // an optional pane header
     position: 'top'                  // optional vertical alignment, defaults to 'top'
 };
 sidebar.addPanel(panelContent);
+
+var mapInfoContent = "Information about the map";
+var panelContent2 = {
+    id: 'aboutMapTab',                     // UID, used to access the panel
+    tab: '<i class="fa fa-question-circle"></i>',  // content can be passed as HTML string,
+    pane: mapInfoContent,        // DOM elements can be passed, too
+    title: 'Map Information',              // an optional pane header
+    position: 'top'                  // optional vertical alignment, defaults to 'top'
+};
+sidebar.addPanel(panelContent2);
+
+var contactContent = "Contact us!";
+var panelContent2 = {
+    id: 'contactUs',                     // UID, used to access the panel
+    tab: '<i class="fa fa-envelope"></i>',  // content can be passed as HTML string,
+    pane: contactContent,        // DOM elements can be passed, too
+    title: 'Contact Information',              // an optional pane header
+    position: 'top'                  // optional vertical alignment, defaults to 'top'
+};
+sidebar.addPanel(panelContent2);
+
+
+
+
+
+
+
 	/*	var sidebar = L.control.sidebar('sidebar', {position: 'left'});
 			map.addControl(sidebar);
 			
