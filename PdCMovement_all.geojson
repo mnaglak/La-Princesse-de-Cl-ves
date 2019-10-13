@@ -33216,7 +33216,7 @@
       "properties" : {
         "FID" : 14,
         "Id" : 0,
-        "Character" : "Court Assembly",
+        "Character" : "La Cour",
         "Book_Part" : 1,
         "Start" : "Louvre",
         "End" : "Cateau-Cambresis",
@@ -53140,7 +53140,7 @@
       "properties" : {
         "FID" : 34,
         "Id" : 0,
-        "Character" : "Le Roi",
+        "Character" : "Henri II",
         "Book_Part" : 3,
         "Start" : "Compiègne",
         "End" : "Paris",
@@ -54752,7 +54752,7 @@
       "properties" : {
         "FID" : 35,
         "Id" : 0,
-        "Character" : "Le Roi",
+        "Character" : "Henri II",
         "Book_Part" : 3,
         "Start" : "Paris",
         "End" : "Compiègne",

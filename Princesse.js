@@ -7,8 +7,28 @@
 
 //This creates the map variable itself based on the options you have chosen. Note that its size is set in the html file	
 		var map = new L.map('map', mapOptions); 
+	
+
+
+var sidebar = L.control.sidebar({position:'right'})
+            .addTo(map);	
+		
+
+			var questionMark = L.icon({
+			iconUrl: './Images/help-circle.png',
+			iconSize: [5, 5],
+			iconAnchor: [12, 41],
+			popupAnchor: [1, -34],
+			shadowSize: [41, 41]});
 			
-		var sidebar = L.control.sidebar('sidebar', {position: 'left'});
+	var panelContent = {
+    id: 'legend',                     // UID, used to access the panel
+    tab: questionMark,  // content can be passed as HTML string,        // DOM elements can be passed, too
+    title: 'Legend',              // an optional pane header
+    position: 'top'                  // optional vertical alignment, defaults to 'top'
+};
+sidebar.addPanel(panelContent);
+	/*	var sidebar = L.control.sidebar('sidebar', {position: 'left'});
 			map.addControl(sidebar);
 			
 			map.on('click', function() {
@@ -27,7 +47,7 @@
 		
 		var blueIcon = L.icon({
 			iconUrl: './Images/marker-icon-blue.png'
-		});
+		});*/
 		
 		
 //Here is where the marker creation takes place. Simply name your variable and use the specified code to insert the lat/long. 
@@ -43,7 +63,7 @@
 			+ "<br>" + "<br>" + 
 			"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet"
 ;		
-			louvre1.on("click", function (e) {
+			/*louvre1.on("click", function (e) {
 				var visible = sidebar.isVisible();
 				sidebar.setContent(louvre1Description);
 				if (!visible){
@@ -51,13 +71,13 @@
 				}
 				louvre1.setIcon(greenIcon);
 				louvre2.setIcon(blueIcon);
-			});
+			});*/
 
 			
 			var louvre2= L.marker([48.86104454579249, 2.3360109329223637]);
 			var louvre2Description = "<b> I am the Louvre too! </b>" + "<br>" + "<img src='./Images/Fig. 2 Louvre Israel Silvestre.jpeg' width=400px/>" ;
 
-				louvre2.on("click", function (e) {
+				/*louvre2.on("click", function (e) {
 				var visible = sidebar.isVisible();
 				sidebar.setContent(louvre2Description);
 				
@@ -66,7 +86,7 @@
 				}
 				louvre2.setIcon(greenIcon);
 				louvre1.setIcon(blueIcon);
-			});	
+			});	*/
 			
 			
 			
@@ -154,6 +174,7 @@
 //Note that these last 3 have a "pane" that is definined in their options. This is so that they will appear beneath the smaller maps instead of on top
 //See just above for the z values of the different panes
 	var ileDeFrance1598 = L.tileLayer('./tiledMaps/1598/{z}/{x}/{y}.png', {tms: true, pane: 'iledeFrance', attribution: "", minZoom: 9, maxZoom: 13}).addTo(map);
+	var ileDeFrance1598color = L.tileLayer('./tiledMaps/1598color/{z}/{x}/{y}.png', {tms: true, pane: 'iledeFrance', attribution: "", minZoom: 9, maxZoom: 13}).addTo(map);
 	var france1570 = L.tileLayer('./tiledMaps/1570/{z}/{x}/{y}.png', {tms: true, pane: 'france', attribution: "", minZoom: 6, maxZoom: 10}).addTo(map);
 	var europe1644 = L.tileLayer('./tiledMaps/1644/{z}/{x}/{y}.png', {tms: true, pane: 'europe', attribution: "", minZoom: 1, maxZoom: 8}).addTo(map);
 
@@ -216,6 +237,7 @@
 			"<a target='_blank' href=''>1652 Paris</a>" : paris1652,
 			"<a target='_blank' href=''>1675 Paris</a>" : paris1675,
 			"<a target='_blank' href=''>1598 Ile de France</a>" : ileDeFrance1598,
+			"<a target='_blank' href=''>1598 Ile de France Color</a>" : ileDeFrance1598color,
 			"<a target='_blank' href=''>1570 France</a>" : france1570,
 			"<a target='_blank' href=''>1644 Europe</a>" : europe1644,
 			"Points of Focus" : pointsOfFocus,
@@ -236,6 +258,7 @@
 			"1652 Paris" : paris1652,
 			"1675 Paris" : paris1675,
 			"1598 Ile de France" : ileDeFrance1598,
+			"1598 Ile de France Color" : ileDeFrance1598color,
 			"1570 France" : france1570,
 			"1644 Europe" : europe1644
 			};
@@ -265,12 +288,10 @@
 					case 'Lignerolles': return {color: "#ffab00"};
 					case 'Connétable de Bourbon': return {color: "#ffff00"};
 					case 'Madame la Régente': return {color: "#00ff77"};
-					case 'Court Assembly': return {color: "#78f2ee"};
 					case 'Princesse de Clèves': return {color: "#e931be"};
 					case 'Vidame de Chartres': return {color: "#CACFD2" };
 					case "Duc d'Albe": return {color: "#B7950B" };
 					case "Médecin du roi d'Espagne": return {color: "#D7BDE2" };
-					case 'Le Roi': return {color: "#2ECC71"};
 					case 'La Cour': return {color: "#A04000"};
 					case 'Roi de Navarre': return {color: "#FDFEFE"};
 					case 'Prince de Condé': return {color: "#A93226"};
@@ -295,7 +316,6 @@
 					case 'Vidame de Chartres': return {color: "#CACFD2", dashArray: '15, 10, 5' };
 					case "Duc d'Albe": return {color: "#B7950B", dashArray: '15, 10, 5' };
 					case "Médecin du roi d'Espagne": return {color: "#D7BDE2", dashArray: '15, 10, 5' };
-					case 'Le Roi': return {color: "#2ECC71", dashArray: '15, 10, 5'};
 					case 'La Cour': return {color: "#A04000", dashArray: '15, 10, 5'};
 				}
 			}
@@ -335,12 +355,10 @@
 				d === 'Lignerolles'?  "#ffab00":
 				d === 'Connétable de Bourbon'?  "#ffff00":
 				d === 'Madame la Régente'?  "#00ff77":		
-				d === 'Court Assembly'?  "#78f2ee":
 				d === 'Princesse de Clèves'? "#e931be":
 				d === 'Vidame de Chartres'? "#CACFD2":
 				d === "Duc d'Albe"? "#B7950B":
 				d === "Médecin du roi d'Espagne"? "#D7BDE2" :
-				d === 'Le Roi'? "#2ECC71" :
 				d === 'La Cour'? "#A04000" :
 				d === 'Roi de Navarre'? "#FDFEFE" :
 				d === 'Prince de Condé'? "#A93226" :
@@ -362,8 +380,8 @@
 		var div = L.DomUtil.create('div', 'info legend'),
 			labels= ['<b>Characters</b>'],
 			categories = ['Prince de Clèves', 'Duc de Nemours', 'Cardinal Lorraine', 'Connétable de Montmorency', 'Maréchal de Saint André','Henri II', 'Duc de Savoie',
-							'Comte de Radan', 'Lignerolles', 'Connétable de Bourbon', 'Madame la Régente', 'Court Assembly', 'Princesse de Clèves',
-							'Vidame de Chartres', "Duc d'Albe", "Médecin du roi d'Espagne", 'Le Roi', 'La Cour', 'Roi de Navarre', 'Prince de Condé', 'Élisabeth de France', 'Gentilhomme','Madame Martigues' ];
+							'Comte de Radan', 'Lignerolles', 'Connétable de Bourbon', 'Madame la Régente', 'Princesse de Clèves',
+							'Vidame de Chartres', "Duc d'Albe", "Médecin du roi d'Espagne", 'La Cour', 'Roi de Navarre', 'Prince de Condé', 'Élisabeth de France', 'Gentilhomme','Madame Martigues' ];
 
 
 		// loop through our characters and generate a label with a colored square for each character
@@ -545,13 +563,6 @@ var characterDropdown = L.control({position: 'topright'});
 						feature.properties.showOnMap=0;
 			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 			
-			if (value == 'Court Assembly') {
-				movement.refilter(function(feature){
-			if (feature.properties.Character=='Court Assembly') {
-					feature.properties.showOnMap = 1; }
-					else 
-						feature.properties.showOnMap=0;
-			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 			
 			if (value == 'Princesse de Clèves') {
 				movement.refilter(function(feature){
@@ -586,15 +597,7 @@ var characterDropdown = L.control({position: 'topright'});
 						feature.properties.showOnMap=0;
 			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 		
-    if (value == 'Le Roi') {
-				movement.refilter(function(feature){
-				if (feature.properties.Character=='Le Roi') {
-					feature.properties.showOnMap = 1; }
-					else 
-						feature.properties.showOnMap=0;
-			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
-	
-	if (value == 'La Cour') {
+			if (value == 'La Cour') {
 				movement.refilter(function(feature){
 				if (feature.properties.Character=='La Cour') {
 					feature.properties.showOnMap = 1; }
@@ -602,7 +605,7 @@ var characterDropdown = L.control({position: 'topright'});
 						feature.properties.showOnMap=0;
 			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 	
-	if (value == 'Roi de Navarre') {
+			if (value == 'Roi de Navarre') {
 				movement.refilter(function(feature){
 				if (feature.properties.Character=='Roi de Navarre') {
 					feature.properties.showOnMap = 1; }
@@ -610,7 +613,7 @@ var characterDropdown = L.control({position: 'topright'});
 						feature.properties.showOnMap=0;
 			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 	
-	if (value == 'Prince de Condé') {
+			if (value == 'Prince de Condé') {
 				movement.refilter(function(feature){
 				if (feature.properties.Character=='Prince de Condé') {
 					feature.properties.showOnMap = 1; }
