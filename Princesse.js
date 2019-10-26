@@ -1,7 +1,7 @@
 //This is where you define the map start up options, here defined to center on Paris and to have a particular zoom. 
 		var mapOptions = {
 			center: [48.86, 2.33],
-			zoom: 12,
+			zoom: 10,
 			maxZoom : 20,
 			}
 
@@ -10,9 +10,12 @@
 	
 
 
-
-var legendContent = "Add stuff about characters";	
+var princess = "<b>Princesse de Clèves</b>";
+var colorPrincess = princess.fontcolor("#e931be");
+var legendContent = colorPrincess + "<br>" + "Prince de Clèves" + "<br>" + "Duc de Nemours" + "<br>" + "La Cour" + "<br>" + "Henri II" + "<br>" + "Elisabeth de France" + "<br>" + "Vidame de Chartres" + "<br>" + "Connétable de Montmorency" + "<br>" + "Maréchal de Saint-André" + "<br>" + "Cardinal de Lorraine" + "<br>" + "Prince de Condé" + "<br>" + "Roi de Navarre" + "<br>" + "Duc de savoie" + "<br>" + "Duc d'Albe" + "<br>" + "Madame de Martigues" + "<br>" + "Comte de Radan" + "<br>" + "Lignerolles" + "<br>" + "Connétable de Bourbon" + "<br>" + "Médecin du roi d'Espagne" + "<br>" + "Gentilhomme";	
 var sidebar = L.control.sidebar({position:"right"}).addTo(map);
+var popupContent = 'Click on a location to receive more information';
+
 var panelContent = {
     id: 'legendTab',                     // UID, used to access the panel
     tab: '<i class="fa fa-user"></i>',  // content can be passed as HTML string,
@@ -43,18 +46,32 @@ var panelContent2 = {
 sidebar.addPanel(panelContent2);
 
 
+var sidebarLeft = L.control.sidebar({position:"left"}).addTo(map);
 
+var louvre1Description = 
+			"<b> I am a sketch of the Louvre from the past </b>"
+			+ "<br>" + "<img src='./Images/Fig. 1 Louvre Israel Silvestre.jpeg' width=350px/>" + "<br>" + "See my metadata " + "<a target='_blank' href=''>here</a>" + "<br>" +
+			"<i>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet </i>"
+			+ "<br>" + "<br>" + 
+			"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet";		
+var popup = {
+    id: 'popupCont',                     // UID, used to access the panel
+    tab: '<i class="fa fa-comment-alt"></i>',  // content can be passed as HTML string,
+    pane: popupContent,        // DOM elements can be passed, too
+    title: 'Sites of Interest',              // an optional pane header
+    position: 'top'                  // optional vertical alignment, defaults to 'top'
+};
+sidebarLeft.addPanel(popup);
 
 
 
 
 	/*	var sidebar = L.control.sidebar('sidebar', {position: 'left'});
 			map.addControl(sidebar);
-			
+			*/
 			map.on('click', function() {
-				sidebar.hide();
+				sidebarLeft.close();
 				louvre1.setIcon(blueIcon);
-				louvre2.setIcon(blueIcon);
 				})
 		
 		var greenIcon = L.icon({
@@ -67,22 +84,43 @@ sidebar.addPanel(panelContent2);
 		
 		var blueIcon = L.icon({
 			iconUrl: './Images/marker-icon-blue.png'
-		});*/
+		});
 		
-		
+		sidebar.on('closing', function(e) {
+			louvre1.setIcon(blueIcon);
+			coulommiers.setIcon(blueIcon);
+});
 //Here is where the marker creation takes place. Simply name your variable and use the specified code to insert the lat/long. 
 //The lat/long for a particular point can be found either online or by opening the console box of the map and clicking the desired spot
 //Then, use the following code if you have an image you want to add, or just insert text, or do both with the bindPopup command
 			
 			//Image and Text in sidebar
 			var louvre1 = L.marker([48.860352821094246, 2.3385858535766606], {myCustomID: "abc123"});
-			var louvre1Description = 
-			"<b> I am a sketch of the Louvre from the past </b>"
-			+ "<br>" + "<img src='./Images/Fig. 1 Louvre Israel Silvestre.jpeg' width=400px/>" + "<br>" + "See my metadata " + "<a target='_blank' href=''>here</a>" + "<br>" +
+	
+			louvre1.on("click", function (e) {
+				louvrecontent();
+				sidebarLeft.removePanel('popupCont');
+				sidebarLeft.addPanel({
+					id: 'popupCont',                     // UID, used to access the panel
+					tab: '<i class="fa fa-comment-alt"></i>',  // content can be passed as HTML string,
+					pane: popupContent,        // DOM elements can be passed, too
+					title: 'Louvre',              // an optional pane header
+					position: 'top'        			
+				});
+				sidebarLeft.open('popupCont');
+				louvre1.setIcon(greenIcon);
+				coulommiers.setIcon(blueIcon);
+			});
+			
+function louvrecontent() {
+	popupContent = "<b> I am a sketch of the Louvre from the past </b>"
+			+ "<br>" + "<img src='./Images/Fig. 1 Louvre Israel Silvestre.jpeg' width=100%/>" + "<br>" + "See my metadata " + "<a target='_blank' href=''>here</a>" + "<br>" +
 			"<i>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet </i>"
 			+ "<br>" + "<br>" + 
-			"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet"
-;		
+			"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet";		
+
+	return popupContent;
+};
 			/*louvre1.on("click", function (e) {
 				var visible = sidebar.isVisible();
 				sidebar.setContent(louvre1Description);
@@ -94,29 +132,44 @@ sidebar.addPanel(panelContent2);
 			});*/
 
 			
-			var louvre2= L.marker([48.86104454579249, 2.3360109329223637]);
-			var louvre2Description = "<b> I am the Louvre too! </b>" + "<br>" + "<img src='./Images/Fig. 2 Louvre Israel Silvestre.jpeg' width=400px/>" ;
-
-				/*louvre2.on("click", function (e) {
-				var visible = sidebar.isVisible();
-				sidebar.setContent(louvre2Description);
-				
-				if (!visible){
-					sidebar.toggle();
-				}
-				louvre2.setIcon(greenIcon);
-				louvre1.setIcon(blueIcon);
-			});	*/
-			
-			
+		
 			
 			var coulommiers= L.marker([48.72358515157852, 3.0514526367187504]);
-			var photoImg3= "<img src='./Images/Coulommiers_vers_1600.JPG' width=300px/>" ;
-			coulommiers.bindPopup(photoImg3);
+			//var photoImg3= "<img src='./Images/Coulommiers_vers_1600.JPG' width=300px/>" ;
+			//coulommiers.bindPopup(photoImg3);
+			//var coulommiers2= L.marker([48.72258515157852, 3.0534526367187504]);
+			//var photoImg4= "<img src='./Images/Prospect_du_Chasteau_de_Coulommiers_en_Brie.jpg' width=100%/>" ;
+		//	coulommiers2.bindPopup(photoImg4 + "<br>" + "I am Coulommiers as well");
 
-			var coulommiers2= L.marker([48.72258515157852, 3.0534526367187504]);
-			var photoImg4= "<img src='./Images/Prospect_du_Chasteau_de_Coulommiers_en_Brie.jpg' width=500px/>" ;
-			coulommiers2.bindPopup(photoImg4 + "<br>" + "I am Coulommiers as well");
+
+coulommiers.on("click", function (e) {
+				coulommierscontent();
+				sidebarLeft.removePanel('popupCont');
+				sidebarLeft.addPanel({
+					id: 'popupCont',                     // UID, used to access the panel
+					tab: '<i class="fa fa-comment-alt"></i>',  // content can be passed as HTML string,
+					pane: popupContent,        // DOM elements can be passed, too
+					title: 'Coulommiers',              // an optional pane header
+					position: 'top'        			
+				});
+				sidebarLeft.open('popupCont');
+				coulommiers.setIcon(greenIcon);
+				louvre1.setIcon(blueIcon);
+			});
+			
+function coulommierscontent() {
+	popupContent = "<b> I am Coulommiers</b>"
+			+ "<br>" + "<img src='./Images/Coulommiers_vers_1600.JPG' width=100%/>"+ "<br>" + "See my metadata " + "<a target='_blank' href=''>here</a>" + "<br>" +
+			"I am also Coulommiers" + "<br>" + "<img src='./Images/Prospect_du_Chasteau_de_Coulommiers_en_Brie.jpg' width=100%/>" 
+			+"<br>" + "See my metadata " + "<a target='_blank' href=''>here</a>" 
+
+	return popupContent;
+};
+
+
+
+
+
 
 			var brussels = L.marker([51.09662294502995, 5.158081054687501]);
 			
@@ -141,7 +194,7 @@ sidebar.addPanel(panelContent2);
 			
 			
 //Lastly, add the point to your Points of Focus group so all places can be turned on/off together
-			var pointsOfFocus = L.layerGroup([louvre1, louvre2, coulommiers, coulommiers2, brussels, chantilly, cateauCambresis, bayonne, leCercamp]).addTo(map);
+			var pointsOfFocus = L.layerGroup([louvre1, coulommiers, brussels, chantilly, cateauCambresis, bayonne, leCercamp]).addTo(map);
 
 
 
