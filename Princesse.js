@@ -6,15 +6,28 @@
 			}
 
 //This creates the map variable itself based on the options you have chosen. Note that its size is set in the html file	
-		var map = new L.map('map', mapOptions); 
-	
+			var map = new L.map('map', mapOptions); 
+		
 
-
+//This is where I have begun to create the legend colors
 var princess = "<b>Princesse de Clèves</b>";
 var colorPrincess = princess.fontcolor("#e931be");
+
+//This will eventually create the legend
 var legendContent = colorPrincess + "<br>" + "Prince de Clèves" + "<br>" + "Duc de Nemours" + "<br>" + "La Cour" + "<br>" + "Henri II" + "<br>" + "Elisabeth de France" + "<br>" + "Vidame de Chartres" + "<br>" + "Connétable de Montmorency" + "<br>" + "Maréchal de Saint-André" + "<br>" + "Cardinal de Lorraine" + "<br>" + "Prince de Condé" + "<br>" + "Roi de Navarre" + "<br>" + "Duc de savoie" + "<br>" + "Duc d'Albe" + "<br>" + "Madame de Martigues" + "<br>" + "Comte de Radan" + "<br>" + "Lignerolles" + "<br>" + "Connétable de Bourbon" + "<br>" + "Médecin du roi d'Espagne" + "<br>" + "Gentilhomme";	
+
+//This creates the right sidebar
 var sidebar = L.control.sidebar({position:"right"}).addTo(map);
-var popupContent = 'Click on a location to receive more information';
+
+//Sets the initial left sidebar content
+var popupContent = 'Click on a location on the map to receive more information';
+var sitesContent = 'Click on one of the following sites to zoom to the desired location' + 
+'<br>' + "<a id='myLink' href='#' onclick='goTo(48.860352821094246, 2.3385858535766606, 15)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>The Louvre</b><br>";
+
+
+function goTo(lat, lon, zooml) {
+			map.setView([lat,lon], zooml);
+		  };
 
 var panelContent = {
     id: 'legendTab',                     // UID, used to access the panel
@@ -48,31 +61,32 @@ sidebar.addPanel(panelContent2);
 
 var sidebarLeft = L.control.sidebar({position:"left"}).addTo(map);
 
-var louvre1Description = 
-			"<b> I am a sketch of the Louvre from the past </b>"
-			+ "<br>" + "<img src='./Images/Fig. 1 Louvre Israel Silvestre.jpeg' width=350px/>" + "<br>" + "See my metadata " + "<a target='_blank' href=''>here</a>" + "<br>" +
-			"<i>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet </i>"
-			+ "<br>" + "<br>" + 
-			"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet";		
+
+
+var sitesOfInterestPane = {
+	id: 'sites',
+	tab: '<i class="fas fa-map-marker"></i>' ,
+	pane: sitesContent,
+	title: 'Sites of Interest',
+	position: 'top'
+};
+sidebarLeft.addPanel(sitesOfInterestPane);
+
 var popup = {
     id: 'popupCont',                     // UID, used to access the panel
     tab: '<i class="fa fa-comment-alt"></i>',  // content can be passed as HTML string,
     pane: popupContent,        // DOM elements can be passed, too
-    title: 'Sites of Interest',              // an optional pane header
+    title: 'Additional Information',              // an optional pane header
     position: 'top'                  // optional vertical alignment, defaults to 'top'
 };
 sidebarLeft.addPanel(popup);
-
-
-
-
 	/*	var sidebar = L.control.sidebar('sidebar', {position: 'left'});
 			map.addControl(sidebar);
 			*/
 			map.on('click', function() {
 				sidebarLeft.close();
 				louvre1.setIcon(blueIcon);
-				})
+				});
 		
 		var greenIcon = L.icon({
 			iconUrl: './Images/marker-icon-green.png',
@@ -86,17 +100,31 @@ sidebarLeft.addPanel(popup);
 			iconUrl: './Images/marker-icon-blue.png'
 		});
 		
-		sidebar.on('closing', function(e) {
+		sidebarLeft.on('closing', function(e) {
+			resetSidebarContent();
+			sidebarLeft.removePanel('popupCont');
+			sidebarLeft.addPanel({
+					id: 'popupCont',                     // UID, used to access the panel
+					tab: '<i class="fa fa-comment-alt"></i>',  // content can be passed as HTML string,
+					pane: popupContent,        // DOM elements can be passed, too
+					title: 'Additional Information',              // an optional pane header
+					position: 'top'        			
+				});
 			louvre1.setIcon(blueIcon);
-			coulommiers.setIcon(blueIcon);
-});
+			coulommiers.setIcon(blueIcon);	
+		});
+		
+		function resetSidebarContent(){
+			popupContent = 'Click on a location to receive more information';
+			return popupContent;
+		};
 //Here is where the marker creation takes place. Simply name your variable and use the specified code to insert the lat/long. 
 //The lat/long for a particular point can be found either online or by opening the console box of the map and clicking the desired spot
 //Then, use the following code if you have an image you want to add, or just insert text, or do both with the bindPopup command
 			
 			//Image and Text in sidebar
 			var louvre1 = L.marker([48.860352821094246, 2.3385858535766606], {myCustomID: "abc123"});
-	
+			louvre1.bindTooltip("The Louvre").openTooltip();
 			louvre1.on("click", function (e) {
 				louvrecontent();
 				sidebarLeft.removePanel('popupCont');
@@ -135,6 +163,8 @@ function louvrecontent() {
 		
 			
 			var coulommiers= L.marker([48.72358515157852, 3.0514526367187504]);
+			coulommiers.bindTooltip("Coulommiers").openTooltip();
+
 			//var photoImg3= "<img src='./Images/Coulommiers_vers_1600.JPG' width=300px/>" ;
 			//coulommiers.bindPopup(photoImg3);
 			//var coulommiers2= L.marker([48.72258515157852, 3.0534526367187504]);
