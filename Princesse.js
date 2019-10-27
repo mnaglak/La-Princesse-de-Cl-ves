@@ -1,131 +1,154 @@
+
 //This is where you define the map start up options, here defined to center on Paris and to have a particular zoom. 
-		var mapOptions = {
-			center: [48.86, 2.33],
-			zoom: 10,
-			maxZoom : 20,
-			}
+	var mapOptions = {
+		center: [48.86, 2.33],
+		zoom: 10,
+		maxZoom : 20,
+		}
 
-//This creates the map variable itself based on the options you have chosen. Note that its size is set in the html file	
-			var map = new L.map('map', mapOptions); 
+//This creates the map variable itself based on the options set above	
+	var map = new L.map('map', mapOptions); 
 		
-
-//This is where I have begun to create the legend colors
-var princess = "<b>Princesse de Clèves</b>";
-var colorPrincess = princess.fontcolor("#e931be");
-
-//This will eventually create the legend
-var legendContent = colorPrincess + "<br>" + "Prince de Clèves" + "<br>" + "Duc de Nemours" + "<br>" + "La Cour" + "<br>" + "Henri II" + "<br>" + "Elisabeth de France" + "<br>" + "Vidame de Chartres" + "<br>" + "Connétable de Montmorency" + "<br>" + "Maréchal de Saint-André" + "<br>" + "Cardinal de Lorraine" + "<br>" + "Prince de Condé" + "<br>" + "Roi de Navarre" + "<br>" + "Duc de savoie" + "<br>" + "Duc d'Albe" + "<br>" + "Madame de Martigues" + "<br>" + "Comte de Radan" + "<br>" + "Lignerolles" + "<br>" + "Connétable de Bourbon" + "<br>" + "Médecin du roi d'Espagne" + "<br>" + "Gentilhomme";	
-
-//This creates the right sidebar
-var sidebar = L.control.sidebar({position:"right"}).addTo(map);
-
-//Sets the initial left sidebar content
-var popupContent = 'Click on a location on the map to receive more information';
-var sitesContent = 'Click on one of the following sites to zoom to the desired location' + 
-'<br>' + "<a id='myLink' href='#' onclick='goTo(48.860352821094246, 2.3385858535766606, 15)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>The Louvre</b><br>";
+//Sidebar creation
+	var sidebarLeft = L.control.sidebar({position:"left"}).addTo(map);
 
 
-function goTo(lat, lon, zooml) {
+//This is where I have begun to create the legend, defining characters with their colors. 
+	var princess = "<b>Princesse de Clèves</b>";
+	var colorPrincess = princess.fontcolor("#e931be");
+
+	//This will eventually create the legend will all associated information
+	var legendContent = colorPrincess + "<br>" + "Prince de Clèves" + "<br>" + "Duc de Nemours" + "<br>" + "La Cour" + "<br>" + "Henri II" + "<br>" + "Elisabeth de France" + "<br>" + "Vidame de Chartres" + "<br>" + "Connétable de Montmorency" + "<br>" + "Maréchal de Saint-André" + "<br>" + "Cardinal de Lorraine" + "<br>" + "Prince de Condé" + "<br>" + "Roi de Navarre" + "<br>" + "Duc de savoie" + "<br>" + "Duc d'Albe" + "<br>" + "Madame de Martigues" + "<br>" + "Comte de Radan" + "<br>" + "Lignerolles" + "<br>" + "Connétable de Bourbon" + "<br>" + "Médecin du roi d'Espagne" + "<br>" + "Gentilhomme";	
+
+
+//panel creations for left sidebar
+//character legend tab
+	var panelContent = {
+		id: 'legendTab',                     // UID, used to access the panel
+		tab: '<i class="fa fa-user"></i>',  // content can be passed as HTML string,
+		pane: legendContent,        // DOM elements can be passed, too
+		title: 'Legend',              // an optional pane header
+		position: 'top'                  // optional vertical alignment, defaults to 'top'
+	};
+	sidebarLeft.addPanel(panelContent);
+
+
+//Sets the initial left sidebar content for popup pane and sites of interest pane
+	var popupContent = 'Click on a location on the map to receive more information';
+	
+	var sitesContent = 'Click on one of the following sites to zoom to the desired location' + 
+		'<br>' + "<a id='myLink' href='#' onclick='goTo(48.860352821094246, 2.3385858535766606, 15)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>The Louvre</b><br><a id='myLink' href='#' onclick='goTo(48.72358515157852, 3.0514526367187504, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Coulommiers</b>";
+
+
+//sites of interest panel
+	var sitesOfInterestPane = {
+		id: 'sites',
+		tab: '<i class="fas fa-map-marker"></i>' ,
+		pane: sitesContent,
+		title: 'Sites of Interest',
+		position: 'top'
+	};
+	sidebarLeft.addPanel(sitesOfInterestPane);
+
+
+//popup info panel
+	var popup = {
+		id: 'popupCont',                     // UID, used to access the panel
+		tab: '<i class="fa fa-comment-alt"></i>',  // content can be passed as HTML string,
+		pane: popupContent,        // DOM elements can be passed, too
+		title: 'Additional Information',              // an optional pane header
+		position: 'top'                  // optional vertical alignment, defaults to 'top'
+	};
+	sidebarLeft.addPanel(popup);
+
+
+	//function for zooming to a specific location on the sites of interest pane
+	function goTo(lat, lon, zooml) {
 			map.setView([lat,lon], zooml);
 		  };
 
-var panelContent = {
-    id: 'legendTab',                     // UID, used to access the panel
-    tab: '<i class="fa fa-user"></i>',  // content can be passed as HTML string,
-    pane: legendContent,        // DOM elements can be passed, too
-    title: 'Legend',              // an optional pane header
-    position: 'top'                  // optional vertical alignment, defaults to 'top'
-};
-sidebar.addPanel(panelContent);
 
-var mapInfoContent = "Information about the map";
-var panelContent2 = {
-    id: 'aboutMapTab',                     // UID, used to access the panel
-    tab: '<i class="fa fa-question-circle"></i>',  // content can be passed as HTML string,
-    pane: mapInfoContent,        // DOM elements can be passed, too
-    title: 'Map Information',              // an optional pane header
-    position: 'top'                  // optional vertical alignment, defaults to 'top'
-};
-sidebar.addPanel(panelContent2);
-
-var contactContent = "Contact us!";
-var panelContent2 = {
-    id: 'contactUs',                     // UID, used to access the panel
-    tab: '<i class="fa fa-envelope"></i>',  // content can be passed as HTML string,
-    pane: contactContent,        // DOM elements can be passed, too
-    title: 'Contact Information',              // an optional pane header
-    position: 'top'                  // optional vertical alignment, defaults to 'top'
-};
-sidebar.addPanel(panelContent2);
+//This creates the right sidebar (not currently in use)
+//var sidebar = L.control.sidebar({position:"right"}).addTo(map);
 
 
-var sidebarLeft = L.control.sidebar({position:"left"}).addTo(map);
+//creation of map information panel
+	var mapInformation = "Information about the map";
+	var mapInfoContent = {
+		id: 'aboutMapTab',                     // UID, used to access the panel
+		tab: '<i class="fa fa-question-circle"></i>',  // content can be passed as HTML string,
+		pane: mapInformation,        // DOM elements can be passed, too
+		title: 'Map Information',              // an optional pane header
+		position: 'bottom'                  // optional vertical alignment, defaults to 'top'
+	};
+	sidebarLeft.addPanel(mapInfoContent);
+
+//creation of contact panel
+	var contactContent = "Contact us!";
+	var panelContent2 = {
+		id: 'contactUs',                     // UID, used to access the panel
+		tab: '<i class="fa fa-envelope"></i>',  // content can be passed as HTML string,
+		pane: contactContent,        // DOM elements can be passed, too
+		title: 'Contact Information',              // an optional pane header
+		position: 'bottom'                  // optional vertical alignment, defaults to 'top'
+	};
+	sidebarLeft.addPanel(panelContent2);
 
 
 
-var sitesOfInterestPane = {
-	id: 'sites',
-	tab: '<i class="fas fa-map-marker"></i>' ,
-	pane: sitesContent,
-	title: 'Sites of Interest',
-	position: 'top'
-};
-sidebarLeft.addPanel(sitesOfInterestPane);
 
-var popup = {
-    id: 'popupCont',                     // UID, used to access the panel
-    tab: '<i class="fa fa-comment-alt"></i>',  // content can be passed as HTML string,
-    pane: popupContent,        // DOM elements can be passed, too
-    title: 'Additional Information',              // an optional pane header
-    position: 'top'                  // optional vertical alignment, defaults to 'top'
-};
-sidebarLeft.addPanel(popup);
-	/*	var sidebar = L.control.sidebar('sidebar', {position: 'left'});
-			map.addControl(sidebar);
-			*/
-			map.on('click', function() {
-				sidebarLeft.close();
-				louvre1.setIcon(blueIcon);
-				});
-		
-		var greenIcon = L.icon({
-			iconUrl: './Images/marker-icon-green.png',
-			iconSize: [25, 41],
-			iconAnchor: [12, 41],
-			popupAnchor: [1, -34],
-			shadowSize: [41, 41]
+//when closing sidbar, resets icon color changes for each site
+	map.on('click', function() {
+		sidebarLeft.close();
+		louvre.setIcon(blueIcon);
+		coulommiers.setIcon(blueIcon);
+		});
+
+//definition of blue and green icons		
+	var greenIcon = L.icon({
+		iconUrl: './Images/marker-icon-green.png',
+		iconSize: [25, 41],
+		iconAnchor: [12, 41],
+		popupAnchor: [1, -34],
+		shadowSize: [41, 41]
 		});
 		
-		var blueIcon = L.icon({
-			iconUrl: './Images/marker-icon-blue.png'
+	var blueIcon = L.icon({
+		iconUrl: './Images/marker-icon-blue.png'
 		});
 		
-		sidebarLeft.on('closing', function(e) {
-			resetSidebarContent();
-			sidebarLeft.removePanel('popupCont');
-			sidebarLeft.addPanel({
-					id: 'popupCont',                     // UID, used to access the panel
-					tab: '<i class="fa fa-comment-alt"></i>',  // content can be passed as HTML string,
-					pane: popupContent,        // DOM elements can be passed, too
-					title: 'Additional Information',              // an optional pane header
-					position: 'top'        			
-				});
-			louvre1.setIcon(blueIcon);
+//when left sidebar closes, reset sidebar content to what appears on opening in pop up pane, and reset map icons
+	sidebarLeft.on('closing', function(e) {
+		resetSidebarContent();
+		sidebarLeft.removePanel('popupCont');
+		sidebarLeft.addPanel({
+			id: 'popupCont',                     // UID, used to access the panel
+			tab: '<i class="fa fa-comment-alt"></i>',  // content can be passed as HTML string,
+			pane: popupContent,        // DOM elements can be passed, too
+			title: 'Additional Information',              // an optional pane header
+			position: 'top'        			
+			});
+			louvre.setIcon(blueIcon);
 			coulommiers.setIcon(blueIcon);	
 		});
-		
+
+//function resets sidebar content for popup pane
 		function resetSidebarContent(){
 			popupContent = 'Click on a location to receive more information';
 			return popupContent;
 		};
-//Here is where the marker creation takes place. Simply name your variable and use the specified code to insert the lat/long. 
+
+
+
+//Here is where the marker creation takes place and the content for the popup content will be set 
 //The lat/long for a particular point can be found either online or by opening the console box of the map and clicking the desired spot
-//Then, use the following code if you have an image you want to add, or just insert text, or do both with the bindPopup command
 			
-			//Image and Text in sidebar
-			var louvre1 = L.marker([48.860352821094246, 2.3385858535766606], {myCustomID: "abc123"});
-			louvre1.bindTooltip("The Louvre").openTooltip();
-			louvre1.on("click", function (e) {
+//Image and Text in sidebar
+
+//for the Louvre marker
+		var louvre = L.marker([48.860352821094246, 2.3385858535766606], {myCustomID: "abc123"});
+			louvre.bindTooltip("The Louvre").openTooltip();
+			louvre.on("click", function (e) {
 				louvrecontent();
 				sidebarLeft.removePanel('popupCont');
 				sidebarLeft.addPanel({
@@ -136,43 +159,26 @@ sidebarLeft.addPanel(popup);
 					position: 'top'        			
 				});
 				sidebarLeft.open('popupCont');
-				louvre1.setIcon(greenIcon);
+				louvre.setIcon(greenIcon);
 				coulommiers.setIcon(blueIcon);
 			});
 			
-function louvrecontent() {
-	popupContent = "<b> I am a sketch of the Louvre from the past </b>"
+	function louvrecontent() {
+			popupContent = "<b> I am a sketch of the Louvre from the past </b>"
 			+ "<br>" + "<img src='./Images/Fig. 1 Louvre Israel Silvestre.jpeg' width=100%/>" + "<br>" + "See my metadata " + "<a target='_blank' href=''>here</a>" + "<br>" +
 			"<i>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet </i>"
 			+ "<br>" + "<br>" + 
 			"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet";		
 
-	return popupContent;
-};
-			/*louvre1.on("click", function (e) {
-				var visible = sidebar.isVisible();
-				sidebar.setContent(louvre1Description);
-				if (!visible){
-					sidebar.toggle();
-				}
-				louvre1.setIcon(greenIcon);
-				louvre2.setIcon(blueIcon);
-			});*/
-
-			
+			return popupContent;
+	};
 		
+
+//for Coulommiers
 			
-			var coulommiers= L.marker([48.72358515157852, 3.0514526367187504]);
+		var coulommiers= L.marker([48.72358515157852, 3.0514526367187504]);
 			coulommiers.bindTooltip("Coulommiers").openTooltip();
-
-			//var photoImg3= "<img src='./Images/Coulommiers_vers_1600.JPG' width=300px/>" ;
-			//coulommiers.bindPopup(photoImg3);
-			//var coulommiers2= L.marker([48.72258515157852, 3.0534526367187504]);
-			//var photoImg4= "<img src='./Images/Prospect_du_Chasteau_de_Coulommiers_en_Brie.jpg' width=100%/>" ;
-		//	coulommiers2.bindPopup(photoImg4 + "<br>" + "I am Coulommiers as well");
-
-
-coulommiers.on("click", function (e) {
+			coulommiers.on("click", function (e) {
 				coulommierscontent();
 				sidebarLeft.removePanel('popupCont');
 				sidebarLeft.addPanel({
@@ -184,66 +190,54 @@ coulommiers.on("click", function (e) {
 				});
 				sidebarLeft.open('popupCont');
 				coulommiers.setIcon(greenIcon);
-				louvre1.setIcon(blueIcon);
+				louvre.setIcon(blueIcon);
 			});
 			
-function coulommierscontent() {
-	popupContent = "<b> I am Coulommiers</b>"
+		function coulommierscontent() {
+			popupContent = "<b> I am Coulommiers</b>"
 			+ "<br>" + "<img src='./Images/Coulommiers_vers_1600.JPG' width=100%/>"+ "<br>" + "See my metadata " + "<a target='_blank' href=''>here</a>" + "<br>" +
 			"I am also Coulommiers" + "<br>" + "<img src='./Images/Prospect_du_Chasteau_de_Coulommiers_en_Brie.jpg' width=100%/>" 
 			+"<br>" + "See my metadata " + "<a target='_blank' href=''>here</a>" 
 
-	return popupContent;
-};
+			return popupContent;
+		};
 
 
 
+//other sites not yet integrated into the sidebar. Waiting for final list
+		var brussels = L.marker([51.09662294502995, 5.158081054687501]);
+		brussels.bindPopup("I am Brussels!");
+		
+		var leCercamp = L.marker([50.24720490139267, 2.6312255859375004]);
+		leCercamp.bindPopup("Le Cercamp");
 
+		var  = L.marker([50.0289165635219, 4.084167480468751]);
+		cateauCambresis.bindPopup('I am Cateau-Cambresis');
 
+		var chantilly = L.marker([49.189781745417484, 2.5007629394531254]);
+		chantilly.bindPopup('I am Chantilly');
 
-			var brussels = L.marker([51.09662294502995, 5.158081054687501]);
-			
-			brussels.bindPopup("I am Brussels!");
-
-
-			var leCercamp = L.marker([50.24720490139267, 2.6312255859375004]);
-			
-			leCercamp.bindPopup("Le Cercamp");
-
-			var cateauCambresis = L.marker([50.0289165635219, 4.084167480468751]);
-			
-			cateauCambresis.bindPopup('I am Cateau-Cambresis');
-
-			var chantilly = L.marker([49.189781745417484, 2.5007629394531254]);
-			
-			chantilly.bindPopup('I am Chantilly');
-
-
-			var bayonne = L.marker([44.04811573082351,-2.2796630859375004]);
-			bayonne.bindPopup('I am Bayonne');
+		var bayonne = L.marker([44.04811573082351,-2.2796630859375004]);
+		bayonne.bindPopup('I am Bayonne');
 			
 			
-//Lastly, add the point to your Points of Focus group so all places can be turned on/off together
-			var pointsOfFocus = L.layerGroup([louvre1, coulommiers, brussels, chantilly, cateauCambresis, bayonne, leCercamp]).addTo(map);
+//	merging of these sites for turning on/off
+		var pointsOfFocus = L.layerGroup([louvre, coulommiers, brussels, chantilly, cateauCambresis, bayonne, leCercamp]).addTo(map);
 
 
-
-
-//This is the code that lets you see lat/long in the console. Just right click the map and chose inspect element, then click Console to view the box
-//This code could be erased for the final map if desired
-			map.on('click', function(e){
+//Function to see map coordinates in console on click
+		map.on('click', function(e){
 			var coord = e.latlng;
 			var lat = coord.lat;
 			var lng = coord.lng;
 			console.log("You clicked the map at latitude: " + lat + " and longitude: " + lng);
-			});
+		});
 		
 
 
 
 
-//Now we will move on to looking at the map underlays
-//This lets you put the map layers in a specified order according to their zIndex. The lower the number, the lower down the map will appear.
+//Setting map underlays in specific z-order. The lower the number, the lower down the map will appear.
 //Here it is set up so that the modern imagery is the lowest, followed by the europe imagery, followed by the france imagery, etc. 
 //Just below, when the layers are imported, you'll see that some are put in a specific pane so they don't cover up smaller ones.	
 		map.createPane('modern');
@@ -282,17 +276,12 @@ function coulommierscontent() {
 
 
 //This is where we import the .geoJson file exported from ArcGIS Pro
-//Each "part" of the book should have its own geojson, with information listed
 //This also tells the pop up boxes to come up on each feature (see fuction popup below)
 //As well as to swap the style for each line according to the book/character attributes of the geojson
 	var movement =  new L.GeoJSON.AJAX("PdCMovement_all.geojson", {
 		
+		//this will eventually be removed when fully integrated into the sidebar with no popup boxes on the map, only swapstyle will be left
 		onEachFeature: function (feature, layer) {
-			/*L.polylineDecorator(layer, {
-				patterns: [
-				{offset: 25, repeat: 150, symbol: L.Symbol.arrowHead({pixelSize: 15, pathOptions: {fillOpacity: 1, weight: 0, color: '#000000'}})}
-				]
-			}).addTo(map);*/  /// Adds each decorator to the map!!!!
 			var out = [];
 				if (feature.properties){
 					out.push("<b>Character: </b>" +feature.properties.Character);
@@ -307,15 +296,6 @@ function coulommierscontent() {
 		},
 		style: swapStyle
 	});
-
-  
-  /*var decorator = L.polylineDecorator(movement, {
-    patterns: [
-        // defines a pattern of 10px-wide dashes, repeated every 20px on the line
-        {offset: 0, repeat: 20, symbol: L.Symbol.dash({pixelSize: 10})}
-    ]
-}).addTo(map); */
-
 
 
 //Now we want to create our layer box that lets us turn different maps on and off
@@ -344,8 +324,6 @@ function coulommierscontent() {
 			"Character Movement" : movement
 			};
 
-
-
 //Then this created the actual control box
 	L.control.layers(baseLayers, overlayMaps, {collapsed: false}).addTo(map);
 
@@ -372,7 +350,7 @@ function coulommierscontent() {
 			).addTo(map);
 
 
-//This will need to be updated for future characters and book parts		
+//Function sets a particular color and style for each character and part of the book	
 	function swapStyle(feature) {
 		if (feature.properties.Book_Part == 1) {
 				switch (feature.properties.Character) {
@@ -433,72 +411,13 @@ function coulommierscontent() {
 					case 'Madame de Martigues': return {color: "#FAD7A0", dashArray: '5, 10' };
 				}
 			}
-		
 		}; 
 			
 
 
-//This section of the code creates the legend. 
-//the .css info for the legend can be found in the .css file
-//getColor will need to be updated with future character colors, along with the categories array for character names
-	function getColor(d) {
-		return 	d === 'Prince de Clèves' ? '#ff0000' :
-				d === 'Duc de Nemours'? '#0000ff' :			
-				d === 'Cardinal de Lorraine'? "#d9ff15":
-				d === 'Connétable de Montmorency'?  "#5e8d46":
-				d === 'Maréchal de Saint-André' ? "#c59be9":				
-				d === 'Henri II'?  "#000000":
-				d === 'Duc de Savoie'?  "#a66c32":
-				d === 'Comte de Radan'?  "#c400ff":
-				d === 'Lignerolles'?  "#ffab00":
-				d === 'Connétable de Bourbon'?  "#ffff00":
-				d === 'Princesse de Clèves'? "#e931be":
-				d === 'Vidame de Chartres'? "#CACFD2":
-				d === "Duc d'Albe"? "#B7950B":
-				d === "Médecin du roi d'Espagne"? "#D7BDE2" :
-				d === 'La Cour'? "#A04000" :
-				d === 'Roi de Navarre'? "#FDFEFE" :
-				d === 'Prince de Condé'? "#A93226" :
-				d === 'Élisabeth de France'? "#85C1E9" :
-				d === 'Gentilhomme'? "#1D8348" :
-				d === 'Madame de Martigues'? "#FAD7A0":
-										'#0000ff';
-}
 
-	/*var legend = L.control({position: 'bottomleft'});
-	function showLegend() {
-		legend.addTo(map);
-    }
-	function hideLegend() {
-        var div = document.getElementById("info legend")
-        div.innerHTML = "<h2>Legend</h2>";
-    }
-	legend.onAdd = function (map) {
-		var div = L.DomUtil.create('div', 'info legend'),
-			labels= ['<b>Characters</b>'],
-			categories = ['Prince de Clèves', 'Duc de Nemours', 'Cardinal de Lorraine', 'Connétable de Montmorency', 'Maréchal de Saint-André','Henri II', 'Duc de Savoie',
-							'Comte de Radan', 'Lignerolles', 'Connétable de Bourbon', 'Princesse de Clèves',
-							'Vidame de Chartres', "Duc d'Albe", "Médecin du roi d'Espagne", 'La Cour', 'Roi de Navarre', 'Prince de Condé', 'Élisabeth de France', 'Gentilhomme','Madame de Martigues' ];
-
-
-		// loop through our characters and generate a label with a colored square for each character
-		for (var i = 0; i < categories.length; i++) {
-            div.innerHTML += 
-            labels.push(
-                '<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' +
-            (categories[i] ? categories[i] : '+'));
-
-        }
-        div.innerHTML = labels.join('<br>');
-		div.setAttribute("onmouseenter", "showLegend()");
-		div.setAttribute("onmouseleave", "hideLegend()");
-		    div.id = "info legend"
-		return div;
-	};
-	legend.addTo(map);
-	hideLegend();
-*/
-//code for filtering by book part	
+//Setting up the two filtered drop down boxes, one by part and one by character, to show only certain characters/parts at any one time
+//Its based on two attributes which must both be "on" for the line to show	
 var partDropdown = L.control({position: 'topright'});
 	
 	partDropdown.onAdd = function (map) {
@@ -826,7 +745,66 @@ var characterDropdown = L.control({position: 'topright'});
 		l.bindPopup(out.join("<br />"))		
 	}*/	
 	
-	
+/*This section of the code created the original legend. It has been moved into a side panel 
+//the .css info for the legend can be found in the .css file
+//getColor will need to be updated with future character colors, along with the categories array for character names
+	function getColor(d) {
+		return 	d === 'Prince de Clèves' ? '#ff0000' :
+				d === 'Duc de Nemours'? '#0000ff' :			
+				d === 'Cardinal de Lorraine'? "#d9ff15":
+				d === 'Connétable de Montmorency'?  "#5e8d46":
+				d === 'Maréchal de Saint-André' ? "#c59be9":				
+				d === 'Henri II'?  "#000000":
+				d === 'Duc de Savoie'?  "#a66c32":
+				d === 'Comte de Radan'?  "#c400ff":
+				d === 'Lignerolles'?  "#ffab00":
+				d === 'Connétable de Bourbon'?  "#ffff00":
+				d === 'Princesse de Clèves'? "#e931be":
+				d === 'Vidame de Chartres'? "#CACFD2":
+				d === "Duc d'Albe"? "#B7950B":
+				d === "Médecin du roi d'Espagne"? "#D7BDE2" :
+				d === 'La Cour'? "#A04000" :
+				d === 'Roi de Navarre'? "#FDFEFE" :
+				d === 'Prince de Condé'? "#A93226" :
+				d === 'Élisabeth de France'? "#85C1E9" :
+				d === 'Gentilhomme'? "#1D8348" :
+				d === 'Madame de Martigues'? "#FAD7A0":
+										'#0000ff';
+}
+
+	var legend = L.control({position: 'bottomleft'});
+	function showLegend() {
+		legend.addTo(map);
+    }
+	function hideLegend() {
+        var div = document.getElementById("info legend")
+        div.innerHTML = "<h2>Legend</h2>";
+    }
+	legend.onAdd = function (map) {
+		var div = L.DomUtil.create('div', 'info legend'),
+			labels= ['<b>Characters</b>'],
+			categories = ['Prince de Clèves', 'Duc de Nemours', 'Cardinal de Lorraine', 'Connétable de Montmorency', 'Maréchal de Saint-André','Henri II', 'Duc de Savoie',
+							'Comte de Radan', 'Lignerolles', 'Connétable de Bourbon', 'Princesse de Clèves',
+							'Vidame de Chartres', "Duc d'Albe", "Médecin du roi d'Espagne", 'La Cour', 'Roi de Navarre', 'Prince de Condé', 'Élisabeth de France', 'Gentilhomme','Madame de Martigues' ];
+
+
+		// loop through our characters and generate a label with a colored square for each character
+		for (var i = 0; i < categories.length; i++) {
+            div.innerHTML += 
+            labels.push(
+                '<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' +
+            (categories[i] ? categories[i] : '+'));
+
+        }
+        div.innerHTML = labels.join('<br>');
+		div.setAttribute("onmouseenter", "showLegend()");
+		div.setAttribute("onmouseleave", "hideLegend()");
+		    div.id = "info legend"
+		return div;
+	};
+	legend.addTo(map);
+	hideLegend();
+*/	
 	
 	
 	
