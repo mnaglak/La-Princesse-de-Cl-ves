@@ -211,7 +211,7 @@
 		var leCercamp = L.marker([50.24720490139267, 2.6312255859375004]);
 		leCercamp.bindPopup("Le Cercamp");
 
-		var  = L.marker([50.0289165635219, 4.084167480468751]);
+		var cateauCambresis = L.marker([50.0289165635219, 4.084167480468751]);
 		cateauCambresis.bindPopup('I am Cateau-Cambresis');
 
 		var chantilly = L.marker([49.189781745417484, 2.5007629394531254]);
