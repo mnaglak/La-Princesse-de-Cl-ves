@@ -503,7 +503,7 @@ var partDropdown = L.control({position: 'topright'});
 	
 	partDropdown.onAdd = function (map) {
 		var div = L.DomUtil.create('div', 'info legend');
-		div.innerHTML = '<select><option>Show All Parts</option><option>Part 1</option><option>Part 2</option><option>Part 3</option><option>Part 4</option></select>';
+		div.innerHTML = '<select><option>Parts of the Novel</option><option>Show All Parts</option><option>Part 1</option><option>Part 2</option><option>Part 3</option><option>Part 4</option></select>';
 		div.firstChild.onmousedown = div.firstChild.ondblclick = L.DomEvent.stopPropagation;
 		return div;
 		};
@@ -511,7 +511,12 @@ var partDropdown = L.control({position: 'topright'});
 		$('select').change(function(){
 			var value = $(this).val();
 			
-				
+				if (value === 'Parts of the Novel') {
+					movement.refilter(function(feature){
+							feature.properties.turnOn = 0;
+							
+						return feature.properties.turnOn == 1 && feature.properties.showOnMap==1;})	}
+						
 			
 				
 				if (value === 'Show All Parts') {
@@ -560,7 +565,7 @@ var partDropdown = L.control({position: 'topright'});
 var characterDropdown = L.control({position: 'topright'});
 	characterDropdown.onAdd = function (map) {
 		var div = L.DomUtil.create('div', 'info legend');
-		div.innerHTML = "<select><option>Character Movement in the Novel</option><option>Show All Characters</option><option>Princesse de Clèves</option><option>Prince de Clèves</option><option>Duc de Nemours</option><option>La Cour</option><option>Henri II</option><option>Élisabeth de France</option><option>Vidame de Chartres</option><option>Connétable de Montmorency</option><option>Maréchal de Saint-André</option><option>Cardinal de Lorraine</option><option>Prince de Condé</option><option>Roi de Navarre</option><option>Duc de Savoie</option><option>Duc d'Albe</option><option>Madame de Martigues</option><option>Comte de Radan</option><option>Lignerolles</option><option>Connétable de Bourbon</option><option>Médecin du roi d'Espagne</option><option>Gentilhomme</option></select>";
+		div.innerHTML = "<select><option>Character Movements in the Novel</option><option>Show All Characters</option><option>Princesse de Clèves</option><option>Prince de Clèves</option><option>Duc de Nemours</option><option>La Cour</option><option>Henri II</option><option>Élisabeth de France</option><option>Vidame de Chartres</option><option>Connétable de Montmorency</option><option>Maréchal de Saint-André</option><option>Cardinal de Lorraine</option><option>Prince de Condé</option><option>Roi de Navarre</option><option>Duc de Savoie</option><option>Duc d'Albe</option><option>Madame de Martigues</option><option>Comte de Radan</option><option>Lignerolles</option><option>Connétable de Bourbon</option><option>Médecin du roi d'Espagne</option><option>Gentilhomme</option></select>";
 		
 		div.firstChild.onmousedown = div.firstChild.ondblclick = L.DomEvent.stopPropagation;
 		return div;
@@ -570,7 +575,7 @@ var characterDropdown = L.control({position: 'topright'});
 		$('select').change(function(){
 			var value = $(this).val();
 			movement.addTo(map);
-			if (value === 'Character Movement in the Novel') {
+			if (value === 'Character Movements in the Novel') {
 					movement.refilter(function(feature){
 							feature.properties.showOnMap = 0;
 							
