@@ -478,12 +478,12 @@ var partDropdown = L.control({position: 'topright'});
 
 			 
 });
-
+var div = L.DomUtil.get("box1");
 
 //creates and controls character filter. showOnMap is the character associated attribute and turnOn is the part associated attribute
 var characterDropdown = L.control({position: 'topright'});
 	characterDropdown.onAdd = function (map) {
-		var div = L.DomUtil.create('div', 'info legend');
+		var div = L.DomUtil.create('div', 'info');
 		div.innerHTML = "<select><option>Character Movements in the Novel</option><option>Show All Characters</option><option>Princesse de Clèves</option><option>Prince de Clèves</option><option>Duc de Nemours</option><option>La Cour</option><option>Henri II</option><option>Élisabeth de France</option><option>Vidame de Chartres</option><option>Connétable de Montmorency</option><option>Maréchal de Saint-André</option><option>Cardinal de Lorraine</option><option>Prince de Condé</option><option>Roi de Navarre</option><option>Duc de Savoie</option><option>Duc d'Albe</option><option>Madame de Martigues</option><option>Comte de Radan</option><option>Lignerolles</option><option>Connétable de Bourbon</option><option>Médecin du roi d'Espagne</option><option>Gentilhomme</option></select>";
 		
 		div.firstChild.onmousedown = div.firstChild.ondblclick = L.DomEvent.stopPropagation;
