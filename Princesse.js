@@ -414,8 +414,6 @@
 		}; 
 			
 
-
-
 //Setting up the two filtered drop down boxes, one by part and one by character, to show only certain characters/parts at any one time
 //Its based on two attributes which must both be "on" for the line to show	
 var partDropdown = L.control({position: 'topright'});
@@ -478,8 +476,12 @@ var partDropdown = L.control({position: 'topright'});
 
 			 
 });
-var div = L.DomUtil.get("box1");
+function filterInfo(){
+	var div2 = L.DomUtil.get("box1");
+	div2.innerHTML="<strong>Filtering" + "<br>" + "Controls";
+	return div2; }
 
+filterInfo();
 //creates and controls character filter. showOnMap is the character associated attribute and turnOn is the part associated attribute
 var characterDropdown = L.control({position: 'topright'});
 	characterDropdown.onAdd = function (map) {
