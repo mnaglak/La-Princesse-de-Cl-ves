@@ -478,7 +478,7 @@ var partDropdown = L.control({position: 'topright'});
 });
 function filterInfo(){
 	var div2 = L.DomUtil.get("box1");
-	div2.innerHTML="<strong>Filtering" + "<br>" + "Controls";
+	div2.innerHTML="<strong>Filtering Controls</strong>";
 	return div2; }
 
 filterInfo();
