@@ -4,7 +4,8 @@
 		center: [48.86, 2.33],
 		zoom: 10,
 		maxZoom : 20,
-		}
+		minZoom: 4
+	}
 
 //This creates the map variable itself based on the options set above	
 	var map = new L.map('map', mapOptions); 
@@ -15,10 +16,50 @@
 
 //This is where I have begun to create the legend, defining characters with their colors. 
 	var princess = "<b>Princesse de Clèves</b>";
-	var colorPrincess = princess.fontcolor("#e931be");
-
+	var colorPrincess = princess.fontcolor("#e931be"); //pink
+	var prince = "<b>Prince de Clèves</b>";
+	var colorPrince = prince.fontcolor("#ff0000"); //red
+	var ducdeNemours = "<b>Duc de Nemours</b>";
+	var colorNemours = ducdeNemours.fontcolor("#0000ff"); //blue
+	var laCour = "<b>La Cour</b>";
+	var colorCour = laCour.fontcolor("#A04000"); //brown
+	var henri = "<b>Herni II</b>";
+	var colorHenri = henri.fontcolor("#000000"); //black
+	var elisabeth = "<b>Élisabeth de France</b>"; 
+	var colorElisabeth = elisabeth.fontcolor("#85C1E9"); //light blue
+	var vidame= "<b>Vidame de Chartres</b>";
+	var vidameColor = vidame.fontcolor("#9AFF00"); //bright green
+	var connetableMont = "<b>Connétable de Montmorency</b>";
+	var colorConnetableMont = connetableMont.fontcolor("#5e8d46"); //dark green
+	var marechal = "<b>Maréchal de Saint-André</b>";
+	var colorMarechal = marechal.fontcolor("#c59be9"); //light purple
+	var lorraine = "<b>Cardinal de Lorraine</b>";
+	var colorLorraine = lorraine.fontcolor("#F16E6E"); //light red
+	var conde = "<b>Prince de Condé</b>";
+	var colorConde = conde.fontcolor("#F2F772"); //light yellow
+	var roiNavarre = "<b>Roi de Navarre</b>";
+	var colorRoiNavarre = roiNavarre.fontcolor("#C1C1BF"); //grey
+	var savoie = "<b>Duc de Savoie</b>";
+	var colorSavoie = savoie.fontcolor("#E75C00"); //light brown
+	var albe = "<b>Duc d'Albe</b>";
+	var colorAlbe = albe.fontcolor("#B7950B"); //green-brown
+	var martigues = "<b>Madame de Martigues</b>";
+	var colorMartigues = martigues.fontcolor("#FAD7A0"); //peach
+	var radan = "<b>Comte de Radan</b>";
+	var colorRadan = radan.fontcolor("#c400ff"); //purple
+	var lignerolles = "<b>Lignerolles</b>";
+	var colorLignerolles = lignerolles.fontcolor("#ffab00"); //orange
+	var bourbon = "<b>Connétable de Bourbon</b>";
+	var colorBourbon = bourbon.fontcolor("#ffff00"); //yellow
+	var espagne = "<b>Médecin du roi d'Espagne</b>";
+	var colorEspagne = espagne.fontcolor("#00FFA4"); //aqua-blue
+	var gentilhomme = "<b>Gentilhomme</b>";
+	var colorGentilhomme = gentilhomme.fontcolor("#1D8348");
+	
 	//This will eventually create the legend will all associated information
-	var legendContent = colorPrincess + "<br>" + "Prince de Clèves" + "<br>" + "Duc de Nemours" + "<br>" + "La Cour" + "<br>" + "Henri II" + "<br>" + "Elisabeth de France" + "<br>" + "Vidame de Chartres" + "<br>" + "Connétable de Montmorency" + "<br>" + "Maréchal de Saint-André" + "<br>" + "Cardinal de Lorraine" + "<br>" + "Prince de Condé" + "<br>" + "Roi de Navarre" + "<br>" + "Duc de savoie" + "<br>" + "Duc d'Albe" + "<br>" + "Madame de Martigues" + "<br>" + "Comte de Radan" + "<br>" + "Lignerolles" + "<br>" + "Connétable de Bourbon" + "<br>" + "Médecin du roi d'Espagne" + "<br>" + "Gentilhomme";	
+	var legendContent =  colorPrincess + "<br>" + colorPrince + "<br>" + colorNemours + "<br>" + colorCour + "<br>" + colorHenri + "<br>" + colorElisabeth + "<br>" + vidameColor + "<br>" 
+	+ colorConnetableMont + "<br>" + colorMarechal + "<br>" + colorLorraine + "<br>" + colorConde + "<br>" + colorRoiNavarre + "<br>" 
+	+ colorSavoie + "<br>" + colorAlbe + "<br>" + colorMartigues + "<br>" + colorRadan + "<br>" + colorLignerolles + "<br>" + colorBourbon + "<br>" + colorEspagne + "<br>" + colorGentilhomme;	
 
 
 //panel creations for left sidebar
@@ -37,7 +78,7 @@
 	var popupContent = 'Click on a location on the map to receive more information';
 	
 	var sitesContent = 'Click on one of the following sites to zoom to the desired location' + 
-		'<br>' + "<a id='myLink' href='#' onclick='goTo(48.860352821094246, 2.3385858535766606, 15)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Louvre</b><br><a id='myLink' href='#' onclick='goTo(48.85736700174229,2.3655581474304204, 18)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Palais des Tournelles</b><br><a id='myLink' href='#' onclick='goTo(48.72358515157852, 3.0514526367187504, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Coulommiers</b><br><a id='myLink' href='#' onclick='goTo(48.058348493290794,1.1604309082031252, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Blois</b><br><a id='myLink' href='#' onclick='goTo(50.0289165635219, 4.084167480468751, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Cateau-Cambresis</b><br><a id='myLink' href='#' onclick='goTo(50.24720490139267, 2.6312255859375004, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Cercamp</b><br><a id='myLink' href='#' onclick='goTo(47.94762618352869,1.1343383789062502, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Chambord</b><br><a id='myLink' href='#' onclick='goTo(49.189781745417484, 2.5007629394531254, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Chantilly</b>";
+		'<br>' + "<a id='myLink' href='#' onclick='goTo(48.860352821094246, 2.3385858535766606, 15)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Louvre</b><br><a id='myLink' href='#' onclick='goTo(48.85736700174229,2.3655581474304204, 17)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Palais des Tournelles</b><br><a id='myLink' href='#' onclick='goTo(48.72358515157852, 3.0514526367187504, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Coulommiers</b><br><a id='myLink' href='#' onclick='goTo(48.058348493290794,1.1604309082031252, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Blois</b><br><a id='myLink' href='#' onclick='goTo(50.0289165635219, 4.084167480468751, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Cateau-Cambresis</b><br><a id='myLink' href='#' onclick='goTo(50.24720490139267, 2.6312255859375004, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Cercamp</b><br><a id='myLink' href='#' onclick='goTo(47.94762618352869,1.1343383789062502, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Chambord</b><br><a id='myLink' href='#' onclick='goTo(49.189781745417484, 2.5007629394531254, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Chantilly</b>";
 
 
 //sites of interest panel
@@ -399,11 +440,9 @@ var leCercamp = L.marker([50.24720490139267, 2.6312255859375004]);
 			});
 		
 		function palaisDesTournellescontent() {
-			popupContent = "<b> I am Chambord! I will have content soon! <b>";
+			popupContent = "<b> I am Palais des Tournelles! I will have content soon! <b>";
 			return popupContent;
 		};
-		
-		
 		
 			
 			
@@ -449,7 +488,7 @@ var leCercamp = L.marker([50.24720490139267, 2.6312255859375004]);
 //Now we start calling our locally stored and created Tile Maps. For how to tile a map, see the tiling instructions in the tutorial
 //Note that some have .addTo(map) on the end. This means they will appear when the map is initially loaded
 //You can also set the min/max zoom for these maps, though this is also relient upon actually having made tiles at these zoom levels 
-	var paris1578 = L.tileLayer('./tiledMaps/1578/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 12, maxZoom: 18});
+	var paris1578 = L.tileLayer('./tiledMaps/1578/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 12, maxZoom: 18}).addTo(map);
 	var paris1615 = L.tileLayer('./tiledMaps/1615/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 11, maxZoom: 16});
 	var paris1652 = L.tileLayer('./tiledMaps/1652/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 9, maxZoom: 25});
 	var paris1675 = L.tileLayer('./tiledMaps/1675/{z}/{x}/{y}.png', {tms: true, attribution: "", minZoom: 9, maxZoom: 16}).addTo(map);
@@ -514,52 +553,31 @@ var leCercamp = L.marker([50.24720490139267, 2.6312255859375004]);
 	L.control.layers(baseLayers, overlayMaps, {collapsed: false}).addTo(map);
 
 
-//Now we do the same thing for the opacity control box
-//Here is our list of Layers to be controlled by the Opacity Control Box, again in the proper order
-		var opacityLayers = {
-			"1578 Paris" : paris1578,
-			"1615 Paris" : paris1615,
-			"1652 Paris" : paris1652,
-			"1675 Paris" : paris1675,
-			"1598 Ile de France" : ileDeFrance1598,
-			"1570 France" : france1570,
-			"1644 Europe" : europe1644
-			};
-
-
-//Now we similar create the opacity control box
-		L.control.opacity(
-			opacityLayers, //the variable containing all the maps
-			{label: "Opacity", //the label for the box
-			position: 'topright',
-			collapsed: true} //if we want the opacity box to be collapsed or not. We can do the same thing for the control layers box if desired
-			).addTo(map);
-
 
 //Function sets a particular color and style for each character and part of the book	
 	function swapStyle(feature) {
 		if (feature.properties.Book_Part == 1) {
 				switch (feature.properties.Character) {
-					case 'Prince de Clèves': return {color: "#ff0000" };
-					case 'Duc de Nemours': return {color: "#0000ff"};
-					case 'Cardinal de Lorraine': return {color: "#d9ff15"};
-					case 'Connétable de Montmorency': return {color: "#5e8d46"};
-					case 'Maréchal de Saint-André' : return {color: "#c59be9"};
-					case 'Henri II': return {color: "#000000"};
-					case 'Duc de Savoie': return {color: "#a66c32"};
-					case 'Comte de Radan': return {color: "#c400ff"};
-					case 'Lignerolles': return {color: "#ffab00"};
-					case 'Connétable de Bourbon': return {color: "#ffff00"};
-					case 'Princesse de Clèves': return {color: "#e931be"};
-					case 'Vidame de Chartres': return {color: "#CACFD2" };
-					case "Duc d'Albe": return {color: "#B7950B" };
-					case "Médecin du roi d'Espagne": return {color: "#D7BDE2" };
-					case 'La Cour': return {color: "#A04000"};
-					case 'Roi de Navarre': return {color: "#FDFEFE"};
-					case 'Prince de Condé': return {color: "#A93226"};
-					case 'Élisabeth de France': return {color: "#85C1E9"};
-					case 'Gentilhomme': return {color: "#1D8348"};
-					case 'Madame de Martigues': return {color: "#FAD7A0"};
+					case 'Prince de Clèves': return {color: "#ff0000" }; //red
+					case 'Duc de Nemours': return {color: "#0000ff"}; //blue
+					case 'Cardinal de Lorraine': return {color: "#F16E6E"}; //light red
+					case 'Connétable de Montmorency': return {color: "#5e8d46"}; //dark green
+					case 'Maréchal de Saint-André' : return {color: "#c59be9"}; //light purple
+					case 'Henri II': return {color: "#000000"}; //black
+					case 'Duc de Savoie': return {color: "#E75C00"}; //light brown
+					case 'Comte de Radan': return {color: "#c400ff"}; //purple
+					case 'Lignerolles': return {color: "#ffab00"}; //orange
+					case 'Connétable de Bourbon': return {color: "#ffff00"}; //yellow
+					case 'Princesse de Clèves': return {color: "#e931be"}; //pink
+					case 'Vidame de Chartres': return {color: "#9AFF00"}; //bright green
+					case "Duc d'Albe": return {color: "#B7950B" }; //green-brown
+					case "Médecin du roi d'Espagne": return {color: "#00FFA4" }; //aqua-blue
+					case 'La Cour': return {color: "#A04000"}; //brown
+					case 'Roi de Navarre': return {color: "#C1C1BF"}; //grey
+					case 'Prince de Condé': return {color: "#F2F772"}; //light yellow
+					case 'Élisabeth de France': return {color: "#85C1E9"}; //light blue
+					case 'Gentilhomme': return {color: "#1D8348"}; //dark green 
+					case 'Madame de Martigues': return {color: "#FAD7A0"}; //peach
 				}
 			}
 		
@@ -573,11 +591,11 @@ var leCercamp = L.marker([50.24720490139267, 2.6312255859375004]);
 					case 'Prince de Clèves': return {color: "#ff0000", dashArray: '15, 10, 5' };
 					case 'Duc de Nemours': return {color: "#0000ff", dashArray: '15, 10, 5'};
 					case 'Henri II': return {color: "#000000", dashArray: '15, 10, 5'};
-					case 'Duc de Savoie': return {color: "#a66c32", dashArray: '15, 15, 5'};
+					case 'Duc de Savoie': return {color: "#E75C00", dashArray: '15, 15, 5'};
 					case 'Princesse de Clèves': return {color: "#e931be", dashArray: '15, 10, 5'};
-					case 'Vidame de Chartres': return {color: "#CACFD2", dashArray: '15, 10, 5' };
+					case 'Vidame de Chartres': return {color: "#9AFF00", dashArray: '15, 10, 5' };
 					case "Duc d'Albe": return {color: "#B7950B", dashArray: '15, 10, 5' };
-					case "Médecin du roi d'Espagne": return {color: "#D7BDE2", dashArray: '15, 10, 5' };
+					case "Médecin du roi d'Espagne": return {color: "#00FFA4", dashArray: '15, 10, 5' };
 					case 'La Cour': return {color: "#A04000", dashArray: '15, 10, 5'};
 				}
 			}
@@ -588,10 +606,10 @@ var leCercamp = L.marker([50.24720490139267, 2.6312255859375004]);
 					case 'Duc de Nemours': return {color: "#0000ff", dashArray: '5, 10' };
 					case 'Connétable de Montmorency': return {color: "#5e8d46", dashArray: '5, 10' };
 					case 'Princesse de Clèves': return {color: "#e931be", dashArray: '5, 10' };
-					case 'Vidame de Chartres': return {color: "#CACFD2" , dashArray: '5, 10' };
+					case 'Vidame de Chartres': return {color: "#9AFF00" , dashArray: '5, 10' };
 					case 'La Cour': return {color: "#A04000", dashArray: '5, 10' };
-					case 'Roi de Navarre': return {color: "#FDFEFE", dashArray: '5, 10' };
-					case 'Prince de Condé': return {color: "#A93226", dashArray: '5, 10' };
+					case 'Roi de Navarre': return {color: "#C1C1BF", dashArray: '5, 10' };
+					case 'Prince de Condé': return {color: "#F2F772", dashArray: '5, 10' };
 					case 'Élisabeth de France': return {color: "#85C1E9", dashArray: '5, 10' };
 					case 'Gentilhomme': return {color: "#1D8348", dashArray: '5, 10' };
 					case 'Madame de Martigues': return {color: "#FAD7A0", dashArray: '5, 10' };
@@ -860,6 +878,28 @@ var characterDropdown = L.control({position: 'topright'});
 						feature.properties.showOnMap=0;
 			return feature.properties.showOnMap===1 && feature.properties.turnOn===1;})	}
 	}); 
+
+//Now we do the same thing for the opacity control box
+//Here is our list of Layers to be controlled by the Opacity Control Box, again in the proper order
+		var opacityLayers = {
+			"1578 Paris" : paris1578,
+			"1615 Paris" : paris1615,
+			"1652 Paris" : paris1652,
+			"1675 Paris" : paris1675,
+			"1598 Ile de France" : ileDeFrance1598,
+			"1570 France" : france1570,
+			"1644 Europe" : europe1644
+			};
+
+
+//Now we similar create the opacity control box
+		L.control.opacity(
+			opacityLayers, //the variable containing all the maps
+			{label: "<b>Opacity</b>", //the label for the box
+			position: 'topright',
+			collapsed: true} //if we want the opacity box to be collapsed or not. We can do the same thing for the control layers box if desired
+			).addTo(map);
+
 
 //Creation of pan/scale function in the top left cornder of the map.
 		L.control.pan().addTo(map);

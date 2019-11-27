@@ -45,9 +45,9 @@ border-radius: 5px;
 
 .box {
   width: 250px;
-  height: 100px;
+  height: 90px;
   position: fixed;
-  top: 320px;
+  top: 240px;
   right: 5px;
   background: white;
   z-index:1000;
