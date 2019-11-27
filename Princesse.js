@@ -37,7 +37,7 @@
 	var popupContent = 'Click on a location on the map to receive more information';
 	
 	var sitesContent = 'Click on one of the following sites to zoom to the desired location' + 
-		'<br>' + "<a id='myLink' href='#' onclick='goTo(48.860352821094246, 2.3385858535766606, 15)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>The Louvre</b><br><a id='myLink' href='#' onclick='goTo(48.72358515157852, 3.0514526367187504, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Coulommiers</b>";
+		'<br>' + "<a id='myLink' href='#' onclick='goTo(48.860352821094246, 2.3385858535766606, 15)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Louvre</b><br><a id='myLink' href='#' onclick='goTo(48.85736700174229,2.3655581474304204, 18)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Palais des Tournelles</b><br><a id='myLink' href='#' onclick='goTo(48.72358515157852, 3.0514526367187504, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Coulommiers</b><br><a id='myLink' href='#' onclick='goTo(48.058348493290794,1.1604309082031252, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Blois</b><br><a id='myLink' href='#' onclick='goTo(50.0289165635219, 4.084167480468751, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Cateau-Cambresis</b><br><a id='myLink' href='#' onclick='goTo(50.24720490139267, 2.6312255859375004, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Cercamp</b><br><a id='myLink' href='#' onclick='goTo(47.94762618352869,1.1343383789062502, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Chambord</b><br><a id='myLink' href='#' onclick='goTo(49.189781745417484, 2.5007629394531254, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Chantilly</b>";
 
 
 //sites of interest panel
@@ -102,6 +102,12 @@
 		sidebarLeft.close();
 		louvre.setIcon(blueIcon);
 		coulommiers.setIcon(blueIcon);
+		cateauCambresis.setIcon(blueIcon);
+		leCercamp.setIcon(blueIcon);
+		chantilly.setIcon(blueIcon);
+		blois.setIcon(blueIcon);
+		chambord.setIcon(blueIcon);
+		palaisDesTournelles.setIcon(blueIcon);
 		});
 
 //definition of blue and green icons		
@@ -129,7 +135,13 @@
 			position: 'top'        			
 			});
 			louvre.setIcon(blueIcon);
-			coulommiers.setIcon(blueIcon);	
+			coulommiers.setIcon(blueIcon);
+			cateauCambresis.setIcon(blueIcon);
+			leCercamp.setIcon(blueIcon);
+			chantilly.setIcon(blueIcon);
+			blois.setIcon(blueIcon);
+			chambord.setIcon(blueIcon);
+			palaisDesTournelles.setIcon(blueIcon);
 		});
 
 //function resets sidebar content for popup pane
@@ -147,7 +159,7 @@
 
 //for the Louvre marker
 		var louvre = L.marker([48.860352821094246, 2.3385858535766606], {myCustomID: "abc123"});
-			louvre.bindTooltip("The Louvre").openTooltip();
+			louvre.bindTooltip("Louvre").openTooltip();
 			louvre.on("click", function (e) {
 				louvrecontent();
 				sidebarLeft.removePanel('popupCont');
@@ -161,6 +173,12 @@
 				sidebarLeft.open('popupCont');
 				louvre.setIcon(greenIcon);
 				coulommiers.setIcon(blueIcon);
+				cateauCambresis.setIcon(blueIcon);
+				leCercamp.setIcon(blueIcon);
+				chantilly.setIcon(blueIcon);
+				blois.setIcon(blueIcon);
+				chambord.setIcon(blueIcon);
+				palaisDesTournelles.setIcon(blueIcon);
 			});
 			
 	function louvrecontent() {
@@ -175,7 +193,6 @@
 		
 
 //for Coulommiers
-			
 		var coulommiers= L.marker([48.72358515157852, 3.0514526367187504]);
 			coulommiers.bindTooltip("Coulommiers").openTooltip();
 			coulommiers.on("click", function (e) {
@@ -191,38 +208,207 @@
 				sidebarLeft.open('popupCont');
 				coulommiers.setIcon(greenIcon);
 				louvre.setIcon(blueIcon);
+				cateauCambresis.setIcon(blueIcon);
+				leCercamp.setIcon(blueIcon);
+				chantilly.setIcon(blueIcon);
+				blois.setIcon(blueIcon);
+				chambord.setIcon(blueIcon);
+				palaisDesTournelles.setIcon(blueIcon);
 			});
 			
 		function coulommierscontent() {
 			popupContent = "<b> I am Coulommiers</b>"
 			+ "<br>" + "<img src='./Images/Coulommiers_vers_1600.JPG' width=100%/>"+ "<br>" + "See my metadata " + "<a target='_blank' href=''>here</a>" + "<br>" +
 			"I am also Coulommiers" + "<br>" + "<img src='./Images/Prospect_du_Chasteau_de_Coulommiers_en_Brie.jpg' width=100%/>" 
-			+"<br>" + "See my metadata " + "<a target='_blank' href=''>here</a>" 
+			+"<br>" + "See my metadata " + "<a target='_blank' href=''>here</a>";
 
 			return popupContent;
 		};
 
 
-
-//other sites not yet integrated into the sidebar. Waiting for final list
-		var brussels = L.marker([51.09662294502995, 5.158081054687501]);
-		brussels.bindPopup("I am Brussels!");
+//for cateauCambresis
+var cateauCambresis = L.marker([50.0289165635219, 4.084167480468751]);
+	cateauCambresis.bindTooltip("Cateau-Cambresis").openTooltip();
+	cateauCambresis.on("click", function (e) {
+		cateauCambresiscontent();
+		sidebarLeft.removePanel('popupCont');
+				sidebarLeft.addPanel({
+					id: 'popupCont',                     // UID, used to access the panel
+					tab: '<i class="fa fa-comment-alt"></i>',  // content can be passed as HTML string,
+					pane: popupContent,        // DOM elements can be passed, too
+					title: 'Cateau-Cambresis',              // an optional pane header
+					position: 'top'        			
+				});
+				sidebarLeft.open('popupCont');
+				coulommiers.setIcon(blueIcon);
+				louvre.setIcon(blueIcon);
+				cateauCambresis.setIcon(greenIcon);
+				leCercamp.setIcon(blueIcon);
+				chantilly.setIcon(blueIcon);
+				blois.setIcon(blueIcon);
+				chambord.setIcon(blueIcon);
+				palaisDesTournelles.setIcon(blueIcon);
+			});
 		
-		var leCercamp = L.marker([50.24720490139267, 2.6312255859375004]);
-		leCercamp.bindPopup("Le Cercamp");
+		function cateauCambresiscontent() {
+			popupContent = "<b> I am Cateau-Cambresis! I will have content soon! <b>";
+			return popupContent;
+		};
 
-		var cateauCambresis = L.marker([50.0289165635219, 4.084167480468751]);
-		cateauCambresis.bindPopup('I am Cateau-Cambresis');
 
+//for Cercamp 
+var leCercamp = L.marker([50.24720490139267, 2.6312255859375004]);
+	leCercamp.bindTooltip("Cercamp").openTooltip();
+	leCercamp.on("click", function (e) {
+		leCercampcontent();
+		sidebarLeft.removePanel('popupCont');
+				sidebarLeft.addPanel({
+					id: 'popupCont',                     // UID, used to access the panel
+					tab: '<i class="fa fa-comment-alt"></i>',  // content can be passed as HTML string,
+					pane: popupContent,        // DOM elements can be passed, too
+					title: 'Cercamp',              // an optional pane header
+					position: 'top'        			
+				});
+				sidebarLeft.open('popupCont');
+				coulommiers.setIcon(blueIcon);
+				louvre.setIcon(blueIcon);
+				cateauCambresis.setIcon(blueIcon);
+				leCercamp.setIcon(greenIcon);
+				chantilly.setIcon(blueIcon);
+				blois.setIcon(blueIcon);
+				chambord.setIcon(blueIcon);
+				palaisDesTournelles.setIcon(blueIcon);
+			});
+		
+		function leCercampcontent() {
+			popupContent = "<b> I am Cercamp! I will have content soon! <b>";
+			return popupContent;
+		};
+
+
+//for chantilly
 		var chantilly = L.marker([49.189781745417484, 2.5007629394531254]);
-		chantilly.bindPopup('I am Chantilly');
+		chantilly.bindTooltip("Chantilly").openTooltip();
+		chantilly.on("click", function (e) {
+		chantillycontent();
+		sidebarLeft.removePanel('popupCont');
+				sidebarLeft.addPanel({
+					id: 'popupCont',                     // UID, used to access the panel
+					tab: '<i class="fa fa-comment-alt"></i>',  // content can be passed as HTML string,
+					pane: popupContent,        // DOM elements can be passed, too
+					title: 'Chantilly',              // an optional pane header
+					position: 'top'        			
+				});
+				sidebarLeft.open('popupCont');
+				coulommiers.setIcon(blueIcon);
+				louvre.setIcon(blueIcon);
+				cateauCambresis.setIcon(blueIcon);
+				leCercamp.setIcon(blueIcon);
+				chantilly.setIcon(greenIcon);
+				blois.setIcon(blueIcon);
+				chambord.setIcon(blueIcon);
+				palaisDesTournelles.setIcon(blueIcon);
+			});
+		
+		function chantillycontent() {
+			popupContent = "<b> I am Chantilly! I will have content soon! <b>";
+			return popupContent;
+		};
 
-		var bayonne = L.marker([44.04811573082351,-2.2796630859375004]);
-		bayonne.bindPopup('I am Bayonne');
+//for blois 
+		var blois = L.marker([48.058348493290794,1.1604309082031252]);
+		blois.bindTooltip("Blois").openTooltip();
+		blois.on("click", function (e) {
+		bloiscontent();
+		sidebarLeft.removePanel('popupCont');
+				sidebarLeft.addPanel({
+					id: 'popupCont',                     // UID, used to access the panel
+					tab: '<i class="fa fa-comment-alt"></i>',  // content can be passed as HTML string,
+					pane: popupContent,        // DOM elements can be passed, too
+					title: 'Blois',              // an optional pane header
+					position: 'top'        			
+				});
+				sidebarLeft.open('popupCont');
+				coulommiers.setIcon(blueIcon);
+				louvre.setIcon(blueIcon);
+				cateauCambresis.setIcon(blueIcon);
+				leCercamp.setIcon(blueIcon);
+				chantilly.setIcon(blueIcon);
+				blois.setIcon(greenIcon);
+				chambord.setIcon(blueIcon);
+				palaisDesTournelles.setIcon(blueIcon);
+			});
+		
+		function bloiscontent() {
+			popupContent = "<b> I am Blois! I will have content soon! <b>";
+			return popupContent;
+		};
+
+//chambord
+		var chambord = L.marker([47.94762618352869,1.1343383789062502]);
+		chambord.bindTooltip("Chambord").openTooltip();
+		chambord.on("click", function (e) {
+		chambordcontent();
+		sidebarLeft.removePanel('popupCont');
+				sidebarLeft.addPanel({
+					id: 'popupCont',                     // UID, used to access the panel
+					tab: '<i class="fa fa-comment-alt"></i>',  // content can be passed as HTML string,
+					pane: popupContent,        // DOM elements can be passed, too
+					title: 'Chambord',              // an optional pane header
+					position: 'top'        			
+				});
+				sidebarLeft.open('popupCont');
+				coulommiers.setIcon(blueIcon);
+				louvre.setIcon(blueIcon);
+				cateauCambresis.setIcon(blueIcon);
+				leCercamp.setIcon(blueIcon);
+				chantilly.setIcon(blueIcon);
+				blois.setIcon(blueIcon);
+				chambord.setIcon(greenIcon);
+				palaisDesTournelles.setIcon(blueIcon);
+			});
+		
+		function chambordcontent() {
+			popupContent = "<b> I am Chambord! I will have content soon! <b>";
+			return popupContent;
+		};
+
+//Palais des Tournelles
+		var palaisDesTournelles = L.marker([48.85736700174229,2.3655581474304204]);
+		palaisDesTournelles.bindTooltip("Palais des Tournelles").openTooltip();
+		palaisDesTournelles.on("click", function (e) {
+		palaisDesTournellescontent();
+		sidebarLeft.removePanel('popupCont');
+				sidebarLeft.addPanel({
+					id: 'popupCont',                     // UID, used to access the panel
+					tab: '<i class="fa fa-comment-alt"></i>',  // content can be passed as HTML string,
+					pane: popupContent,        // DOM elements can be passed, too
+					title: 'Palais des Tournelles',              // an optional pane header
+					position: 'top'        			
+				});
+				sidebarLeft.open('popupCont');
+				coulommiers.setIcon(blueIcon);
+				louvre.setIcon(blueIcon);
+				cateauCambresis.setIcon(blueIcon);
+				leCercamp.setIcon(blueIcon);
+				chantilly.setIcon(blueIcon);
+				blois.setIcon(blueIcon);
+				chambord.setIcon(blueIcon);
+				palaisDesTournelles.setIcon(greenIcon);
+				
+			});
+		
+		function palaisDesTournellescontent() {
+			popupContent = "<b> I am Chambord! I will have content soon! <b>";
+			return popupContent;
+		};
+		
+		
+		
 			
 			
 //	merging of these sites for turning on/off
-		var pointsOfFocus = L.layerGroup([louvre, coulommiers, brussels, chantilly, cateauCambresis, bayonne, leCercamp]).addTo(map);
+		var pointsOfFocus = L.layerGroup([louvre, coulommiers, chantilly, cateauCambresis, leCercamp, blois, chambord, palaisDesTournelles]).addTo(map);
 
 
 //Function to see map coordinates in console on click
