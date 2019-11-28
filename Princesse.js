@@ -78,7 +78,7 @@
 	var popupContent = 'Click on a location on the map to receive more information';
 	
 	var sitesContent = 'Click on one of the following sites to zoom to the desired location' + 
-		'<br>' + "<a id='myLink' href='#' onclick='goTo(48.860352821094246, 2.3385858535766606, 15)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Louvre</b><br><a id='myLink' href='#' onclick='goTo(48.85736700174229,2.3655581474304204, 17)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Palais des Tournelles</b><br><a id='myLink' href='#' onclick='goTo(48.72358515157852, 3.0514526367187504, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Coulommiers</b><br><a id='myLink' href='#' onclick='goTo(48.058348493290794,1.1604309082031252, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Blois</b><br><a id='myLink' href='#' onclick='goTo(50.0289165635219, 4.084167480468751, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Cateau-Cambresis</b><br><a id='myLink' href='#' onclick='goTo(50.24720490139267, 2.6312255859375004, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Cercamp</b><br><a id='myLink' href='#' onclick='goTo(47.94762618352869,1.1343383789062502, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Chambord</b><br><a id='myLink' href='#' onclick='goTo(49.189781745417484, 2.5007629394531254, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Chantilly</b>";
+		'<br>' + "<a id='myLink' href='#' onclick='goTo(48.860352821094246, 2.3385858535766606, 15)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Louvre</b><br><a id='myLink' href='#' onclick='goTo(48.85736700174229,2.3655581474304204, 17)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Palais des Tournelles</b><br><a id='myLink' href='#' onclick='goTo(48.85918110234517, 2.3500013351440434, 14)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Hôtels particuliers</b><br><a id='myLink' href='#' onclick='goTo(48.72358515157852, 3.0514526367187504, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Coulommiers</b><br><a id='myLink' href='#' onclick='goTo(48.058348493290794,1.1604309082031252, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Blois</b><br><a id='myLink' href='#' onclick='goTo(50.0289165635219, 4.084167480468751, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Cateau-Cambresis</b><br><a id='myLink' href='#' onclick='goTo(50.24720490139267, 2.6312255859375004, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Cercamp</b><br><a id='myLink' href='#' onclick='goTo(47.94762618352869,1.1343383789062502, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Chambord</b><br><a id='myLink' href='#' onclick='goTo(49.19483004925347, 2.4860000610351567, 13)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Chantilly</b>";
 
 
 //sites of interest panel
@@ -149,6 +149,8 @@
 		blois.setIcon(blueIcon);
 		chambord.setIcon(blueIcon);
 		palaisDesTournelles.setIcon(blueIcon);
+		hotels.setIcon(blueIcon);
+		hotels2.setIcon(blueIcon);
 		});
 
 //definition of blue and green icons		
@@ -183,6 +185,8 @@
 			blois.setIcon(blueIcon);
 			chambord.setIcon(blueIcon);
 			palaisDesTournelles.setIcon(blueIcon);
+			hotels.setIcon(blueIcon);
+			hotels2.setIcon(blueIcon);
 		});
 
 //function resets sidebar content for popup pane
@@ -220,6 +224,8 @@
 				blois.setIcon(blueIcon);
 				chambord.setIcon(blueIcon);
 				palaisDesTournelles.setIcon(blueIcon);
+				hotels.setIcon(blueIcon);
+				hotels2.setIcon(blueIcon);
 			});
 			
 	function louvrecontent() {
@@ -231,7 +237,70 @@
 
 			return popupContent;
 	};
-		
+	
+//for hotels
+		var hotels = L.marker([48.860875144709475, 2.3408818244934086]);
+		hotels.bindTooltip("Hôtels particuliers").openTooltip();
+			hotels.on("click", function (e) {
+				hotelscontent();
+				sidebarLeft.removePanel('popupCont');
+				sidebarLeft.addPanel({
+					id: 'popupCont',                     // UID, used to access the panel
+					tab: '<i class="fa fa-comment-alt"></i>',  // content can be passed as HTML string,
+					pane: popupContent,        // DOM elements can be passed, too
+					title: 'Hôtels particuliers',              // an optional pane header
+					position: 'top'        			
+				});
+				sidebarLeft.open('popupCont');
+				coulommiers.setIcon(blueIcon);
+				louvre.setIcon(blueIcon);
+				cateauCambresis.setIcon(blueIcon);
+				leCercamp.setIcon(blueIcon);
+				chantilly.setIcon(blueIcon);
+				blois.setIcon(blueIcon);
+				chambord.setIcon(blueIcon);
+				palaisDesTournelles.setIcon(blueIcon);
+				hotels.setIcon(greenIcon);
+				hotels2.setIcon(greenIcon);
+			});
+			
+		var hotels2 = L.marker([48.85678111084862, 2.3626613616943364]);
+		hotels2.bindTooltip("Hôtels particuliers").openTooltip();
+			hotels2.on("click", function (e) {
+				hotelscontent();
+				sidebarLeft.removePanel('popupCont');
+				sidebarLeft.addPanel({
+					id: 'popupCont',                     // UID, used to access the panel
+					tab: '<i class="fa fa-comment-alt"></i>',  // content can be passed as HTML string,
+					pane: popupContent,        // DOM elements can be passed, too
+					title: 'Hôtels particuliers',              // an optional pane header
+					position: 'top'        			
+				});
+				sidebarLeft.open('popupCont');
+				coulommiers.setIcon(blueIcon);
+				louvre.setIcon(blueIcon);
+				cateauCambresis.setIcon(blueIcon);
+				leCercamp.setIcon(blueIcon);
+				chantilly.setIcon(blueIcon);
+				blois.setIcon(blueIcon);
+				chambord.setIcon(blueIcon);
+				palaisDesTournelles.setIcon(blueIcon);
+				hotels.setIcon(greenIcon);
+				hotels2.setIcon(greenIcon);
+			});	
+			
+			
+		function hotelscontent() {
+			popupContent = "<b> I am Hôtels particuliers</b>";
+
+			return popupContent;
+		};
+	
+	
+	
+	
+	
+	
 
 //for Coulommiers
 		var coulommiers= L.marker([48.72358515157852, 3.0514526367187504]);
@@ -255,6 +324,8 @@
 				blois.setIcon(blueIcon);
 				chambord.setIcon(blueIcon);
 				palaisDesTournelles.setIcon(blueIcon);
+				hotels.setIcon(blueIcon);
+				hotels2.setIcon(blueIcon);
 			});
 			
 		function coulommierscontent() {
@@ -289,6 +360,8 @@ var cateauCambresis = L.marker([50.0289165635219, 4.084167480468751]);
 				blois.setIcon(blueIcon);
 				chambord.setIcon(blueIcon);
 				palaisDesTournelles.setIcon(blueIcon);
+				hotels.setIcon(blueIcon);
+				hotels2.setIcon(blueIcon);
 			});
 		
 		function cateauCambresiscontent() {
@@ -319,6 +392,8 @@ var leCercamp = L.marker([50.24720490139267, 2.6312255859375004]);
 				blois.setIcon(blueIcon);
 				chambord.setIcon(blueIcon);
 				palaisDesTournelles.setIcon(blueIcon);
+				hotels.setIcon(blueIcon);
+				hotels2.setIcon(blueIcon);
 			});
 		
 		function leCercampcontent() {
@@ -328,7 +403,7 @@ var leCercamp = L.marker([50.24720490139267, 2.6312255859375004]);
 
 
 //for chantilly
-		var chantilly = L.marker([49.189781745417484, 2.5007629394531254]);
+		var chantilly = L.marker([49.19483004925347,2.4860000610351567]);
 		chantilly.bindTooltip("Chantilly").openTooltip();
 		chantilly.on("click", function (e) {
 		chantillycontent();
@@ -349,6 +424,8 @@ var leCercamp = L.marker([50.24720490139267, 2.6312255859375004]);
 				blois.setIcon(blueIcon);
 				chambord.setIcon(blueIcon);
 				palaisDesTournelles.setIcon(blueIcon);
+				hotels.setIcon(blueIcon);
+				hotels2.setIcon(blueIcon);
 			});
 		
 		function chantillycontent() {
@@ -378,6 +455,8 @@ var leCercamp = L.marker([50.24720490139267, 2.6312255859375004]);
 				blois.setIcon(greenIcon);
 				chambord.setIcon(blueIcon);
 				palaisDesTournelles.setIcon(blueIcon);
+				hotels.setIcon(blueIcon);
+				hotels2.setIcon(blueIcon);
 			});
 		
 		function bloiscontent() {
@@ -407,6 +486,8 @@ var leCercamp = L.marker([50.24720490139267, 2.6312255859375004]);
 				blois.setIcon(blueIcon);
 				chambord.setIcon(greenIcon);
 				palaisDesTournelles.setIcon(blueIcon);
+				hotels.setIcon(blueIcon);
+				hotels2.setIcon(blueIcon);
 			});
 		
 		function chambordcontent() {
@@ -436,7 +517,8 @@ var leCercamp = L.marker([50.24720490139267, 2.6312255859375004]);
 				blois.setIcon(blueIcon);
 				chambord.setIcon(blueIcon);
 				palaisDesTournelles.setIcon(greenIcon);
-				
+				hotels.setIcon(blueIcon);
+				hotels2.setIcon(blueIcon);
 			});
 		
 		function palaisDesTournellescontent() {
@@ -447,7 +529,7 @@ var leCercamp = L.marker([50.24720490139267, 2.6312255859375004]);
 			
 			
 //	merging of these sites for turning on/off
-		var pointsOfFocus = L.layerGroup([louvre, coulommiers, chantilly, cateauCambresis, leCercamp, blois, chambord, palaisDesTournelles]).addTo(map);
+		var pointsOfFocus = L.layerGroup([louvre, coulommiers, chantilly, cateauCambresis, leCercamp, blois, chambord, palaisDesTournelles, hotels, hotels2]).addTo(map);
 
 
 //Function to see map coordinates in console on click
