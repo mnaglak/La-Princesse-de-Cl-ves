@@ -78,7 +78,7 @@
 	var popupContent = 'Click on a location on the map to receive more information';
 	
 	var sitesContent = 'Click on one of the following sites to zoom to the desired location' + 
-		'<br>' + "<a id='myLink' href='#' onclick='goTo(48.860352821094246, 2.3385858535766606, 15)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Louvre</b><br><a id='myLink' href='#' onclick='goTo(48.85736700174229,2.3655581474304204, 17)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Palais des Tournelles</b><br><a id='myLink' href='#' onclick='goTo(48.85918110234517, 2.3500013351440434, 14)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Hôtels particuliers</b><br><a id='myLink' href='#' onclick='goTo(48.72358515157852, 3.0514526367187504, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Coulommiers</b><br><a id='myLink' href='#' onclick='goTo(48.058348493290794,1.1604309082031252, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Blois</b><br><a id='myLink' href='#' onclick='goTo(50.0289165635219, 4.084167480468751, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Cateau-Cambresis</b><br><a id='myLink' href='#' onclick='goTo(50.24720490139267, 2.6312255859375004, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Cercamp</b><br><a id='myLink' href='#' onclick='goTo(47.94762618352869,1.1343383789062502, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Chambord</b><br><a id='myLink' href='#' onclick='goTo(49.19483004925347, 2.4860000610351567, 13)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Chantilly</b>";
+		'<br>' + "<a id='myLink' href='#' onclick='goTo(48.860352821094246, 2.3385858535766606, 15)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Le Louvre</b><br><a id='myLink' href='#' onclick='goTo(48.85736700174229,2.3655581474304204, 17)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Le Palais des Tournelles</b><br><a id='myLink' href='#' onclick='goTo(48.85918110234517, 2.3500013351440434, 14)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Hôtels particuliers</b><br><a id='myLink' href='#' onclick='goTo(48.72358515157852, 3.0514526367187504, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Coulommiers</b><br><a id='myLink' href='#' onclick='goTo(48.058348493290794,1.1604309082031252, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Blois</b><br><a id='myLink' href='#' onclick='goTo(50.0289165635219, 4.084167480468751, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Cateau-Cambrésis</b><br><a id='myLink' href='#' onclick='goTo(50.24720490139267, 2.6312255859375004, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Cercamp</b><br><a id='myLink' href='#' onclick='goTo(47.94762618352869,1.1343383789062502, 10)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Chambord</b><br><a id='myLink' href='#' onclick='goTo(49.19483004925347, 2.4860000610351567, 13)'><img src='./Images/marker-icon-blue.png' class='nav-text' height='40' width='25'></a><b>Chantilly</b>";
 
 
 //sites of interest panel
@@ -143,7 +143,7 @@
 		sidebarLeft.close();
 		louvre.setIcon(blueIcon);
 		coulommiers.setIcon(blueIcon);
-		cateauCambresis.setIcon(blueIcon);
+		cateauCambrésis.setIcon(blueIcon);
 		leCercamp.setIcon(blueIcon);
 		chantilly.setIcon(blueIcon);
 		blois.setIcon(blueIcon);
@@ -179,7 +179,7 @@
 			});
 			louvre.setIcon(blueIcon);
 			coulommiers.setIcon(blueIcon);
-			cateauCambresis.setIcon(blueIcon);
+			cateauCambrésis.setIcon(blueIcon);
 			leCercamp.setIcon(blueIcon);
 			chantilly.setIcon(blueIcon);
 			blois.setIcon(blueIcon);
@@ -204,7 +204,7 @@
 
 //for the Louvre marker
 		var louvre = L.marker([48.860352821094246, 2.3385858535766606], {myCustomID: "abc123"});
-			louvre.bindTooltip("Louvre").openTooltip();
+			louvre.bindTooltip("Le Louvre").openTooltip();
 			louvre.on("click", function (e) {
 				louvrecontent();
 				sidebarLeft.removePanel('popupCont');
@@ -212,13 +212,13 @@
 					id: 'popupCont',                     // UID, used to access the panel
 					tab: '<i class="fa fa-comment-alt"></i>',  // content can be passed as HTML string,
 					pane: popupContent,        // DOM elements can be passed, too
-					title: 'Louvre',              // an optional pane header
+					title: 'Le Louvre',              // an optional pane header
 					position: 'top'        			
 				});
 				sidebarLeft.open('popupCont');
 				louvre.setIcon(greenIcon);
 				coulommiers.setIcon(blueIcon);
-				cateauCambresis.setIcon(blueIcon);
+				cateauCambrésis.setIcon(blueIcon);
 				leCercamp.setIcon(blueIcon);
 				chantilly.setIcon(blueIcon);
 				blois.setIcon(blueIcon);
@@ -229,7 +229,7 @@
 			});
 			
 	function louvrecontent() {
-			popupContent = "<b> I am a sketch of the Louvre from the past </b>"
+			popupContent = "<b> I am a sketch of the Le Louvre from the past </b>"
 			+ "<br>" + "<img src='./Images/Fig. 1 Louvre Israel Silvestre.jpeg' width=100%/>" + "<br>" + "See my metadata " + "<a target='_blank' href=''>here</a>" + "<br>" +
 			"<i>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet </i>"
 			+ "<br>" + "<br>" + 
@@ -254,7 +254,7 @@
 				sidebarLeft.open('popupCont');
 				coulommiers.setIcon(blueIcon);
 				louvre.setIcon(blueIcon);
-				cateauCambresis.setIcon(blueIcon);
+				cateauCambrésis.setIcon(blueIcon);
 				leCercamp.setIcon(blueIcon);
 				chantilly.setIcon(blueIcon);
 				blois.setIcon(blueIcon);
@@ -279,7 +279,7 @@
 				sidebarLeft.open('popupCont');
 				coulommiers.setIcon(blueIcon);
 				louvre.setIcon(blueIcon);
-				cateauCambresis.setIcon(blueIcon);
+				cateauCambrésis.setIcon(blueIcon);
 				leCercamp.setIcon(blueIcon);
 				chantilly.setIcon(blueIcon);
 				blois.setIcon(blueIcon);
@@ -318,7 +318,7 @@
 				sidebarLeft.open('popupCont');
 				coulommiers.setIcon(greenIcon);
 				louvre.setIcon(blueIcon);
-				cateauCambresis.setIcon(blueIcon);
+				cateauCambrésis.setIcon(blueIcon);
 				leCercamp.setIcon(blueIcon);
 				chantilly.setIcon(blueIcon);
 				blois.setIcon(blueIcon);
@@ -338,23 +338,23 @@
 		};
 
 
-//for cateauCambresis
-var cateauCambresis = L.marker([50.0289165635219, 4.084167480468751]);
-	cateauCambresis.bindTooltip("Cateau-Cambresis").openTooltip();
-	cateauCambresis.on("click", function (e) {
-		cateauCambresiscontent();
+//for cateauCambrésis
+var cateauCambrésis = L.marker([50.0289165635219, 4.084167480468751]);
+	cateauCambrésis.bindTooltip("Cateau-Cambrésis").openTooltip();
+	cateauCambrésis.on("click", function (e) {
+		cateauCambrésiscontent();
 		sidebarLeft.removePanel('popupCont');
 				sidebarLeft.addPanel({
 					id: 'popupCont',                     // UID, used to access the panel
 					tab: '<i class="fa fa-comment-alt"></i>',  // content can be passed as HTML string,
 					pane: popupContent,        // DOM elements can be passed, too
-					title: 'Cateau-Cambresis',              // an optional pane header
+					title: 'Cateau-Cambrésis',              // an optional pane header
 					position: 'top'        			
 				});
 				sidebarLeft.open('popupCont');
 				coulommiers.setIcon(blueIcon);
 				louvre.setIcon(blueIcon);
-				cateauCambresis.setIcon(greenIcon);
+				cateauCambrésis.setIcon(greenIcon);
 				leCercamp.setIcon(blueIcon);
 				chantilly.setIcon(blueIcon);
 				blois.setIcon(blueIcon);
@@ -364,8 +364,8 @@ var cateauCambresis = L.marker([50.0289165635219, 4.084167480468751]);
 				hotels2.setIcon(blueIcon);
 			});
 		
-		function cateauCambresiscontent() {
-			popupContent = "<b> I am Cateau-Cambresis! I will have content soon! <b>";
+		function cateauCambrésiscontent() {
+			popupContent = "<b> I am Cateau-Cambrésis! I will have content soon! <b>";
 			return popupContent;
 		};
 
@@ -386,7 +386,7 @@ var leCercamp = L.marker([50.24720490139267, 2.6312255859375004]);
 				sidebarLeft.open('popupCont');
 				coulommiers.setIcon(blueIcon);
 				louvre.setIcon(blueIcon);
-				cateauCambresis.setIcon(blueIcon);
+				cateauCambrésis.setIcon(blueIcon);
 				leCercamp.setIcon(greenIcon);
 				chantilly.setIcon(blueIcon);
 				blois.setIcon(blueIcon);
@@ -418,7 +418,7 @@ var leCercamp = L.marker([50.24720490139267, 2.6312255859375004]);
 				sidebarLeft.open('popupCont');
 				coulommiers.setIcon(blueIcon);
 				louvre.setIcon(blueIcon);
-				cateauCambresis.setIcon(blueIcon);
+				cateauCambrésis.setIcon(blueIcon);
 				leCercamp.setIcon(blueIcon);
 				chantilly.setIcon(greenIcon);
 				blois.setIcon(blueIcon);
@@ -449,7 +449,7 @@ var leCercamp = L.marker([50.24720490139267, 2.6312255859375004]);
 				sidebarLeft.open('popupCont');
 				coulommiers.setIcon(blueIcon);
 				louvre.setIcon(blueIcon);
-				cateauCambresis.setIcon(blueIcon);
+				cateauCambrésis.setIcon(blueIcon);
 				leCercamp.setIcon(blueIcon);
 				chantilly.setIcon(blueIcon);
 				blois.setIcon(greenIcon);
@@ -480,7 +480,7 @@ var leCercamp = L.marker([50.24720490139267, 2.6312255859375004]);
 				sidebarLeft.open('popupCont');
 				coulommiers.setIcon(blueIcon);
 				louvre.setIcon(blueIcon);
-				cateauCambresis.setIcon(blueIcon);
+				cateauCambrésis.setIcon(blueIcon);
 				leCercamp.setIcon(blueIcon);
 				chantilly.setIcon(blueIcon);
 				blois.setIcon(blueIcon);
@@ -497,7 +497,7 @@ var leCercamp = L.marker([50.24720490139267, 2.6312255859375004]);
 
 //Palais des Tournelles
 		var palaisDesTournelles = L.marker([48.85736700174229,2.3655581474304204]);
-		palaisDesTournelles.bindTooltip("Palais des Tournelles").openTooltip();
+		palaisDesTournelles.bindTooltip("Le Palais des Tournelles").openTooltip();
 		palaisDesTournelles.on("click", function (e) {
 		palaisDesTournellescontent();
 		sidebarLeft.removePanel('popupCont');
@@ -505,13 +505,13 @@ var leCercamp = L.marker([50.24720490139267, 2.6312255859375004]);
 					id: 'popupCont',                     // UID, used to access the panel
 					tab: '<i class="fa fa-comment-alt"></i>',  // content can be passed as HTML string,
 					pane: popupContent,        // DOM elements can be passed, too
-					title: 'Palais des Tournelles',              // an optional pane header
+					title: 'Le Palais des Tournelles',              // an optional pane header
 					position: 'top'        			
 				});
 				sidebarLeft.open('popupCont');
 				coulommiers.setIcon(blueIcon);
 				louvre.setIcon(blueIcon);
-				cateauCambresis.setIcon(blueIcon);
+				cateauCambrésis.setIcon(blueIcon);
 				leCercamp.setIcon(blueIcon);
 				chantilly.setIcon(blueIcon);
 				blois.setIcon(blueIcon);
@@ -522,14 +522,14 @@ var leCercamp = L.marker([50.24720490139267, 2.6312255859375004]);
 			});
 		
 		function palaisDesTournellescontent() {
-			popupContent = "<b> I am Palais des Tournelles! I will have content soon! <b>";
+			popupContent = "<b> I am Le Palais des Tournelles! I will have content soon! <b>";
 			return popupContent;
 		};
 		
 			
 			
 //	merging of these sites for turning on/off
-		var pointsOfFocus = L.layerGroup([louvre, coulommiers, chantilly, cateauCambresis, leCercamp, blois, chambord, palaisDesTournelles, hotels, hotels2]).addTo(map);
+		var pointsOfFocus = L.layerGroup([louvre, coulommiers, chantilly, cateauCambrésis, leCercamp, blois, chambord, palaisDesTournelles, hotels, hotels2]).addTo(map);
 
 
 //Function to see map coordinates in console on click
@@ -628,7 +628,7 @@ var leCercamp = L.marker([50.24720490139267, 2.6312255859375004]);
 			"<a target='_blank' href=''>1570 France</a>" : france1570,
 			"<a target='_blank' href=''>1644 Europe</a>" : europe1644,
 			"Points of Focus" : pointsOfFocus,
-			"Character Movement" : movement
+			"Character Movements" : movement
 			};
 
 //Then this created the actual control box
@@ -638,7 +638,7 @@ var leCercamp = L.marker([50.24720490139267, 2.6312255859375004]);
 
 //Function sets a particular color and style for each character and part of the book	
 	function swapStyle(feature) {
-		if (feature.properties.Book_Part == 1) {
+		if (feature.properties.Book_Part === 1) {
 				switch (feature.properties.Character) {
 					case 'Prince de Clèves': return {color: "#ff0000" }; //red
 					case 'Duc de Nemours': return {color: "#0000ff"}; //blue
