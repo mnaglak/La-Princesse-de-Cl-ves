@@ -9,7 +9,7 @@
 
 //This creates the map variable itself based on the options set above	
 	var map = new L.map('map', mapOptions); 
-		
+
 //Sidebar creation
 	var sidebarLeft = L.control.sidebar({position:"left"}).addTo(map);
 
@@ -986,6 +986,8 @@ var characterDropdown = L.control({position: 'topright'});
 //Creation of pan/scale function in the top left cornder of the map.
 		L.control.pan().addTo(map);
 		L.control.scale().addTo(map);
+		map.addControl(new L.Control.Fullscreen());
+
 	
 	/*Removed timeline to use dropdown box instead
 //The following portion of the code is all about the timeline
